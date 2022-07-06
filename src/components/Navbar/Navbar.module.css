@@ -1,0 +1,207 @@
+/* Generic Nav */
+.nav {
+  display: flex;
+  margin: auto;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: clamp(1.125rem, 5vw, 1.5rem);
+  padding-top: 1.5rem;
+  max-width: 65rem;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  margin-bottom: 2rem;
+}
+
+.nav .link {
+  display: none;
+}
+
+.link a {
+  text-decoration: none;
+  color: currentColor;
+}
+
+.hamburger {
+  height: 2rem;
+  fill: var(--text);
+}
+
+.nav li {
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+
+@media only screen and (min-width: 60rem) {
+  .nav .link {
+    display: flex;
+  }
+
+  .hamburger {
+    display: none;
+  }
+}
+
+/* Darkmode toggle */
+.stars *,
+.moon,
+.plane,
+.cloud,
+.fillWhite {
+  fill: var(--white);
+}
+
+.moonMask,
+.cloud > path {
+  transition: transform var(--duration) var(--transition);
+  will-change: transform;
+}
+
+.toggle {
+  --is-light: 1;
+  --transition: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  fill: hsl(212, 97%, 68%);
+  height: 3rem;
+  aspect-ratio: 37 / 19;
+  cursor: pointer;
+}
+
+.outline {
+  stroke: var(--white);
+  stroke-width: 0.625rem;
+  transition: fill var(--duration) var(--transition), stroke var(--duration) var(--transition);
+  will-change: fill, stroke;
+}
+
+.stars {
+  transition: opacity var(--duration) var(--transition);
+  will-change: opacity;
+}
+
+.stars * {
+  opacity: calc(1 - var(--is-light));
+  transition: opacity 100ms var(--transition), transform 100ms ease 400ms;
+  transform-origin: 50% 50%;
+  will-change: transform, opacity;
+}
+
+.sun {
+  opacity: var(--is-light);
+  fill: var(--yellow-2);
+  transition: transform var(--duration) var(--transition), opacity var(--duration) var(--transition);
+  will-change: transform, opacity;
+}
+
+.moon {
+  opacity: calc(1 - var(--is-light));
+  transition: transform var(--duration) var(--transition), opacity var(--duration) var(--transition);
+  will-change: transform, opacity;
+}
+
+.cloud > path:first-child {
+  transition-delay: 100ms;
+}
+
+.plane {
+  stroke: var(--white);
+  animation: plane 2s 1 0.3s;
+  opacity: 0;
+}
+
+.moonMask {
+  fill: hsl(230, 23%, 46%);
+}
+
+:global(.dark) .toggle {
+  --is-light: 0;
+  fill: hsl(223, 48%, 25%);
+}
+
+:global(.dark) .outline {
+  stroke: hsl(230, 23%, 56%);
+}
+
+:global(.dark) .stars * {
+  transition: transform var(--duration) var(--transition);
+}
+
+:global(.dark) .stars *:first-child {
+  transform: translateX(-2.5rem);
+}
+
+:global(.dark) .stars *:last-child {
+  transform: translateX(2.5rem);
+}
+
+:global(.dark) .sun {
+  transform: translate(-8.75rem, -1.25rem);
+}
+
+:global(.dark) .moon {
+  transform: translateX(-5.625rem);
+}
+
+:global(.dark) .cloud > path {
+  opacity: 1;
+  animation: cloudToDark var(--duration);
+  transform: translateY(6.25rem);
+}
+
+/* Prevent cloud flash on initial load */
+:global(.dark):global(.no-animate) .cloud > path {
+  opacity: 0;
+}
+
+:global(.dark) .plane {
+  animation: unset;
+}
+
+:global(.dark) .moonMask {
+  transform: translateX(-8.75rem);
+}
+
+@keyframes plane {
+  0% {
+    opacity: 1;
+    transform: translateX(-25rem);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  80% {
+    opacity: 1;
+  }
+}
+
+@keyframes cloudToDark {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(2.5rem);
+  }
+}
+
+/* Animation Select */
+.animationSelect {
+  --select-width: 22ch;
+}
+
+:global(.reduce-motion) .button,
+.strikethrough {
+  stroke: var(--text);
+}
+
+/* Language Select */
+.languageSelect {
+  --select-width: 7.5ch;
+  --select-svg-height: 1.5em;
+}
+
+.languageSelect button {
+  padding-top: 0.167em;
+  padding-bottom: 0.167em;
+}

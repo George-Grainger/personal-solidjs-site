@@ -1,0 +1,30 @@
+{
+  "name": "English",
+  "title": "George Grainger · Your next employee ;)",
+  "locale": "en-GB",
+  "nav": [
+    {
+      "title": "Home",
+      "path": "/"
+    },
+    {
+      "title": "Projects",
+      "path": "/projects"
+    },
+    {
+      "title": "About",
+      "path": "/about-me"
+    }
+  ],
+  "404": {
+    "header": "We've lost our way - 404",
+    "body": "This page doesn't exist"
+  },
+  "footer": {
+    "updated": "Last updated {{date}} on Solid v{{version}}"
+  },
+  "dark_mode": "Dark mode",
+  "light_mode": "Light mode",
+  "reduce_animation": "Reduce animation",
+  "keep_animation": "Keep animation"
+}

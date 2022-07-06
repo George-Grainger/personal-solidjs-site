@@ -1,0 +1,94 @@
+.title,
+.select {
+  --drop-duration: 200ms;
+  line-height: 1;
+  border-radius: 0.5em;
+  border: 0.125em solid currentColor;
+  width: var(--select-width, 100%);
+  color: var(--text);
+  background-color: var(--inverse);
+  display: flex;
+}
+
+.title svg,
+.select svg {
+  height: var(--select-svg-height, 1.8em);
+  fill: currentColor;
+}
+
+.title:hover,
+.label:hover {
+  background-color: var(--inverse-hover);
+}
+
+.wrapper {
+  --unit-size: var(--sizing-unit, 0.375em);
+  position: relative;
+}
+
+.select {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  overflow: hidden;
+  top: 100%;
+  padding: 0;
+  z-index: -1;
+  opacity: 0;
+  transform: translateY(-25%);
+  transition: color var(--duration) var(--transition), background-color var(--duration) var(--transition),
+    opacity var(--drop-duration) var(--transition), transform var(--drop-duration) var(--transition);
+}
+
+.select input[type='radio'] {
+  visibility: hidden;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--unit-size);
+}
+
+.title {
+  padding: var(--unit-size) calc(4 * var(--unit-size)) var(--unit-size) var(--unit-size);
+  position: relative;
+  text-align: left;
+  transition: color var(--duration) var(--transition), background-color var(--duration) var(--transition),
+    border var(--duration) var(--transition);
+}
+
+.title::before,
+.title::after {
+  content: '';
+  position: absolute;
+  inset: 50% 0.5em auto auto;
+  border-left: var(--unit-size) solid transparent;
+  border-right: var(--unit-size) solid transparent;
+  transition: opacity var(--drop-duration) var(--transition);
+}
+
+.title::before {
+  transform: translateY(-120%);
+  border-bottom: var(--unit-size) solid currentColor;
+  opacity: 0.35;
+}
+
+.title::after {
+  transform: translateY(20%);
+  border-top: var(--unit-size) solid currentColor;
+}
+
+.show .select {
+  transform: translateY(5%);
+  opacity: 1;
+}
+
+.show .title::before {
+  opacity: 1;
+}
+
+.show .title::after {
+  opacity: 0.35;
+}

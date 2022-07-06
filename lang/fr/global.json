@@ -1,0 +1,30 @@
+{
+  "name": "English",
+  "title": "George Grainger · Votre prochain employé ;)",
+  "locale": "fr-FR",
+  "nav": [
+    {
+      "title": "Accueil",
+      "path": "/"
+    },
+    {
+      "title": "Projets",
+      "path": "/projects"
+    },
+    {
+      "title": "Informations",
+      "path": "/about-me"
+    }
+  ],
+  "404": {
+    "header": "Étaient perdus - 404",
+    "body": "Cette page n'existe pas"
+  },
+  "footer": {
+    "updated": "Mis à jour le {{date}}"
+  },
+  "dark_mode": "Mode sombre",
+  "light_mode": "Mode lumière",
+  "reduce_animation": "Réduire l'animation",
+  "keep_animation": "Garder l'animation"
+}
