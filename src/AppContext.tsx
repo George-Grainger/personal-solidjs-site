@@ -76,7 +76,9 @@ export const AppContextProvider: ParentComponent = (props) => {
   createEffect(() => {
     if (isReduceMotion()) {
       document.documentElement.classList.add('reduce-motion');
+      document.documentElement.classList.remove('no-preference');
     } else {
+      document.documentElement.classList.add('no-preference');
       document.documentElement.classList.remove('reduce-motion');
     }
   });

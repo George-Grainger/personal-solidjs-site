@@ -19,7 +19,7 @@ const App: VoidComponent<{}> = () => {
 
   const Routes = useRoutes(routes);
   return (
-    <main class="min-h-screen">
+    <main>
       <Router>
         <MetaProvider>
           <AppContextProvider>

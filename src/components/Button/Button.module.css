@@ -1,0 +1,69 @@
+.btn {
+  display: flex;
+  gap: 0.75em;
+  padding: 0.25em 1em;
+  margin-inline: auto;
+  background-color: var(--btn-bg, var(--purple));
+  color: var(--btn-text, var(--white));
+  font-weight: 800;
+  text-transform: uppercase;
+  transition: filter var(--duration) var(--transition);
+  filter: drop-shadow(0.15em 0.15em 0 var(--text));
+  transform: skewX(-15deg);
+  font-style: italic;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:hover {
+  filter: drop-shadow(0.25em 0.25em 0 var(--yellow-2));
+}
+
+.btn span {
+  transform: skewX(15deg);
+}
+
+.btn span:last-child {
+  width: 0.75em;
+  margin-right: 0.5em;
+  position: relative;
+  transition: margin 500ms;
+}
+
+.arrows {
+  width: 2em;
+  height: 0.875em;
+}
+
+.arrows path:nth-child(1) {
+  --time: 600ms;
+  transition: transform calc(0.8 * var(--duration)) var(--transition);
+  transform: translateX(-60%);
+}
+
+.arrows path:nth-child(2) {
+  --time: 400ms;
+  transition: transform var(--duration) var(--transition);
+  transform: translateX(-30%);
+}
+
+.arrows path:nth-child(3) {
+  --time: 200ms;
+}
+
+.btn:hover span:last-child {
+  margin: auto 1em auto 0.75em;
+}
+
+.btn:hover path {
+  animation: colour_anim 1s infinite var(--time);
+  transform: translateX(0);
+}
+
+@keyframes colour_anim {
+  50% {
+    fill: var(--yellow-2);
+  }
+}

@@ -1,0 +1,68 @@
+.svg {
+  overflow: visible;
+  width: min(100%, 40rem);
+}
+
+:global(.reduce-motion) .svg {
+  --duration: 0;
+}
+
+.moonWrapper,
+.moon,
+.sun,
+.earthWrapper,
+.earth {
+  transition: transform calc(3 * var(--duration)) var(--transition);
+  will-change: transform;
+}
+
+.moonWrapper {
+  transform-origin: 20% 70%;
+  transform: scale(0.2) translate(20rem, -15rem) rotate(90deg);
+}
+
+.moon {
+  transform-origin: center;
+  transform: rotate(-90deg);
+}
+
+.moonBody {
+  fill: hsl(226, 21%, 88%);
+}
+
+.sun {
+  transform-origin: 68% 18%;
+  filter: drop-shadow(0 0 1rem var(--yellow-1));
+}
+
+.earthWrapper {
+  transform-origin: 22% 0%;
+}
+
+.earth {
+  transform-origin: center;
+}
+
+.earth > path {
+  fill: var(--green);
+}
+
+.earth > path:first-child {
+  fill: var(--blue);
+}
+
+:global(.dark) :where(.moonWrapper, .moon) {
+  transform: none;
+}
+
+:global(.dark) .sun {
+  transform: scale(0.33) rotate(-90deg);
+}
+
+:global(.dark) .earthWrapper {
+  transform: scale(0.33) rotate(90deg);
+}
+
+:global(.dark) .earth {
+  transform: rotate(-90deg);
+}

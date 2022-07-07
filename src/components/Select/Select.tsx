@@ -1,5 +1,6 @@
 import styles from './Select.module.css';
 import { createSignal, children, onMount, Switch, Match, batch, ParentComponent } from 'solid-js';
+import { useI18n } from '@solid-primitives/i18n';
 
 interface SelectProps {
   passedClasses?: string;
@@ -8,6 +9,7 @@ interface SelectProps {
 }
 
 export const Select: ParentComponent<SelectProps> = (props) => {
+  const [t] = useI18n();
   const elements = children(() => props.children)() as HTMLElement[];
 
   onMount(() => {
@@ -38,11 +40,12 @@ export const Select: ParentComponent<SelectProps> = (props) => {
   return (
     <div class={`${props.passedClasses} ${styles.wrapper}`} classList={{ [styles.show]: optionsVisible() }}>
       <button
-        aria-hidden="true"
+        aria-label={t('global.select.view_options', {}, 'View options')}
         class={styles.title}
         onClick={() => setOptionsVisible((v) => !v)}
         onBlur={(e) => !e.currentTarget.parentElement?.matches(':focus-within') && setOptionsVisible(false)}
       >
+        <span class="sr-only">{t('global.select.current', {}, 'Currently selected:')}</span>
         <Switch fallback={'Choose an option'}>{getCheckedMatches()}</Switch>
       </button>
       <fieldset class={styles.select} onClick={() => setOptionsVisible(false)} onChange={handleChange}>

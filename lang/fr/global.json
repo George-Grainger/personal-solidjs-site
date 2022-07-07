@@ -16,6 +16,10 @@
       "path": "/about-me"
     }
   ],
+  "select": {
+    "current": "Actuellement sélectionné :",
+    "view_options": "Options d'affichage"
+  },
   "404": {
     "header": "Étaient perdus - 404",
     "body": "Cette page n'existe pas"

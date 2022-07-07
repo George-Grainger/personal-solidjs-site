@@ -16,12 +16,16 @@
       "path": "/about-me"
     }
   ],
+  "select": {
+    "current": "Currently selected:",
+    "view_options": "View options"
+  },
   "404": {
     "header": "We've lost our way - 404",
     "body": "This page doesn't exist"
   },
   "footer": {
-    "updated": "Last updated {{date}} on Solid v{{version}}"
+    "updated": "Last updated {{date}}"
   },
   "dark_mode": "Dark mode",
   "light_mode": "Light mode",
