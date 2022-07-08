@@ -192,23 +192,46 @@
   }
 }
 
-/* Animation Select */
-.animationSelect {
-  --select-width: 22ch;
-}
+/* Animation Select and language */
 
 :global(.reduce-motion) .button,
 .strikethrough {
   stroke: var(--text);
 }
 
-/* Language Select */
+.animationSelect,
 .languageSelect {
-  --select-width: 7.5ch;
   --select-svg-height: 1.5em;
 }
 
-.languageSelect button {
-  padding-top: 0.167em;
-  padding-bottom: 0.167em;
+.languageSelect {
+  --select-width: 7.5ch;
+}
+
+.languageSelect button,
+.animationSelect button {
+  --unit-y: 0.167em;
+}
+
+.languageSelect button span,
+.animationSelect button span {
+  display: none;
+}
+
+@media only screen and (min-width: 40rem) {
+  .animationSelect {
+    --select-width: 21.5ch;
+  }
+
+  .animationSelect button {
+    --unit-y: unset;
+  }
+
+  .animationSelect button span {
+    display: inherit;
+  }
+
+  .animationSelect button svg {
+    display: none;
+  }
 }

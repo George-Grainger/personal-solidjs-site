@@ -3,7 +3,7 @@ import { createSignal, children, onMount, Switch, Match, batch, ParentComponent 
 import { useI18n } from '@solid-primitives/i18n';
 
 interface SelectProps {
-  passedClasses?: string;
+  class?: string;
   legend: string;
   onChange: (a: string) => void;
 }
@@ -30,15 +30,16 @@ export const Select: ParentComponent<SelectProps> = (props) => {
   const getCheckedMatches = () => {
     const matches = [];
     for (let i = 0; i < elements.length; i += 2) {
-      const displayVal = elements[i].firstChild;
+      const displayVals = Array.from(elements[i].childNodes);
+
       const input = elements[i + 1] as HTMLInputElement;
-      matches.push(<Match when={currentlySelected() === input.value}>{displayVal}</Match>);
+      matches.push(<Match when={currentlySelected() === input.value}>{displayVals}</Match>);
     }
     return matches;
   };
 
   return (
-    <div class={`${props.passedClasses} ${styles.wrapper}`} classList={{ [styles.show]: optionsVisible() }}>
+    <div class={`${props.class || ''} ${styles.wrapper}`} classList={{ [styles.show]: optionsVisible() }}>
       <button
         aria-label={t('global.select.view_options', {}, 'View options')}
         class={styles.title}

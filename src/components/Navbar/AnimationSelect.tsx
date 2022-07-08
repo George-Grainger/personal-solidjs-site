@@ -11,7 +11,7 @@ export const AnimationSelect: VoidComponent<{}> = () => {
   const NAME = 'animation-preference';
 
   return (
-    <Select passedClasses={styles.animationSelect} legend="Show animations?" onChange={(e) => (context.isReduceMotion = e === 'reduce')}>
+    <Select class={styles.animationSelect} legend="Show animations?" onChange={(e) => (context.isReduceMotion = e === 'reduce')}>
       <SelectOption id="animations-on" name={NAME} value="no-preference" checked={!context.isReduceMotion}>
         <span>{t('global.keep_animation', {}, 'Keep animation')}</span>
         <AnimationsSVG />

@@ -8,7 +8,7 @@ const LanguageSelect: VoidComponent<{}> = () => {
   const [, { locale }] = useI18n();
 
   return (
-    <Select passedClasses={styles.languageSelect} legend="Choose language" onChange={(val) => locale(val)}>
+    <Select class={styles.languageSelect} legend="Choose language" onChange={(val) => locale(val)}>
       <SelectOption id="lang-en" name="language-preference" value="en" checked={locale() === 'en'}>
         <UKFlag />
         <span>en</span>

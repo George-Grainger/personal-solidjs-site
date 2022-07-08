@@ -54,7 +54,9 @@ const Home: Component<{}> = () => {
         </div>
       </section>
 
-      <section></section>
+      <section>
+        <Clouds class={styles.clouds} />
+      </section>
       <footer></footer>
     </>
   );
