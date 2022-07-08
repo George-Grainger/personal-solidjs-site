@@ -1,17 +1,12 @@
 /* Generic Nav */
 .nav {
   font-size: clamp(1.125rem, 5vw, 1.5rem);
-  padding-top: 1.5rem;
   font-weight: 600;
-  position: sticky;
-  top: 0;
-  z-index: 999;
 }
 
 .nav ul {
   display: flex;
   justify-content: space-evenly;
-  width: 100%;
   max-width: 70rem;
   margin: 0 auto;
   padding: unset;
@@ -87,7 +82,8 @@
 
 .stars * {
   opacity: calc(1 - var(--is-light));
-  transition: opacity 100ms var(--transition), transform 100ms ease 400ms;
+  transition: opacity calc(0.4 * var(--duration)) var(--transition),
+    transform calc(0.4 * var(--duration)) var(--transition) calc(0.8 * var(--duration));
   transform-origin: 50% 50%;
   will-change: transform, opacity;
 }
@@ -107,10 +103,6 @@
 
 .cloud > path:first-child {
   transition-delay: 100ms;
-}
-
-:global(.reduce-motion) .cloud > path:first-child {
-  transition-delay: 0ms;
 }
 
 .plane {
@@ -166,6 +158,11 @@
 :global(.reduce-motion) .plane,
 :global(.dark) .plane {
   animation: unset;
+}
+
+:global(.reduce-motion) .stars *,
+:global(.reduce-motion) .cloud > path:first-child {
+  transition-delay: 0ms;
 }
 
 :global(.dark) .moonMask {

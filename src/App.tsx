@@ -19,20 +19,20 @@ const App: VoidComponent<{}> = () => {
 
   const Routes = useRoutes(routes);
   return (
-    <main>
-      <Router>
-        <MetaProvider>
-          <AppContextProvider>
-            <Navbar />
+    <Router>
+      <MetaProvider>
+        <AppContextProvider>
+          <Navbar />
+          <main>
             {/* <TransitionRoutes> */}
             <Suspense fallback={<p>Loading</p>}>
               <Routes />
             </Suspense>
             {/* </TransitionRoutes> */}
-          </AppContextProvider>
-        </MetaProvider>
-      </Router>
-    </main>
+          </main>
+        </AppContextProvider>
+      </MetaProvider>
+    </Router>
   );
 };
 

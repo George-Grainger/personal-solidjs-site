@@ -3,9 +3,9 @@ import { JSX, ParentComponent, splitProps } from 'solid-js';
 import styles from './Button.module.css';
 
 export const Button: ParentComponent<JSX.AnchorHTMLAttributes<HTMLAnchorElement>> = (props) => {
-  const [local, others] = splitProps(props, ['class', 'children']);
+  const [local, others] = splitProps(props, ['class', 'children', 'href']);
   return (
-    <NavLink class={`${styles.btn} ${local.class}`} href="/about-me">
+    <NavLink class={`${styles.btn} ${local.class}`} href={local.href || ''} {...others}>
       <span>{local.children}</span>
       <span>
         <svg class={styles.arrows} viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="currentColor">

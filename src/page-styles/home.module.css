@@ -1,12 +1,60 @@
-.homeSection {
-  overflow: hidden;
+.heroSection {
+  gap: 0.25em 1em;
+  padding-inline: 0.25em;
+  max-width: 80rem;
+}
+
+.title {
+  font-size: 1em;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -0.03rem;
+  white-space: nowrap;
+}
+
+.subtitle {
+  font-size: 0.5em;
+  letter-spacing: -0.015rem;
+  margin-bottom: 1rem;
+  white-space: nowrap;
+}
+
+.intro {
+  font-size: 0.33em;
+  text-align: center;
+  max-width: 32ch;
+  margin-block: 1rem;
+}
+
+.btn {
+  font-size: clamp(1.5rem, 4.8vw, 1.75rem);
+}
+
+.projectSection {
+  gap: 20vh;
+}
+
+.cloudWrapper {
+  place-self: start center;
+  isolation: isolate;
   display: grid;
-  place-items: center;
-  place-content: center;
-  position: relative;
-  top: 0;
-  gap: 15vh;
-  width: 100%;
+  height: 120%;
+}
+
+.projectTitle,
+.clouds {
+  grid-row: 1 / 1;
+  grid-column: 1 / 1;
+}
+
+.projectTitle {
+  place-self: start center;
+  position: sticky;
+  margin-top: 3rem;
+  top: 33vh;
+  z-index: -1;
+  font-size: 0.75em;
+  font-weight: 800;
 }
 
 .clouds {
@@ -30,55 +78,36 @@
   transform: translateX(max(26vw, 40%));
 }
 
-.hero {
-  display: grid;
-  gap: 0.25em 1em;
-  place-content: center;
-  place-items: center;
-  margin-inline: auto;
-  padding-inline: 0.25em;
-  font-size: clamp(3.75rem, 12vw, 6rem);
-  max-width: 80rem;
+.projects {
+  display: flex;
+  width: min(100%, 80rem);
+  margin: auto;
+  justify-content: space-between;
 }
 
-.title {
-  font-size: 1em;
-  line-height: 1;
-  font-weight: 900;
-  letter-spacing: -0.03rem;
-  white-space: nowrap;
-}
-
-.subtitle {
+.card {
   font-size: 0.5em;
-  letter-spacing: -0.015rem;
-  margin-bottom: 1rem;
-  white-space: nowrap;
+  padding: 1em 0.5em;
+  background: var(--grey-dc);
 }
 
-.introText {
-  font-size: 0.33em;
-  text-align: center;
-  max-width: 32ch;
-  margin-block: 1rem;
-}
-
-.btn {
-  font-size: clamp(1.5rem, 4.8vw, 1.75rem);
+.card p {
+  font-size: 0.5em;
+  max-width: 25ch;
 }
 
 @media only screen and (min-width: 60rem) {
   .hero {
     grid-template-columns: minmax(min-content, 1fr) 1fr;
     min-height: 50vh;
-    padding-inline: 0;
+    /* padding-inline: 0; */
   }
 
   .subtitle {
     margin-bottom: 0;
   }
 
-  .introText {
+  .intro {
     max-width: 40ch;
     font-size: 0.25em;
     margin-top: 0;
