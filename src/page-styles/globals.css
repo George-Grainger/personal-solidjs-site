@@ -23,12 +23,12 @@ header {
   top: 0;
   z-index: 999;
   padding-top: 1.5rem;
-  margin-bottom: 10vh;
+  margin-bottom: min(10vh, 6.67rem);
 }
 
 main {
   display: grid;
-  gap: 15vh;
+  gap: min(15vh, 10rem);
   place-items: center;
   place-content: center;
 }
@@ -39,6 +39,7 @@ section {
   font-size: clamp(3.75rem, 12vw, 6rem);
   place-items: center;
   place-content: center;
+  width: min(90vw, 80rem);
 }
 
 /* Box sizing rules */

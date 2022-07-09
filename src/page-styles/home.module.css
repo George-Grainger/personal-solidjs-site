@@ -1,7 +1,5 @@
 .heroSection {
   gap: 0.25em 1em;
-  padding-inline: 0.25em;
-  max-width: 80rem;
 }
 
 .title {
@@ -31,20 +29,32 @@
 }
 
 .projectSection {
-  gap: 20vh;
+  gap: min(15vh, 10rem);
 }
 
 .cloudWrapper {
   place-self: start center;
   isolation: isolate;
   display: grid;
-  height: 120%;
+}
+
+.projectSection .cloudWrapper {
+  height: calc(100% + min(10vh, 6.67rem));
 }
 
 .projectTitle,
-.clouds {
+.aboutContent,
+.clouds,
+.cloudWrapper {
   grid-row: 1 / 1;
   grid-column: 1 / 1;
+}
+
+.projectTitle,
+.aboutTitle {
+  z-index: -1;
+  font-size: 0.66em;
+  font-weight: 800;
 }
 
 .projectTitle {
@@ -52,37 +62,43 @@
   position: sticky;
   margin-top: 3rem;
   top: 33vh;
-  z-index: -1;
-  font-size: 0.66em;
-  font-weight: 800;
 }
 
 .clouds {
   overflow: visible;
-  width: min(120vw, 160rem);
+  width: min(240vw, 160rem);
 }
 
-:global(.no-preference) .clouds path {
-  transition: transform calc(2.5 * var(--duration)) var(--transition) calc(140ms - var(--delay, 0ms));
+:global(.no-preference) .clouds g {
+  transition: transform calc(2.5 * var(--duration)) var(--transition);
 }
 
-:global(.dark):global(.no-preference) .clouds path {
-  transition: transform calc(2.5 * var(--duration)) var(--transition) var(--delay, 0ms);
+.animateClouds .moveToLeft,
+:global(.reduce-motion) .aboutSection .moveToLeft {
+  transform: translateX(min(-20vw, -45%));
 }
 
-:global(.dark) .clouds path:nth-child(-n + 3) {
-  transform: translateX(min(-33vw, -60%));
+.animateClouds .moveToRight,
+:global(.reduce-motion) .aboutSection .moveToRight {
+  transform: translateX(max(20vw, 48%));
 }
 
-:global(.dark) .clouds path:nth-child(n + 4) {
-  transform: translateX(max(26vw, 40%));
+:global(.dark) .clouds .moveToLeft {
+  transform: translateX(min(-35vw, -66.67%));
+}
+
+:global(.dark) .clouds .moveToRight {
+  transform: translateX(max(35vw, 56%));
 }
 
 .projects {
   display: flex;
+  flex-direction: column;
+  gap: 0.5em;
   width: min(100%, 80rem);
   margin: auto;
   justify-content: space-between;
+  align-items: center;
 }
 
 .card {
@@ -96,11 +112,41 @@
   max-width: 25ch;
 }
 
+.aboutContent {
+  display: grid;
+  gap: 0.5em 1em;
+  width: min(90vw, 80rem);
+}
+
+.aboutTitle {
+  margin: 0.5em auto auto;
+  grid-column: 1 / -1;
+}
+
+.aboutContent h3 {
+  margin: auto;
+  font-size: 0.4em;
+}
+
+.aboutContent div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+}
+
+.aboutContent p {
+  font-size: 0.25em;
+}
+
+.aboutContent hr {
+  margin-block: 0;
+  width: 100%;
+}
+
 @media only screen and (min-width: 60rem) {
   .hero {
     grid-template-columns: minmax(min-content, 1fr) 1fr;
     min-height: 50vh;
-    /* padding-inline: 0; */
   }
 
   .subtitle {
@@ -116,5 +162,15 @@
   .svgScene {
     grid-row: 1 / span 4;
     grid-column: 2;
+  }
+
+  .aboutContent {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (min-width: 80rem) {
+  .projects {
+    flex-direction: row;
   }
 }

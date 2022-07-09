@@ -1,11 +1,29 @@
 import { useI18n } from '@solid-primitives/i18n';
+import { makeIntersectionObserver } from '@solid-primitives/intersection-observer';
 import { Component, onMount } from 'solid-js';
 import { Button } from '../components/Button';
 import { HeroScene } from '../components/svg';
-import { Clouds } from '../components/svg/Clouds';
+import { CloudGroup1, CloudGroup2 } from '../components/svg/Clouds';
 import styles from '../page-styles/home.module.css';
 
 const Home: Component<{}> = () => {
+  let previousY = 0;
+  const { add: intersectionObserver } = makeIntersectionObserver(
+    [],
+    ([entry]) => {
+      const currentY = entry.boundingClientRect.y;
+      if (entry.isIntersecting && currentY < previousY) {
+        // Scroll down into area
+        entry.target.classList.add(styles.animateClouds);
+      } else if (!entry.isIntersecting && currentY >= previousY) {
+        // Scroll up out of area
+        entry.target.classList.remove(styles.animateClouds);
+      }
+      previousY = currentY;
+    },
+    { threshold: 0.4 },
+  );
+
   onMount(() => {
     setTimeout(() => document.documentElement.classList.remove('no-animate'));
   });
@@ -26,7 +44,7 @@ const Home: Component<{}> = () => {
 
       <section class={styles.projectSection}>
         <div class={styles.cloudWrapper}>
-          <Clouds class={styles.clouds} />
+          <CloudGroup1 class={styles.clouds} />
           <h2 class={styles.projectTitle}>{t('home.projects', {}, 'Projects')}</h2>
         </div>
         <div class={styles.projects}>
@@ -54,8 +72,43 @@ const Home: Component<{}> = () => {
         </div>
       </section>
 
-      <section>
-        <Clouds class={styles.clouds} />
+      <section class={styles.aboutSection}>
+        <div use:intersectionObserver class={styles.cloudWrapper}>
+          <CloudGroup2 class={styles.clouds} />
+        </div>
+        <div class={styles.aboutContent}>
+          <h2 class={styles.aboutTitle}>{t('home.about', {}, 'About Me')}</h2>
+          <div>
+            <h3>Summary</h3>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus officia vitae omnis officiis fugit, sed tempora
+              voluptatibus libero velit minus. Cum est nostrum delectus, placeat dicta quo ex obcaecati. Necessitatibus.
+            </p>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus officia vitae omnis officiis fugit, sed tempora
+              voluptatibus libero velit minus. Cum est nostrum delectus, placeat dicta quo ex obcaecati. Necessitatibus.
+            </p>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus officia vitae omnis officiis fugit, sed tempora
+              voluptatibus libero velit minus. Cum est nostrum delectus, placeat dicta quo ex obcaecati. Necessitatibus.
+            </p>
+          </div>
+          <div>
+            <h3>Spotify</h3>
+            <hr />
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+            <hr />
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+            <hr />
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+            <hr />
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+            <hr />
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+            <hr />
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+          </div>
+        </div>
       </section>
       <footer></footer>
     </>
