@@ -44,7 +44,6 @@
 
 .projectTitle,
 .aboutContent,
-.clouds,
 .cloudWrapper {
   grid-row: 1 / 1;
   grid-column: 1 / 1;
@@ -62,33 +61,6 @@
   position: sticky;
   margin-top: 3rem;
   top: 33vh;
-}
-
-.clouds {
-  overflow: visible;
-  width: min(240vw, 160rem);
-}
-
-:global(.no-preference) .clouds g {
-  transition: transform calc(2.5 * var(--duration)) var(--transition);
-}
-
-.animateClouds .moveToLeft,
-:global(.reduce-motion) .aboutSection .moveToLeft {
-  transform: translateX(min(-20vw, -45%));
-}
-
-.animateClouds .moveToRight,
-:global(.reduce-motion) .aboutSection .moveToRight {
-  transform: translateX(max(20vw, 48%));
-}
-
-:global(.dark) .clouds .moveToLeft {
-  transform: translateX(min(-35vw, -66.67%));
-}
-
-:global(.dark) .clouds .moveToRight {
-  transform: translateX(max(35vw, 56%));
 }
 
 .projects {

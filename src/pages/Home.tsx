@@ -2,8 +2,8 @@ import { useI18n } from '@solid-primitives/i18n';
 import { makeIntersectionObserver } from '@solid-primitives/intersection-observer';
 import { Component, onMount } from 'solid-js';
 import { Button } from '../components/Button';
-import { HeroScene } from '../components/svg';
-import { CloudGroup1, CloudGroup2 } from '../components/svg/Clouds';
+import { FooterScene, HeroScene } from '../components/svg';
+import { FullPageCloudGroup1, FullPageCloudGroup2 } from '../components/svg/Clouds';
 import styles from '../page-styles/home.module.css';
 
 const Home: Component<{}> = () => {
@@ -12,12 +12,12 @@ const Home: Component<{}> = () => {
     [],
     ([entry]) => {
       const currentY = entry.boundingClientRect.y;
-      if (entry.isIntersecting && currentY < previousY) {
+      if (entry.isIntersecting) {
         // Scroll down into area
-        entry.target.classList.add(styles.animateClouds);
-      } else if (!entry.isIntersecting && currentY >= previousY) {
+        entry.target.classList.add('animate-now');
+      } else if (currentY >= previousY) {
         // Scroll up out of area
-        entry.target.classList.remove(styles.animateClouds);
+        entry.target.classList.remove('animate-now');
       }
       previousY = currentY;
     },
@@ -44,7 +44,7 @@ const Home: Component<{}> = () => {
 
       <section class={styles.projectSection}>
         <div class={styles.cloudWrapper}>
-          <CloudGroup1 class={styles.clouds} />
+          <FullPageCloudGroup1 />
           <h2 class={styles.projectTitle}>{t('home.projects', {}, 'Projects')}</h2>
         </div>
         <div class={styles.projects}>
@@ -74,7 +74,7 @@ const Home: Component<{}> = () => {
 
       <section class={styles.aboutSection}>
         <div use:intersectionObserver class={styles.cloudWrapper}>
-          <CloudGroup2 class={styles.clouds} />
+          <FullPageCloudGroup2 />
         </div>
         <div class={styles.aboutContent}>
           <h2 class={styles.aboutTitle}>{t('home.about', {}, 'About Me')}</h2>
@@ -110,7 +110,9 @@ const Home: Component<{}> = () => {
           </div>
         </div>
       </section>
-      <footer></footer>
+      <footer>
+        <FooterScene />
+      </footer>
     </>
   );
 };
