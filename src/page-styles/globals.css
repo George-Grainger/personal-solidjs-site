@@ -33,6 +33,13 @@ main {
   place-content: center;
 }
 
+footer {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  isolation: isolate;
+}
+
 section {
   display: grid;
   margin-inline: auto;
@@ -124,7 +131,7 @@ select {
   --yellow-2: hsl(52, 98%, 48%);
   --blue: hsl(223, 100%, 33%);
   --red: hsl(349, 100%, 43%);
-  --green: hsl(118, 44%, 43%);
+  --green: rgb(65, 158, 61);
   --purple: hsl(259, 79%, 50%);
 
   --cow-helmet: hsla(0, 0%, 67%, 0.2);
@@ -145,6 +152,20 @@ select {
 
   --duration: 300ms;
   --transition: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  --surface-l1: hsl(117, 36%, 49%);
+  --surface-l2: var(--green);
+  --surface-l3: hsl(119, 53%, 37%);
+  --surface-l4: hsl(121, 62%, 32%);
+  --surface-l5: hsl(123, 64%, 28%);
+  --surface-l6: hsl(125, 66%, 24%);
+
+  --crater-l1: hsl(117, 36%, 49%);
+  --crater-l2: var(--green);
+  --crater-l3: hsl(119, 53%, 37%);
+  --crater-l4: hsl(121, 62%, 32%);
+  --crater-l5: hsl(123, 64%, 28%);
+  --crater-l6: hsl(125, 66%, 24%);
 }
 
 :root.dark {
@@ -152,7 +173,16 @@ select {
   --text: var(--white);
   --inverse: var(--black);
   --inverse-hover: var(--black-hover);
+
+  --surface-l1: hsl(227, 23%, 88%);
+  --surface-l2: hsl(225, 24%, 80%);
+  --surface-l3: hsl(227, 24%, 73%);
+  --surface-l4: hsl(227, 24%, 66%);
+  --surface-l5: hsl(227, 23%, 59%);
+  --surface-l6: hsl(226, 23%, 52%);
 }
+
+/* Utilities */
 
 .sr-only {
   position: absolute;
@@ -176,6 +206,23 @@ Enabled for 1ms initially, then removed in App.tsx
 */
 .no-animate {
   --duration: 0;
+}
+
+.t-origin-var {
+  transform-origin: var(--t-origin, center);
+}
+
+.dark .dark-opacity-0 {
+  opacity: 0;
+}
+
+.light .light-opacity-0 {
+  opacity: 0;
+}
+
+.transition-opacity {
+  transition: opacity var(--duration) var(--transition) var(--delay, 0ms);
+  will-change: opacity;
 }
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */

@@ -42,6 +42,7 @@
   height: calc(100% + min(10vh, 6.67rem));
 }
 
+.projectsCloud,
 .projectTitle,
 .aboutContent,
 .cloudWrapper {
@@ -121,6 +122,14 @@
     min-height: 50vh;
   }
 
+  .heroSection {
+    row-gap: 0.1em;
+  }
+
+  .title {
+    margin-top: 10%;
+  }
+
   .subtitle {
     margin-bottom: 0;
   }
@@ -138,6 +147,10 @@
 
   .aboutContent {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .btn {
+    margin-bottom: 10%;
   }
 }
 

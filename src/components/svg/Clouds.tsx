@@ -8,7 +8,8 @@ export const FullPageCloudGroup1: VoidSVG = (props) => {
   return (
     <svg
       viewBox="0 0 1355 350"
-      class={`${styles.fullPageclouds} ${styles.cloudColour} ${local.class}`}
+      fill="var(--cloud-white)"
+      class={`${styles.fullPageclouds} ${local.class || ''}`}
       {...others}
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -31,7 +32,8 @@ export const FullPageCloudGroup2: VoidSVG = (props) => {
   return (
     <svg
       viewBox="0 0 1378 507"
-      class={`${styles.fullPageclouds} ${styles.cloudColour} ${local.class}`}
+      fill="var(--cloud-white)"
+      class={`${styles.aboutClouds} ${styles.fullPageclouds} ${local.class || ''}`}
       {...others}
       xmlns="http://www.w3.org/2000/svg"
     >

@@ -66,8 +66,10 @@ export const AppContextProvider: ParentComponent = (props) => {
   createEffect(() => {
     if (isDark()) {
       document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light');
       document.documentElement.style.setProperty('color-scheme', 'dark');
     } else {
+      document.documentElement.classList.add('light');
       document.documentElement.classList.remove('dark');
       document.documentElement.style.setProperty('color-scheme', 'light');
     }

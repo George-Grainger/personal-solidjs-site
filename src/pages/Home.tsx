@@ -44,7 +44,7 @@ const Home: Component<{}> = () => {
 
       <section class={styles.projectSection}>
         <div class={styles.cloudWrapper}>
-          <FullPageCloudGroup1 />
+          <FullPageCloudGroup1 class={styles.projectsCloud} />
           <h2 class={styles.projectTitle}>{t('home.projects', {}, 'Projects')}</h2>
         </div>
         <div class={styles.projects}>

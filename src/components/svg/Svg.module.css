@@ -13,8 +13,17 @@
 .sun,
 .earthWrapper,
 .earth,
-.cloudWrapper {
-  transition: transform calc(3 * var(--duration)) var(--transition);
+.rotatingCloudWrapper,
+.mountainGroup,
+.backgroundMoutains,
+.footerCow,
+.footerCow .frontLeg,
+.footerCow .backLeg,
+.footerCowWrapper .shadow,
+.footerSun,
+.yellowTrees,
+.greenTrees {
+  transition: transform calc(3 * var(--duration)) var(--transition) var(--delay, 0ms);
   will-change: transform;
 }
 
@@ -38,7 +47,7 @@
 }
 
 .earthWrapper {
-  transform-origin: 22% 0%;
+  transform-origin: var(--t-origin, center);
 }
 
 .heroEarth {
@@ -58,12 +67,12 @@
 }
 
 .rotatingCloudWrapper {
-  transform-origin: center;
+  transform-origin: var(--t-origin, center);
 }
 
 .rotatingCloud {
-  transform-origin: 44.5% 66.5%;
-  animation: cloud_rotation calc(60s * var(--speed, 1)) linear infinite;
+  transform-origin: var(--t-origin, center);
+  animation: cloudRotation calc(60s * var(--speed, 1)) linear infinite;
 }
 
 .rotatingCloud:last-child {
@@ -86,15 +95,9 @@
   transform: scale(0.33) rotate(90deg);
 }
 
-:global(.dark) .cloudWrapper,
+:global(.dark) .rotatingCloudWrapper,
 :global(.dark) .heroEarth {
   transform: rotate(-90deg);
-}
-
-@keyframes cloud_rotation {
-  100% {
-    transform: rotate(-360deg);
-  }
 }
 
 /* Full page clouds */
@@ -108,12 +111,12 @@
 }
 
 :global(.animate-now) .moveToLeft,
-:global(.reduce-motion) .aboutSection .moveToLeft {
+:global(.reduce-motion) .aboutClouds .moveToLeft {
   transform: translateX(min(-20vw, -45%));
 }
 
 :global(.animate-now) .moveToRight,
-:global(.reduce-motion) .aboutSection .moveToRight {
+:global(.reduce-motion) .aboutClouds .moveToRight {
   transform: translateX(max(20vw, 48%));
 }
 
@@ -125,25 +128,51 @@
   transform: translateX(max(35vw, 56%));
 }
 
-footer {
-  display: flex;
-  justify-content: center;
-  width: 100vw;
-  background-image: url('./footerBackground.svg');
-  background-size: 100% 100%;
-}
-
 /* Footer scene */
 .footerSvg {
-  width: min(240vw, 160rem);
+  margin-left: 10%;
+  width: min(200vw, 160rem);
+  overflow: visible;
 }
 
-.footerSvg .asteroids > g:nth-child(2n + 1) {
+.asteroids {
+  animation: cloudTranslation 180s linear infinite var(--delay, -10s);
+}
+
+.asteroid {
+  transform-origin: var(--t-origin);
+  animation: asteroidRotation 30s linear infinite;
+}
+
+.asteroids ~ .asteroids > .asteroid {
+  animation-delay: -10s;
+}
+
+.asteroid > g:nth-child(2n + 1) {
   fill: var(--space-rock-grey);
 }
 
+.backgroundImage {
+  position: absolute;
+  z-index: -1;
+  width: 110vw;
+  height: 100%;
+}
+
+.footerEarth {
+  transform-origin: bottom;
+}
+
+.footerSun {
+  filter: drop-shadow(0 0 1rem var(--yellow-1));
+}
+
+:global(.light) .footerSun {
+  transform: scale(0.33) translateX(30%);
+}
+
 .mountainGroup path:nth-child(3n + 2),
-.asteroids > g:nth-child(2n) {
+.asteroid > g:nth-child(2n) {
   fill: var(--white);
 }
 
@@ -172,6 +201,14 @@ footer {
   fill: #603f16;
 }
 
+.mountainGroup {
+  --delay: 100ms;
+}
+
+.mountainGroup ~ .mountainGroup {
+  --delay: 200ms;
+}
+
 .mountainGroup path:nth-child(3n + 1) {
   fill: #b66586;
 }
@@ -184,4 +221,157 @@ footer {
 .shadow,
 .greenTrees path:nth-child(5n) {
   fill: var(--shadow-black);
+}
+
+:global(.light) .footerEarth {
+  transform: translateX(10%) rotate(35deg);
+}
+
+.backgroundImage > path,
+.surface path,
+.craters path {
+  transition: fill var(--duration) var(--transition);
+  will-change: fill;
+}
+
+.footerClouds > path {
+  animation: cloudTranslation calc(180s * var(--speed, 1)) linear infinite var(--delay, -30s);
+}
+
+.footerClouds :nth-child(2n + 1) {
+  --speed: 1.5;
+  --delay: -200s;
+}
+
+.footerClouds :nth-child(3n - 2) {
+  --speed: 0.8;
+  --delay: -60s;
+}
+
+:global(.light) .asteroids,
+:global(.light) .asteroid,
+:global(.dark) .footerClouds > path {
+  animation-play-state: paused;
+}
+
+:global(.dark) .mountainGroup,
+:global(.dark) .backgroundMoutains {
+  transform: translateY(60%);
+}
+
+:global(.dark) .footerCow {
+  transform: translateY(-50%);
+  animation: cowSway 15s linear infinite;
+}
+
+:global(.dark) .footerCowWrapper .shadow {
+  transform: translateX(30%) translateY(56%) scale(0.4);
+}
+
+.footerCow {
+  transform-origin: 48%;
+}
+
+.footerCow .frontLeg {
+  transform-origin: 47.8% 89.7%;
+}
+
+.footerCow .backLeg {
+  transform-origin: 51.4% 89.7%;
+}
+
+:global(.dark) .footerCow .frontLeg {
+  transform: rotate(60deg);
+}
+
+:global(.dark) .footerCow .backLeg {
+  transform: rotate(-60deg);
+}
+
+.yellowTrees,
+.greenTrees {
+  transform-origin: bottom;
+}
+
+:global(.dark) .yellowTrees,
+:global(.dark) .greenTrees {
+  transform: translateY(25%) scaleY(0);
+}
+
+:global(.dark) .smoke > path {
+  animation-play-state: paused;
+}
+
+.smoke > path {
+  transform-origin: 27.5% 68.5%;
+  animation: smokeAnimaton 1400ms linear infinite var(--delay, 0s);
+}
+
+.rocket {
+  transition: transform 1000ms var(--transition, cubic-bezier(0.54, 1.18, 0.71, 1.05)),
+    opacity 200ms var(--transition, cubic-bezier(0.54, 1.18, 0.71, 1.05)) var(--delay, 0ms);
+}
+
+.rocket .shadow {
+  transition: transform 1000ms var(--transition, cubic-bezier(0.54, 1.18, 0.71, 1.05));
+}
+
+:global(.light) .rocket {
+  --transition: cubic-bezier(0.9, 0.03, 0.69, 0.22);
+  --delay: 800ms;
+  transform: translateY(-90%);
+  opacity: 0;
+}
+
+:global(.light) .rocket .shadow {
+  --transition: cubic-bezier(0.9, 0.03, 0.69, 0.22);
+  transform: translateX(37.5%) translateY(177.5%) scale(0);
+}
+
+@keyframes cloudRotation {
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes cloudTranslation {
+  0% {
+    transform: translateX(-50%);
+    opacity: 0;
+  }
+  1%,
+  99% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(50%);
+  }
+}
+
+@keyframes asteroidRotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes smokeAnimaton {
+  33% {
+    transform: scale(1.15);
+  }
+  66% {
+    transform: scale(0.8);
+  }
+}
+
+@keyframes cowSway {
+  25% {
+    rotate: 10deg;
+  }
+  75% {
+    rotate: -10deg;
+  }
 }
