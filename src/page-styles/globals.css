@@ -40,6 +40,25 @@ footer {
   isolation: isolate;
 }
 
+footer div {
+  position: absolute;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(2, auto);
+  justify-content: space-between;
+  grid-auto-flow: column;
+  width: 90vw;
+  color: var(--inverse);
+}
+
+footer ul {
+  display: flex;
+  gap: 4ch;
+  padding: 0;
+  margin: 0;
+}
+
 section {
   display: grid;
   margin-inline: auto;
