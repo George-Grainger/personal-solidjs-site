@@ -13,7 +13,7 @@ export const Navbar: VoidComponent<{}> = () => {
   return (
     <header>
       <nav class={styles.nav}>
-        <ul>
+        <ul role="list">
           <Index each={englishLinks}>
             {(defaultLink, i) => (
               <li class={styles.link}>

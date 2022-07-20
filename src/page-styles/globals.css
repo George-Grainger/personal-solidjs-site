@@ -38,6 +38,7 @@ footer {
   justify-content: center;
   position: relative;
   isolation: isolate;
+  z-index: -1;
 }
 
 footer div {
@@ -64,7 +65,6 @@ section {
   margin-inline: auto;
   font-size: clamp(3.75rem, 12vw, 6rem);
   place-items: center;
-  place-content: center;
   width: min(90vw, 80rem);
 }
 
@@ -139,52 +139,38 @@ select {
 
 :root {
   /* Your default theme */
-  --white: hsl(0, 0%, 98%);
-  --cloud-white: hsl(0, 0%, 98%, 0.9);
+  --white: #fafafa;
+  --cloud-white: #fafafae6;
   --white-hover: hsl(0, 0%, 83%);
-  --black: hsl(231, 23%, 12%);
-  --shadow-black: hsl(231, 23%, 12%, 0.2);
+  --black: #181a26;
+  --shadow-black: #181a2633;
   --black-hover: hsl(231, 23%, 27%);
   --sky-blue: hsl(212, 97%, 85%);
-  --yellow-1: hsl(52, 98%, 78%);
-  --yellow-2: hsl(52, 98%, 48%);
-  --blue: hsl(223, 100%, 33%);
-  --red: hsl(349, 100%, 43%);
-  --green: rgb(65, 158, 61);
+  --yellow-1: #feef90;
+  --yellow-2: #f2d202;
+  --blue: #0030a8;
+  --red: #db0028;
+  --green: #419e3d;
   --purple: hsl(259, 79%, 50%);
 
-  --cow-helmet: hsla(0, 0%, 67%, 0.2);
-  --cow-pink: hsl(9, 68%, 62%);
-  --cow-yellow: hsl(40, 62%, 58%);
-  --skin: hsl(29, 100%, 89%);
-  --grey-hc: hsl(228, 21%, 73%);
-  --grey-bc: hsl(226, 21%, 63%);
+  --cow-helmet: #ababab33;
+  --cow-pink: #e0705c;
+  --cow-yellow: #d6aa51;
+  --skin: #ffe2c7;
+  --grey-hc: #acb1c9;
+  --grey-bc: #8d96b4;
   --grey-shadow: hsl(227, 11%, 75%);
-  --grey-mb: hsl(226, 21%, 88%);
-  --grey-dc: hsl(229, 12%, 82%);
-  --space-rock-grey: rgb(218, 221, 231);
+  --grey-mb: #dadde7;
+  --grey-dc: #ccced7;
+  --space-rock-grey: hsl(226, 21%, 88%);
 
   --background: var(--sky-blue);
   --text: var(--black);
   --inverse: var(--white);
   --inverse-hover: var(--white-hover);
 
-  --duration: 300ms;
+  --duration: calc(var(--mult, 1) * 300ms);
   --transition: cubic-bezier(0.22, 0.61, 0.36, 1);
-
-  --surface-l1: hsl(117, 36%, 49%);
-  --surface-l2: var(--green);
-  --surface-l3: hsl(119, 53%, 37%);
-  --surface-l4: hsl(121, 62%, 32%);
-  --surface-l5: hsl(123, 64%, 28%);
-  --surface-l6: hsl(125, 66%, 24%);
-
-  --crater-l1: hsl(117, 36%, 49%);
-  --crater-l2: var(--green);
-  --crater-l3: hsl(119, 53%, 37%);
-  --crater-l4: hsl(121, 62%, 32%);
-  --crater-l5: hsl(123, 64%, 28%);
-  --crater-l6: hsl(125, 66%, 24%);
 }
 
 :root.dark {
@@ -192,13 +178,6 @@ select {
   --text: var(--white);
   --inverse: var(--black);
   --inverse-hover: var(--black-hover);
-
-  --surface-l1: hsl(227, 23%, 88%);
-  --surface-l2: hsl(225, 24%, 80%);
-  --surface-l3: hsl(227, 24%, 73%);
-  --surface-l4: hsl(227, 24%, 66%);
-  --surface-l5: hsl(227, 23%, 59%);
-  --surface-l6: hsl(226, 23%, 52%);
 }
 
 /* Utilities */
@@ -227,21 +206,9 @@ Enabled for 1ms initially, then removed in App.tsx
   --duration: 0;
 }
 
-.t-origin-var {
-  transform-origin: var(--t-origin, center);
-}
-
-.dark .dark-opacity-0 {
-  opacity: 0;
-}
-
-.light .light-opacity-0 {
-  opacity: 0;
-}
-
-.transition-opacity {
-  transition: opacity var(--duration) var(--transition) var(--delay, 0ms);
-  will-change: opacity;
+.reduce-motion * {
+  animation-play-state: paused !important;
+  transition-delay: 0ms !important;
 }
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */

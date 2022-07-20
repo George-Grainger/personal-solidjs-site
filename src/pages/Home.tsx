@@ -112,6 +112,22 @@ const Home: Component<{}> = () => {
       </section>
       <footer>
         <FooterScene />
+        <div>
+          <span>Preferences</span>
+          <ul role="list">
+            <li>
+              <a>Test 1</a>
+            </li>
+            <li>
+              <a>Test 2</a>
+            </li>
+            <li>
+              <a>Test 3</a>
+            </li>
+          </ul>
+          <span>Created by</span>
+          <span>George Grainger</span>
+        </div>
       </footer>
     </>
   );

@@ -28,6 +28,11 @@
   font-size: clamp(1.5rem, 4.8vw, 1.75rem);
 }
 
+.aboutSection,
+.projectSection {
+  place-content: center;
+}
+
 .projectSection {
   gap: min(15vh, 10rem);
 }
