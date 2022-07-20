@@ -1,8 +1,8 @@
 import { ParentComponent, createContext, createEffect, useContext, createResource } from 'solid-js';
 import { Meta, Title } from 'solid-meta';
-import { createLocalStorage } from '@solid-primitives/storage';
 import { createI18nContext, I18nContext } from '@solid-primitives/i18n';
 import { useLocation } from 'solid-app-router';
+import useLocalStorage from './hooks/useLocalStorage';
 
 const langs: { [lang: string]: any } = {
   en: async () => (await import('../lang/en/en')).default(),
@@ -28,23 +28,14 @@ const AppContext = createContext<AppContextInterface>({
 });
 
 export const AppContextProvider: ParentComponent = (props) => {
-  const getPreference = (key: string, mediaToMatch: string) => {
-    return settings[key] === 'true' ? true : settings[key] === 'false' ? false : window.matchMedia(mediaToMatch).matches;
-  };
-
-  const [settings, set] = createLocalStorage();
-
-  const isDark = () => getPreference('dark', DARK_MEDIA);
-  const isReduceMotion = () => getPreference('reduce-motion', MOTION_MEDIA);
+  const [isDark, setDark] = useLocalStorage('dark', window.matchMedia(DARK_MEDIA).matches);
+  const [isReduceMotion, setReduceMotion] = useLocalStorage('reduce-motion', window.matchMedia(MOTION_MEDIA).matches);
 
   const browserLang = navigator.language.slice(0, 2);
   const location = useLocation();
-  if (location.query.locale) {
-    set('locale', location.query.locale);
-  } else if (!settings.locale && langs.hasOwnProperty(browserLang)) {
-    set('locale', browserLang);
-  }
-  const i18n = createI18nContext({}, (settings.locale || 'en') as string);
+  const [getLocale, setLocale] = useLocalStorage<string>('locale', location.query.locale || browserLang || 'en');
+
+  const i18n = createI18nContext({}, getLocale());
   const [t, { add, locale }] = i18n;
   const params = (): DataParams => {
     const locale = i18n[1].locale();
@@ -55,11 +46,13 @@ export const AppContextProvider: ParentComponent = (props) => {
     return { locale, page };
   };
   const [lang] = createResource(params, ({ locale }) => langs[locale]());
+
   createEffect(() => {
     if (!lang.loading) add(i18n[1].locale(), lang() as Record<string, any>);
   });
+
   createEffect(() => {
-    set('locale', i18n[1].locale());
+    setLocale(i18n[1].locale());
     document.documentElement.lang = locale();
   });
 
@@ -87,13 +80,13 @@ export const AppContextProvider: ParentComponent = (props) => {
 
   const store = {
     set isDark(value) {
-      set('dark', value === true ? 'true' : 'false');
+      setDark(value);
     },
     get isDark() {
       return isDark();
     },
     set isReduceMotion(value) {
-      set('reduce-motion', value === true ? 'true' : 'false');
+      setReduceMotion(value);
     },
     get isReduceMotion() {
       return isReduceMotion();
@@ -105,7 +98,7 @@ export const AppContextProvider: ParentComponent = (props) => {
 
   return (
     <AppContext.Provider value={store}>
-      <Title>{t('global.title', {}, 'George Grainger · Votre prochain employé ;)')}</Title>
+      <Title>{t('global.title', {}, 'George Grainger · Your next employee')}</Title>
       <Meta name="lang" content={locale()} />
       <I18nContext.Provider value={i18n}>{props.children}</I18nContext.Provider>
     </AppContext.Provider>

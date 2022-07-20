@@ -13,7 +13,7 @@ export const Select: ParentComponent<SelectProps> = (props) => {
   const elements = children(() => props.children)() as HTMLElement[];
 
   onMount(() => {
-    setCurrentlySelected((elements as HTMLInputElement[]).filter((el) => el.checked)[0]?.value);
+    setCurrentlySelected((elements as HTMLInputElement[]).filter((el) => el.checked)[0]!.value);
   });
 
   const [optionsVisible, setOptionsVisible] = createSignal(false);
