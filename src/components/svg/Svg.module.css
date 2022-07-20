@@ -346,6 +346,12 @@ g.mountainGroup ~ .mountainGroup path:nth-child(3n + 1) {
 .house,
 .man {
   composes: svg-transition-opacity;
+  --delay: calc(0.25 * var(--duration));
+}
+
+:global(.light) .man,
+:global(.dark) .house {
+  opacity: 0;
 }
 
 @keyframes rotate {
