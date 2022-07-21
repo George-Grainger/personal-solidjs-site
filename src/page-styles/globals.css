@@ -12,7 +12,6 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
   transition: color var(--duration) var(--transition), background-color var(--duration) var(--transition);
   background-color: var(--background);
   color: var(--text);
@@ -23,22 +22,23 @@ header {
   top: 0;
   z-index: 999;
   padding-top: 1.5rem;
-  margin-bottom: min(10vh, 6.67rem);
+  margin-bottom: min(7.5vh, 5rem);
 }
 
 main {
   display: grid;
-  gap: min(15vh, 10rem);
+  gap: min(22.5vh, 15rem);
   place-items: center;
   place-content: center;
+  overflow: clip;
 }
 
 footer {
   display: flex;
   justify-content: center;
   position: relative;
-  isolation: isolate;
   z-index: -1;
+  overflow-x: clip;
 }
 
 footer div {
@@ -151,7 +151,7 @@ select {
   --blue: #0030a8;
   --red: #db0028;
   --green: #419e3d;
-  --purple: hsl(259, 79%, 50%);
+  --purple: #5b1be4;
 
   --cow-helmet: #ababab33;
   --cow-pink: #e0705c;
@@ -166,6 +166,7 @@ select {
 
   --background: var(--sky-blue);
   --text: var(--black);
+  --hover: var(--black-hover);
   --inverse: var(--white);
   --inverse-hover: var(--white-hover);
 
@@ -176,6 +177,7 @@ select {
 :root.dark {
   --background: var(--black);
   --text: var(--white);
+  --hover: var(--white-hover);
   --inverse: var(--black);
   --inverse-hover: var(--black-hover);
 }

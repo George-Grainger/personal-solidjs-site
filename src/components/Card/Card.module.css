@@ -1,0 +1,193 @@
+.card {
+  --br: 0.5em;
+  --duration: 250ms;
+  font-size: 1.5rem;
+  position: relative;
+  isolation: isolate;
+  padding: 0.5em 0;
+  width: 12.25em;
+}
+
+.card img {
+  max-width: 100%;
+}
+
+.front {
+  transition: transform var(--duration) var(--transition);
+}
+
+.front .thumbnail {
+  border-radius: var(--br);
+}
+
+.front .languages {
+  display: flex;
+  gap: 0.5em;
+}
+
+.back .languages {
+  width: 100%;
+  margin: inherit auto;
+  columns: 3;
+  column-rule: 1px solid var(--black);
+  text-align: center;
+}
+
+.languageName {
+  font-size: 0.6em;
+}
+
+.overview {
+  margin: 0.25em 0.25em 0;
+  display: grid;
+  gap: 0.25em;
+}
+
+.name {
+  font-size: 1em;
+  text-transform: capitalize;
+  width: 100%;
+}
+
+.focus {
+  width: auto;
+  display: flex;
+  align-items: center;
+  font-size: 0.6em;
+  line-height: 1.4;
+  font-weight: 600;
+  color: var(--hover);
+}
+
+.rank {
+  position: absolute;
+  top: 0.5em;
+  right: 0.75em;
+  font-weight: 800;
+  color: var(--white);
+  background-color: var(--black);
+  padding: 0.5em 0.5em 0.75em;
+  clip-path: polygon(100% 0%, 100% 100%, 50% 85%, 0 100%, 0 0);
+  z-index: 1;
+  transition: transform var(--duration) var(--transition);
+}
+
+.back {
+  pointer-events: none;
+  opacity: 0;
+  position: absolute;
+  inset: 44% -7.5% -8% -7.5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  transform: translateY(15%);
+  transition: transform var(--duration) var(--transition), opacity calc(0.5 * var(--duration)) var(--transition);
+}
+
+.back .name {
+  text-align: center;
+  font-size: 1.25em;
+  line-height: 0.8;
+}
+
+.btn {
+  font-size: 0.8em;
+}
+
+.description {
+  font-size: 0.67em;
+  text-align: center;
+}
+
+.background {
+  border-radius: var(--br);
+  background-color: var(--inverse);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transform: scale(0.2, 0.9);
+  transform-origin: 50% 25%;
+  transition: transform var(--duration) var(--transition), opacity calc(0.5 * var(--duration)) var(--transition);
+  opacity: 0;
+}
+
+/* Set to hover */
+.card:hover .background {
+  transform: scale(1.3, 1.2);
+  opacity: 1;
+}
+
+.card:hover .rank {
+  transform: translate(1.85em, -54%);
+}
+
+.card:hover .overview,
+.card:hover .front .name {
+  opacity: 0;
+}
+
+.card:hover .front {
+  transform: translateY(-33%) scale(0.7);
+}
+
+.card:hover .back {
+  pointer-events: all;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.icon {
+  overflow: visible;
+  cursor: pointer;
+}
+
+.languages .icon {
+  display: inline-flex;
+  width: var(--size, 1.25em);
+  height: var(--size, 1.25em);
+}
+
+.icon path {
+  position: relative;
+  stroke: var(--color, currentColor);
+  fill: transparent;
+  stroke-width: 5px;
+  transition: transform var(--duration) var(--transition);
+  transform-origin: center;
+}
+
+.card:hover .icon path {
+  stroke-dasharray: 0 1600;
+  animation: borderMove 2s var(--a-delay, 0ms) linear forwards, fillIcon 1s calc(2s + var(--a-delay, 0ms)) linear forwards;
+}
+
+.icon:hover path {
+  transform: scale(1.2);
+}
+
+.icon:nth-of-type(2) path {
+  --a-delay: 500ms;
+}
+
+.icon:nth-of-type(3) path {
+  --a-delay: 1000ms;
+}
+
+@keyframes borderMove {
+  0% {
+    stroke-dasharray: 0 1600;
+  }
+  100% {
+    stroke-dasharray: 1600 1600;
+  }
+}
+
+@keyframes fillIcon {
+  0% {
+    fill: transparent;
+  }
+  100% {
+    fill: var(--color, currentColor);
+  }
+}

@@ -2,7 +2,8 @@ import { useI18n } from '@solid-primitives/i18n';
 import { makeIntersectionObserver } from '@solid-primitives/intersection-observer';
 import { Component, onMount } from 'solid-js';
 import { Button } from '../components/Button';
-import { FooterScene, HeroScene } from '../components/svg';
+import { Card } from '../components/Card';
+import { HeroScene } from '../components/svg';
 import { FullPageCloudGroup1, FullPageCloudGroup2 } from '../components/svg/Clouds';
 import styles from '../page-styles/home.module.css';
 
@@ -48,27 +49,30 @@ const Home: Component<{}> = () => {
           <h2 class={styles.projectTitle}>{t('home.projects', {}, 'Projects')}</h2>
         </div>
         <div class={styles.projects}>
-          <article class={styles.card}>
-            <h3>Card 1</h3>
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit dolor iste nostrum voluptate, ipsam quaerat vero? Tempore ab
-              mollitia incidunt adipisci. Enim, ullam placeat? Sit hic sint molestias veniam voluptatum?
-            </p>
-          </article>
-          <article class={styles.card}>
-            <h3>Card 2</h3>
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit dolor iste nostrum voluptate, ipsam quaerat vero? Tempore ab
-              mollitia incidunt adipisci. Enim, ullam placeat? Sit hic sint molestias veniam voluptatum?
-            </p>
-          </article>
-          <article class={styles.card}>
-            <h3>Card 3</h3>
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit dolor iste nostrum voluptate, ipsam quaerat vero? Tempore ab
-              mollitia incidunt adipisci. Enim, ullam placeat? Sit hic sint molestias veniam voluptatum?
-            </p>
-          </article>
+          <Card
+            rank={1}
+            title="Symput"
+            subtitle="A downloadble Android keyboard and associated full stack website for feedback"
+            description="earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !"
+            thumbnail="../src/game-cover.jpg"
+            alt=""
+          />
+          <Card
+            rank={2}
+            title="Personal website"
+            subtitle="Georgegrainger.com (this site) - my portfolio website to try and show off!!"
+            description="earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !"
+            thumbnail="../src/game-cover.jpg"
+            alt=""
+          />
+          <Card
+            rank={3}
+            title="Third year project"
+            subtitle="Computational models simulating the dopamine system circurity in the brain"
+            description=" earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident!"
+            thumbnail="../src/game-cover.jpg"
+            alt=""
+          />
         </div>
       </section>
 
@@ -110,25 +114,6 @@ const Home: Component<{}> = () => {
           </div>
         </div>
       </section>
-      <footer>
-        <FooterScene />
-        <div>
-          <span>Preferences</span>
-          <ul role="list">
-            <li>
-              <a>Test 1</a>
-            </li>
-            <li>
-              <a>Test 2</a>
-            </li>
-            <li>
-              <a>Test 3</a>
-            </li>
-          </ul>
-          <span>Created by</span>
-          <span>George Grainger</span>
-        </div>
-      </footer>
     </>
   );
 };

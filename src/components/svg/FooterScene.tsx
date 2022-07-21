@@ -2,12 +2,14 @@ import { splitProps, VoidComponent } from 'solid-js';
 import { VoidSVG } from './svg-types';
 import styles from './Svg.module.css';
 
+const viewBox = '0 -50 2196 825';
+
 export const FooterScene: VoidSVG = (props) => {
   const [local, others] = splitProps(props, ['class']);
 
   return (
     <>
-      <svg viewBox="0 0 2196 775" xmlns="http://www.w3.org/2000/svg" class={`${styles.footerSvg} ${local.class || ''}`} {...others}>
+      <svg viewBox={viewBox} xmlns="http://www.w3.org/2000/svg" class={`${styles.footerSvg} ${local.class || ''}`} {...others}>
         <Sun />
         <Earth />
         <Mountains />
@@ -817,7 +819,7 @@ const Defs: VoidComponent<{}> = () => {
 
 const Background: VoidComponent<{}> = () => {
   return (
-    <svg class={styles.backgroundImage} viewBox="0 0 2196 775" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <svg class={styles.backgroundImage} viewBox={viewBox} xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
       <path d="M14 461h2182v97H14v-97Z" fill="var(--surface-l5)" />
       <path d="M14 478h2182v97H14v-97Z" fill="var(--surface-l4)" />
       <path d="M14 519h2182v97H14v-97Z" fill="var(--surface-l3)" />

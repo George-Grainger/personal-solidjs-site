@@ -3,6 +3,7 @@ import { Suspense, VoidComponent } from 'solid-js';
 import { MetaProvider } from 'solid-meta';
 import { AppContextProvider } from './AppContext';
 import { Navbar } from './components/Navbar';
+import { FooterScene } from './components/svg';
 import { routes } from './routes';
 
 const App: VoidComponent<{}> = () => {
@@ -30,6 +31,25 @@ const App: VoidComponent<{}> = () => {
             </Suspense>
             {/* </TransitionRoutes> */}
           </main>
+          <footer>
+            <FooterScene />
+            <div>
+              <span>Preferences</span>
+              <ul role="list">
+                <li>
+                  <a>Test 1</a>
+                </li>
+                <li>
+                  <a>Test 2</a>
+                </li>
+                <li>
+                  <a>Test 3</a>
+                </li>
+              </ul>
+              <span>Created by</span>
+              <span>George Grainger</span>
+            </div>
+          </footer>
         </AppContextProvider>
       </MetaProvider>
     </Router>

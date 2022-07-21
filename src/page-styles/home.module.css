@@ -65,7 +65,7 @@
 .projectTitle {
   place-self: start center;
   position: sticky;
-  margin-top: 3rem;
+  margin-block: 3rem;
   top: 33vh;
 }
 
@@ -75,19 +75,8 @@
   gap: 0.5em;
   width: min(100%, 80rem);
   margin: auto;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
-}
-
-.card {
-  font-size: 0.5em;
-  padding: 1em 0.5em;
-  background: var(--grey-dc);
-}
-
-.card p {
-  font-size: 0.5em;
-  max-width: 25ch;
 }
 
 .aboutContent {
@@ -129,6 +118,7 @@
 
   .heroSection {
     row-gap: 0.1em;
+    grid-template-columns: auto 1fr;
   }
 
   .title {
