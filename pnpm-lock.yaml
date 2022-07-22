@@ -6,6 +6,7 @@ specifiers:
   solid-app-router: ^0.4.1
   solid-js: ^1.4.7
   solid-meta: ^0.27.5
+  spotify-types: ^1.0.7
   typescript: ^4.6.4
   vite: ^2.9.9
   vite-plugin-solid: ^2.2.6
@@ -18,6 +19,7 @@ dependencies:
   solid-meta: 0.27.5_solid-js@1.4.7
 
 devDependencies:
+  spotify-types: 1.0.7
   typescript: 4.6.4
   vite: 2.9.9
   vite-plugin-solid: 2.2.6
@@ -858,6 +860,10 @@ packages:
   /source-map/0.5.7:
     resolution: {integrity: sha1-igOdLRAh0i0eoUyA2OpGi6LvP8w=}
     engines: {node: '>=0.10.0'}
+    dev: true
+
+  /spotify-types/1.0.7:
+    resolution: {integrity: sha512-X2n0MYNUpgakGDU7h/vzTvqVJh2f8kAWE9SG5TkJtf3lJcorndK24/8/6+D7Uww8tqUD1VPHg5Lqv4usdVJUvg==}
     dev: true
 
   /supports-color/5.5.0:
