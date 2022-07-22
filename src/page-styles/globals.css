@@ -27,10 +27,11 @@ header {
 
 main {
   display: grid;
-  gap: min(22.5vh, 15rem);
+  gap: min(15vh, 10rem);
   place-items: center;
   place-content: center;
   overflow: clip;
+  margin-bottom: min(15vh, 10rem);
 }
 
 footer {
@@ -63,7 +64,7 @@ footer ul {
 section {
   display: grid;
   margin-inline: auto;
-  font-size: clamp(3.75rem, 12vw, 6rem);
+  font-size: clamp(3.125rem, 10vw, 5rem);
   place-items: center;
   width: min(90vw, 80rem);
 }

@@ -5,6 +5,7 @@ import { Button } from '../components/Button';
 import { Card } from '../components/Card';
 import { HeroScene } from '../components/svg';
 import { FullPageCloudGroup1, FullPageCloudGroup2 } from '../components/svg/Clouds';
+import { useSpotify } from '../hooks/useSpotify';
 import styles from '../page-styles/home.module.css';
 
 const Home: Component<{}> = () => {
@@ -31,6 +32,8 @@ const Home: Component<{}> = () => {
 
   const [t] = useI18n();
 
+  const { currentSong, topSongs } = useSpotify();
+
   return (
     <>
       <section class={styles.heroSection}>
@@ -50,7 +53,7 @@ const Home: Component<{}> = () => {
         </div>
         <div class={styles.projects}>
           <Card
-            rank={1}
+            index={1}
             title="Symput"
             subtitle="A downloadble Android keyboard and associated full stack website for feedback"
             description="earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !"
@@ -58,7 +61,7 @@ const Home: Component<{}> = () => {
             alt=""
           />
           <Card
-            rank={2}
+            index={2}
             title="Personal website"
             subtitle="Georgegrainger.com (this site) - my portfolio website to try and show off!!"
             description="earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !"
@@ -66,7 +69,7 @@ const Home: Component<{}> = () => {
             alt=""
           />
           <Card
-            rank={3}
+            index={3}
             title="Third year project"
             subtitle="Computational models simulating the dopamine system circurity in the brain"
             description=" earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident!"
