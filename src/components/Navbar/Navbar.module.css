@@ -1,7 +1,6 @@
 /* Generic Nav */
 .nav {
   font-size: clamp(1.125rem, 5vw, 1.5rem);
-  font-weight: 600;
 }
 
 .nav ul {
@@ -13,13 +12,12 @@
 }
 
 .nav .link {
-  font-weight: 600;
   font-size: 1.75rem;
   display: none;
 }
 
 .nav li {
-  font-weight: 700;
+  font-weight: 600;
   display: flex;
   align-items: center;
 }

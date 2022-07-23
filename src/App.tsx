@@ -24,32 +24,32 @@ const App: VoidComponent<{}> = () => {
       <MetaProvider>
         <AppContextProvider>
           <Navbar />
-          <main>
-            {/* <TransitionRoutes> */}
-            <Suspense fallback={<p>Loading</p>}>
+          <Suspense fallback={<p>Loading</p>}>
+            <main>
+              {/* <TransitionRoutes> */}
               <Routes />
-            </Suspense>
-            {/* </TransitionRoutes> */}
-          </main>
-          <footer>
-            <FooterScene />
-            <div>
-              <span>Preferences</span>
-              <ul role="list">
-                <li>
-                  <a>Test 1</a>
-                </li>
-                <li>
-                  <a>Test 2</a>
-                </li>
-                <li>
-                  <a>Test 3</a>
-                </li>
-              </ul>
-              <span>Created by</span>
-              <span>George Grainger</span>
-            </div>
-          </footer>
+              {/* </TransitionRoutes> */}
+            </main>
+            <footer>
+              <FooterScene />
+              <div>
+                <span>Preferences</span>
+                <ul role="list">
+                  <li>
+                    <a>Test 1</a>
+                  </li>
+                  <li>
+                    <a>Test 2</a>
+                  </li>
+                  <li>
+                    <a>Test 3</a>
+                  </li>
+                </ul>
+                <span>Created by</span>
+                <span>George Grainger</span>
+              </div>
+            </footer>
+          </Suspense>
         </AppContextProvider>
       </MetaProvider>
     </Router>

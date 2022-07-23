@@ -57,7 +57,7 @@ const Home: Component<{}> = () => {
             title="Symput"
             subtitle="A downloadble Android keyboard and associated full stack website for feedback"
             description="earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !"
-            thumbnail="../src/game-cover.jpg"
+            thumbnail="src/assets/game-cover.jpg"
             alt=""
           />
           <Card
@@ -65,7 +65,7 @@ const Home: Component<{}> = () => {
             title="Personal website"
             subtitle="Georgegrainger.com (this site) - my portfolio website to try and show off!!"
             description="earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !"
-            thumbnail="../src/game-cover.jpg"
+            thumbnail="src/assets/game-cover.jpg"
             alt=""
           />
           <Card
@@ -73,7 +73,31 @@ const Home: Component<{}> = () => {
             title="Third year project"
             subtitle="Computational models simulating the dopamine system circurity in the brain"
             description=" earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident!"
-            thumbnail="../src/game-cover.jpg"
+            thumbnail="src/assets/game-cover.jpg"
+            alt=""
+          />
+          <Card
+            index={4}
+            title="Symput"
+            subtitle="A downloadble Android keyboard and associated full stack website for feedback"
+            description="earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !"
+            thumbnail="src/assets/game-cover.jpg"
+            alt=""
+          />
+          <Card
+            index={5}
+            title="Personal website"
+            subtitle="Georgegrainger.com (this site) - my portfolio website to try and show off!!"
+            description="earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !"
+            thumbnail="src/assets/game-cover.jpg"
+            alt=""
+          />
+          <Card
+            index={6}
+            title="Third year project"
+            subtitle="Computational models simulating the dopamine system circurity in the brain"
+            description=" earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident!"
+            thumbnail="src/assets/game-cover.jpg"
             alt=""
           />
         </div>

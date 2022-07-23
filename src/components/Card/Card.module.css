@@ -2,9 +2,10 @@
   --br: 0.5rem;
   --duration: 250ms;
   display: grid;
-  flex: 0 0 25%;
+  flex: 1 1 25%;
   position: relative;
   isolation: isolate;
+  transition: transform var(--duration) var(--transition);
 }
 
 .card::before {
@@ -21,8 +22,7 @@
 }
 
 .card::after {
-  counter-reset: index var(--index);
-  content: counter(index);
+  content: attr(attr-index);
   position: absolute;
   font-size: 0.5em;
   right: 10%;
@@ -41,6 +41,14 @@
 
 .card:hover::after {
   transform: translateX(100%);
+}
+
+.moveUp {
+  transform: translateY(-15%);
+}
+
+.moveDown {
+  transform: translateY(10%);
 }
 
 .front,
@@ -118,7 +126,7 @@
 .languages > p {
   text-transform: uppercase;
   color: var(--hover);
-  font-weight: 700;
+  font-weight: 600;
   font-size: 0.25em;
 }
 
@@ -140,16 +148,15 @@
 }
 
 .icon path {
-  stroke: var(--color, currentColor);
-  fill: transparent;
-  stroke-width: 0.25em;
+  fill-opacity: 0;
   transform-origin: center;
+  stroke-width: 0.15em;
   transition: transform var(--duration) var(--transition);
   will-change: transform;
 }
 
 :global(.reduce-motion) .icon path {
-  fill: var(--color, currentColor);
+  fill-opacity: 1;
 }
 
 .card:hover .icon path {
@@ -181,9 +188,9 @@
 
 @keyframes fillIcon {
   0% {
-    fill: transparent;
+    fill-opacity: 0;
   }
   100% {
-    fill: var(--color, currentColor);
+    fill-opacity: 1;
   }
 }

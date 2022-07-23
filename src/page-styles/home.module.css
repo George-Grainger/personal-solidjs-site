@@ -70,30 +70,14 @@
 }
 
 .projects {
+  --num-per-row: 1;
   display: flex;
   flex-direction: column;
   gap: 0.5em 2em;
-  width: 70vw;
-  margin: auto;
   justify-content: center;
   width: min(75vw, 80rem);
   font-size: 0.75em;
-}
-
-.projects > article {
-  transition: transform var(--duration) var(--transition);
-}
-
-.projects:hover > article {
-  transform: translateY(-10%);
-}
-
-.projects > article:hover {
-  transform: translateY(0);
-}
-
-.projects > article:hover ~ article {
-  transform: translateY(5%);
+  flex-wrap: wrap;
 }
 
 .aboutContent {
@@ -166,11 +150,8 @@
   }
 
   .projects {
+    --num-per-row: 3;
     flex-direction: row;
     font-size: 0.5em;
-  }
-  .projects > article:hover ~ article,
-  .projects:hover > article {
-    transform: translateY(0%);
   }
 }
