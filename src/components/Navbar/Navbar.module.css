@@ -1,9 +1,6 @@
 /* Generic Nav */
 .nav {
   font-size: clamp(1.125rem, 5vw, 1.5rem);
-}
-
-.nav ul {
   display: flex;
   justify-content: space-evenly;
   max-width: 70rem;
@@ -11,9 +8,31 @@
   padding: unset;
 }
 
+.nav ul {
+  display: contents;
+}
+
+.nav .links {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  gap: 1em;
+  position: fixed;
+  inset: 3em 7.5vw auto;
+  background-color: var(--white);
+  border-radius: 0.5em;
+  border: 0.125em solid currentColor;
+  opacity: 0;
+}
+
+.nav .links.expanded {
+  opacity: 1;
+}
+
 .nav .link {
   font-size: 1.75rem;
-  display: none;
+  display: flex;
 }
 
 .nav li {
@@ -22,18 +41,31 @@
   align-items: center;
 }
 
-.hamburger {
-  height: 2rem;
-  fill: var(--text);
+.hamburgerContainer {
+  display: none;
+  border-radius: 0.5em;
+  border: 0.125em solid currentColor;
+  background-color: var(--inverse);
+  padding: 0.167em 0.375em;
 }
 
-@media only screen and (min-width: 60rem) {
-  .nav .link {
+.hamburgerContainer:hover {
+  background-color: var(--inverse-hover);
+}
+
+.hamburger {
+  height: 1em;
+  fill: var(--text);
+  z-index: 1;
+}
+
+@media only screen and (max-width: 60rem) {
+  .nav .links {
     display: flex;
   }
 
   .nav .hamburgerContainer {
-    display: none;
+    display: initial;
   }
 }
 

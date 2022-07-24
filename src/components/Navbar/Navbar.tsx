@@ -1,6 +1,6 @@
 import { useI18n } from '@solid-primitives/i18n';
 import { NavLink } from 'solid-app-router';
-import { Index, VoidComponent } from 'solid-js';
+import { createSignal, Index, VoidComponent } from 'solid-js';
 import { AnimationSelect } from './AnimationSelect';
 import { DarkmodeToggle } from './DarkmodeToggle';
 import LanguageSelect from './LanguageSelect';
@@ -9,11 +9,18 @@ import { nav as englishLinks } from '../../../lang/en/global.json';
 
 export const Navbar: VoidComponent<{}> = () => {
   const [t] = useI18n();
+  const [expanded, setExpanded] = createSignal(false);
 
   return (
     <header>
       <nav class={styles.nav}>
-        <ul role="list">
+        <ul
+          class={styles.links}
+          classList={{ [styles.expanded]: expanded() }}
+          id="primary-nav-links"
+          aria-label="Navigation links"
+          role="list"
+        >
           <Index each={englishLinks}>
             {(defaultLink, i) => (
               <li class={styles.link}>
@@ -24,6 +31,8 @@ export const Navbar: VoidComponent<{}> = () => {
               </li>
             )}
           </Index>
+        </ul>
+        <ul aria-label="Site settings" role="list">
           <li>
             <DarkmodeToggle />
           </li>
@@ -33,12 +42,20 @@ export const Navbar: VoidComponent<{}> = () => {
           <li>
             <LanguageSelect />
           </li>
-          <li class={styles.hamburgerContainer}>
-            <svg class={styles.hamburger} viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
-              <path d="M22 22H0V18.3333H22V22ZM22 12.8333H0V9.16667H22V12.8333ZM22 3.66667H0V0H22V3.66667Z" />
-            </svg>
-          </li>
         </ul>
+        <li>
+          <button
+            class={styles.hamburgerContainer}
+            aria-controls="primary-nav-links"
+            aria-expanded={expanded()}
+            onClick={() => setExpanded(!expanded())}
+          >
+            <svg class={styles.hamburger} aria-hidden="true" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22 22H0v-4h22v4Zm0-9H0V9h22v4Zm0-9H0V0h22v4Z" />
+            </svg>
+            <span class="sr-only">Mobile menu</span>
+          </button>
+        </li>
       </nav>
     </header>
   );
