@@ -1,8 +1,8 @@
 import { useI18n } from '@solid-primitives/i18n';
 import { makeIntersectionObserver } from '@solid-primitives/intersection-observer';
-import { Component, onMount } from 'solid-js';
+import { Accessor, Component, Index, onMount } from 'solid-js';
 import { Button } from '../components/Button';
-import { Card } from '../components/Card';
+import { Card, CardProps } from '../components/Card';
 import { HeroScene } from '../components/svg';
 import { FullPageCloudGroup1, FullPageCloudGroup2 } from '../components/svg/Clouds';
 import { useSpotify } from '../hooks/useSpotify';
@@ -52,54 +52,9 @@ const Home: Component<{}> = () => {
           <h2 class={styles.projectTitle}>{t('home.projects', {}, 'Projects')}</h2>
         </div>
         <div class={styles.projects}>
-          <Card
-            index={1}
-            title="Symput"
-            subtitle="A downloadble Android keyboard and associated full stack website for feedback"
-            description="earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !"
-            thumbnail="src/assets/game-cover.jpg"
-            alt=""
-          />
-          <Card
-            index={2}
-            title="Personal website"
-            subtitle="Georgegrainger.com (this site) - my portfolio website to try and show off!!"
-            description="earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !"
-            thumbnail="src/assets/game-cover.jpg"
-            alt=""
-          />
-          <Card
-            index={3}
-            title="Third year project"
-            subtitle="Computational models simulating the dopamine system circurity in the brain"
-            description=" earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident!"
-            thumbnail="src/assets/game-cover.jpg"
-            alt=""
-          />
-          <Card
-            index={4}
-            title="Symput"
-            subtitle="A downloadble Android keyboard and associated full stack website for feedback"
-            description="earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !"
-            thumbnail="src/assets/game-cover.jpg"
-            alt=""
-          />
-          <Card
-            index={5}
-            title="Personal website"
-            subtitle="Georgegrainger.com (this site) - my portfolio website to try and show off!!"
-            description="earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !"
-            thumbnail="src/assets/game-cover.jpg"
-            alt=""
-          />
-          <Card
-            index={6}
-            title="Third year project"
-            subtitle="Computational models simulating the dopamine system circurity in the brain"
-            description=" earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident!"
-            thumbnail="src/assets/game-cover.jpg"
-            alt=""
-          />
+          <Index each={t('home.project-cards', {})}>
+            {(data: Accessor<Omit<CardProps, 'index'>>, i) => <Card index={i + 1} {...data()} />}
+          </Index>
         </div>
       </section>
 
@@ -110,15 +65,17 @@ const Home: Component<{}> = () => {
         <div class={styles.aboutContent}>
           <h2 class={styles.aboutTitle}>{t('home.about', {}, 'About Me')}</h2>
           <div>
-            <h3>Summary</h3>
+            <h3>Academic</h3>
             <p>
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus officia vitae omnis officiis fugit, sed tempora
               voluptatibus libero velit minus. Cum est nostrum delectus, placeat dicta quo ex obcaecati. Necessitatibus.
             </p>
+            <h3>Experience</h3>
             <p>
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus officia vitae omnis officiis fugit, sed tempora
               voluptatibus libero velit minus. Cum est nostrum delectus, placeat dicta quo ex obcaecati. Necessitatibus.
             </p>
+            <h3>Interests</h3>
             <p>
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus officia vitae omnis officiis fugit, sed tempora
               voluptatibus libero velit minus. Cum est nostrum delectus, placeat dicta quo ex obcaecati. Necessitatibus.
@@ -126,18 +83,20 @@ const Home: Component<{}> = () => {
           </div>
           <div>
             <h3>Spotify</h3>
-            <hr />
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-            <hr />
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-            <hr />
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-            <hr />
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-            <hr />
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-            <hr />
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+            <p>See what my current top songs are (updated daily!)</p>
+            <ol>
+              <li>song 1</li>
+              <li>song 2</li>
+              <li>song 3</li>
+              <li>song 4</li>
+              <li>song 5</li>
+              <li>song 6</li>
+              <li>song 7</li>
+              <li>song 8</li>
+              <li>song 9</li>
+              <li>song 10</li>
+            </ol>
+            <p>Currently listening to:</p>
           </div>
         </div>
       </section>

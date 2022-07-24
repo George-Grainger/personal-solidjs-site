@@ -3,7 +3,7 @@ import { Button } from '../Button';
 import styles from './Card.module.css';
 import { Assembly, CPP, Firebase, Java, JavaScript, Python, NextJS, TailwindCSS } from './Logos';
 
-interface CardProps {
+export interface CardProps {
   index: string | number;
   title: string;
   subtitle: string;

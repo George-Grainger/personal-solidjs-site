@@ -2,5 +2,49 @@
   "title": "Bonjour",
   "subtitle": "Merci d'être passé",
   "intro-paragraph": "Je m'appelle George, un étudiant en informatique vivant à Manchester",
-  "projects": "Projets"
+  "projects": "Projets",
+  "project-cards": [
+    {
+      "title": "Symput",
+      "subtitle": "An Android keyboard and associated full stack website for feedback",
+      "description": "earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !",
+      "thumbnail": "assets/game-cover.jpg",
+      "alt": ""
+    },
+    {
+      "title": "Personal website",
+      "subtitle": "georgegrainger.com (this site) - my portfolio website to try and show off!!",
+      "description": "earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !",
+      "thumbnail": "assets/game-cover.jpg",
+      "alt": ""
+    },
+    {
+      "title": "Third year project",
+      "subtitle": "Computational models simulating the dopamine system circurity in the brain",
+      "description": "earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !",
+      "thumbnail": "assets/game-cover.jpg",
+      "alt": ""
+    },
+    {
+      "title": "Symput",
+      "subtitle": "An Android keyboard and associated full stack website for feedback",
+      "description": "earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !",
+      "thumbnail": "assets/game-cover.jpg",
+      "alt": ""
+    },
+    {
+      "title": "Personal website",
+      "subtitle": "georgegrainger.com (this site) - my portfolio website to try and show off!!",
+      "description": "earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !",
+      "thumbnail": "assets/game-cover.jpg",
+      "alt": ""
+    },
+    {
+      "title": "Third year project",
+      "subtitle": "Computational models simulating the dopamine system circurity in the brain",
+      "description": "earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !",
+      "thumbnail": "assets/game-cover.jpg",
+      "alt": ""
+    }
+  ]
 }
