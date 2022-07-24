@@ -5,7 +5,7 @@
 .title {
   font-size: 1.2em;
   line-height: 1;
-  font-weight: 900;
+  font-weight: 800;
   letter-spacing: -0.03rem;
   white-space: nowrap;
 }
@@ -59,7 +59,7 @@
 .aboutTitle {
   z-index: -1;
   font-size: 0.8em;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .projectTitle {
@@ -87,28 +87,35 @@
 }
 
 .aboutTitle {
-  margin: 0.5em auto auto;
+  text-align: center;
   grid-column: 1 / -1;
 }
 
 .aboutContent h3 {
-  margin: auto;
-  font-size: 0.5em;
+  text-align: center;
+  font-size: 0.4em;
+  line-height: 1;
 }
 
 .aboutContent div {
   display: flex;
   flex-direction: column;
-  gap: 0.3em;
+  gap: 0.125em;
+}
+.aboutContent p + h3 {
+  margin-top: 0.5em;
 }
 
 .aboutContent p {
-  font-size: 0.3em;
+  font-size: 0.25em;
 }
 
-.aboutContent hr {
+.aboutContent ol {
   margin-block: 0;
-  width: 100%;
+}
+
+.aboutContent li {
+  font-size: 0.25em;
 }
 
 @media only screen and (min-width: 60rem) {

@@ -8,21 +8,20 @@ interface NotPlaying {
 }
 
 interface NowPlayingGeneric extends NotPlaying {
-  type: 'show' | 'track';
   playingUrl: string;
   title: string;
+  creator: string;
+  imgUrl: string;
 }
 
 interface NowPlayingTrack extends NowPlayingGeneric {
+  type: 'track';
   album: string;
-  albumImageUrl: string;
-  artist: string;
 }
 
 interface NowPlayingShow extends NowPlayingGeneric {
+  type: 'show';
   description: string;
-  show: string;
-  showImageUrl: string;
 }
 
 interface TopTrack {

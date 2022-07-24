@@ -1,11 +1,10 @@
 .btn {
-  display: flex;
+  display: inline-flex;
   gap: 0.75em;
   padding: 0.25em 1em;
   margin-inline: auto;
   background-color: var(--btn-bg, var(--purple));
   color: var(--btn-text, var(--white));
-  font-weight: 800;
   text-transform: uppercase;
   transition: filter var(--duration) var(--transition);
   filter: drop-shadow(0.15em 0.15em 0 var(--text));
@@ -22,6 +21,7 @@
 }
 
 .btn span {
+  font-weight: 700;
   transform: skewX(15deg);
 }
 
