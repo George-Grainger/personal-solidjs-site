@@ -1,21 +1,27 @@
 import { RouteDefinition } from 'solid-app-router';
-import { lazy } from 'solid-js';
+import { Component, lazy } from 'solid-js';
+
+const lazyWithPreload = (factory: () => Promise<{ default: Component<any> }>) => {
+  const Component = lazy(factory);
+  Component.preload = factory;
+  return Component;
+};
 
 export const routes: RouteDefinition[] = [
   {
     path: '/',
-    component: lazy(() => import('./pages/Home')),
+    component: lazyWithPreload(() => import('./pages/Home')),
   },
   {
     path: '/projects',
-    component: lazy(() => import('./pages/Projects')),
+    component: lazyWithPreload(() => import('./pages/Projects')),
   },
   {
     path: '/about-me',
-    component: lazy(() => import('./pages/About')),
+    component: lazyWithPreload(() => import('./pages/About')),
   },
   {
     path: '/*all',
-    component: lazy(() => import('./pages/404')),
+    component: lazyWithPreload(() => import('./pages/404')),
   },
 ];

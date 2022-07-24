@@ -1,10 +1,15 @@
-import { Router, useRoutes } from 'solid-app-router';
-import { Suspense, VoidComponent } from 'solid-js';
+import { Router, useIsRouting, useRoutes } from 'solid-app-router';
+import { onMount, Suspense, VoidComponent } from 'solid-js';
 import { MetaProvider } from 'solid-meta';
 import { AppContextProvider } from './AppContext';
 import { Navbar } from './components/Navbar';
 import { FooterScene } from './components/svg';
 import { routes } from './routes';
+
+// Should be executed once on initial page load to prevent initial animation occuring
+onMount(() => {
+  setTimeout(() => document.documentElement.classList.remove('no-animate'));
+});
 
 const App: VoidComponent<{}> = () => {
   // don't require clean up since will be useful throughout site use
@@ -25,10 +30,9 @@ const App: VoidComponent<{}> = () => {
         <AppContextProvider>
           <Navbar />
           <Suspense fallback={<p>Loading</p>}>
-            <main>
-              {/* <TransitionRoutes> */}
+            {/* Need to use higher order function since must be placed within Router */}
+            <main classList={{ loading: useIsRouting()() }}>
               <Routes />
-              {/* </TransitionRoutes> */}
             </main>
             <footer>
               <FooterScene />

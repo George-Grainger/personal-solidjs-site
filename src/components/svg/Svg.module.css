@@ -10,13 +10,29 @@
 }
 
 /* Svg related classes */
-.heroSvg {
+.svgScene {
+  --cow-helmet: hsla(0, 0%, 67%, 0.2);
+  --cow-pink: hsl(9, 68%, 62%);
+  --cow-yellow: hsl(40, 62%, 58%);
+  --skin: hsl(29, 100%, 89%);
+  --grey-hc: hsl(230, 21%, 73%);
+  --grey-bc: hsl(226, 21%, 63%);
+  --grey-shadow: hsl(227, 11%, 75%);
+  --grey-mb: hsl(226, 21%, 88%);
+  --grey-dc: hsl(229, 12%, 82%);
+  --space-rock-grey: hsl(226, 21%, 88%);
+
   overflow: visible;
+}
+
+.heroSvg {
+  composes: svgScene;
   width: min(100%, 40rem);
 }
 
 .footerSvg {
-  overflow: visible;
+  composes: svgScene;
+
   width: min(200vw, 160rem);
   margin-left: 10%;
 }
@@ -180,6 +196,7 @@ g.mountainGroup ~ .mountainGroup path:nth-child(3n + 1) {
 
 :global(.no-preference) .fullPageClouds g {
   transition: transform calc(2.5 * var(--duration)) var(--transition);
+  will-change: transform;
 }
 
 .aboutClouds {
@@ -451,11 +468,11 @@ g.mountainGroup ~ .mountainGroup path:nth-child(3n + 1) {
 
 .rocketFlames,
 .rocketSmoke {
+  --transition: cubic-bezier(0.2, 0.8, 0.1, 0.95);
+  opacity: 0;
   transition: transform calc(var(--mult, 3) * var(--duration)) var(--transition) var(--t-delay, 0ms),
     opacity var(--duration) var(--transition) var(--o-delay, calc(var(--mult, 3) * var(--duration)));
   will-change: transform opacity;
-  --transition: cubic-bezier(0.2, 0.8, 0.1, 0.95);
-  opacity: 0;
 }
 
 .rocketFlames {

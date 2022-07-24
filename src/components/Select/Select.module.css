@@ -40,6 +40,7 @@
   transform: translateY(-25%);
   transition: color var(--duration) var(--transition), background-color var(--duration) var(--transition),
     opacity var(--drop-duration) var(--transition), transform var(--drop-duration) var(--transition);
+  will-change: color, background-color, opacity, transform;
 }
 
 .select input[type='radio'] {
@@ -59,6 +60,7 @@
   text-align: left;
   transition: color var(--duration) var(--transition), background-color var(--duration) var(--transition),
     border var(--duration) var(--transition);
+  will-change: color, background-color, border;
 }
 
 .title::before,
@@ -69,6 +71,7 @@
   border-left: var(--unit-x) solid transparent;
   border-right: var(--unit-x) solid transparent;
   transition: opacity var(--drop-duration) var(--transition);
+  will-change: opacity;
 }
 
 .title::before {

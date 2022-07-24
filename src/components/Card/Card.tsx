@@ -1,5 +1,5 @@
 import { VoidComponent } from 'solid-js';
-import { Button } from '../Button';
+import { TransitionButton } from '../Button';
 import styles from './Card.module.css';
 import { Assembly, CPP, Firebase, Java, JavaScript, Python, NextJS, TailwindCSS } from './Logos';
 
@@ -54,7 +54,9 @@ export const Card: VoidComponent<CardProps> = (props) => {
           <CPP />
           <p>C++</p>
         </div>
-        <Button class={styles.btn}>More info</Button>
+        <TransitionButton href="/about" class={styles.btn}>
+          More info
+        </TransitionButton>
       </div>
     </article>
   );

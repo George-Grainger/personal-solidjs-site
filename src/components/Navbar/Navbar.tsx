@@ -1,11 +1,11 @@
 import { useI18n } from '@solid-primitives/i18n';
-import { NavLink } from 'solid-app-router';
 import { createSignal, Index, VoidComponent } from 'solid-js';
 import { AnimationSelect } from './AnimationSelect';
 import { DarkmodeToggle } from './DarkmodeToggle';
 import LanguageSelect from './LanguageSelect';
 import styles from './Navbar.module.css';
 import { nav as englishLinks } from '../../../lang/en/global.json';
+import { TransitionLink } from '../Button';
 
 export const Navbar: VoidComponent<{}> = () => {
   const [t] = useI18n();
@@ -25,9 +25,9 @@ export const Navbar: VoidComponent<{}> = () => {
             {(defaultLink, i) => (
               <li class={styles.link}>
                 {/* Requires reasonable assumptions links consistent across all languages */}
-                <NavLink href={t(`global.nav.${i}.path`, {}, defaultLink().path)}>
+                <TransitionLink href={t(`global.nav.${i}.path`, {}, defaultLink().path)}>
                   {t(`global.nav.${i}.title`, {}, defaultLink().title)}
-                </NavLink>
+                </TransitionLink>
               </li>
             )}
           </Index>

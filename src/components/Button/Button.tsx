@@ -1,12 +1,11 @@
-import { NavLink } from 'solid-app-router';
 import { JSX, ParentComponent, splitProps } from 'solid-js';
 import styles from './Button.module.css';
+import { TransitionLink } from './TransitionLink';
 
-export const Button: ParentComponent<JSX.AnchorHTMLAttributes<HTMLAnchorElement>> = (props) => {
-  const [local, others] = splitProps(props, ['class', 'children', 'href']);
+const ButtonContent: ParentComponent<{}> = ({ children }) => {
   return (
-    <NavLink class={`${styles.btn} ${local.class}`} href={local.href || ''} {...others}>
-      <span>{local.children}</span>
+    <>
+      <span>{children}</span>
       <span>
         <svg class={styles.arrows} viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
           <g stroke="none" stroke-width="1" fill-rule="evenodd">
@@ -16,6 +15,24 @@ export const Button: ParentComponent<JSX.AnchorHTMLAttributes<HTMLAnchorElement>
           </g>
         </svg>
       </span>
-    </NavLink>
+    </>
+  );
+};
+
+export const TransitionButton: ParentComponent<JSX.AnchorHTMLAttributes<HTMLAnchorElement>> = (props) => {
+  const [local, others] = splitProps(props, ['class', 'children', 'href']);
+  return (
+    <TransitionLink class={`${styles.btn} ${local.class}`} href={local.href || ''} {...others}>
+      <ButtonContent>{local.children}</ButtonContent>
+    </TransitionLink>
+  );
+};
+
+export const Button: ParentComponent<JSX.ButtonHTMLAttributes<HTMLButtonElement>> = (props) => {
+  const [local, others] = splitProps(props, ['class', 'children']);
+  return (
+    <button class={`${styles.btn} ${local.class}`} {...others}>
+      <ButtonContent>{local.children}</ButtonContent>
+    </button>
   );
 };

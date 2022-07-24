@@ -1,75 +1,40 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;0,700;0,800;1,700;&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;0,700;0,800;1,700&display=swap');
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+/* Theme */
+:root {
+  --white: hsl(0, 0%, 98%);
+  --cloud-white: hsla(0, 0%, 98%, 0.902);
+  --white-hover: hsl(0, 0%, 83%);
+  --black: hsl(231, 23%, 12%);
+  --shadow-black: hsla(231, 23%, 12%, 0.2);
+  --black-hover: hsl(231, 23%, 27%);
+  --sky-blue: hsl(212, 97%, 85%);
+  --yellow-1: hsl(52, 98%, 78%);
+  --yellow-2: hsl(52, 98%, 48%);
+  --blue: hsl(223, 100%, 33%);
+  --red: hsl(349, 100%, 43%);
+  --green: hsl(118, 44%, 43%);
+  --purple: hsl(259, 79%, 50%);
+
+  --background: var(--sky-blue);
+  --text: var(--black);
+  --hover: var(--black-hover);
+  --inverse: var(--white);
+  --inverse-hover: var(--white-hover);
+
+  --duration: calc(var(--mult, 1) * 300ms);
+  --transition: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-body {
-  padding: 0;
-  margin: 0;
-  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
-    Helvetica Neue, sans-serif;
-  min-height: 100vh;
-  text-rendering: optimizeSpeed;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  transition: color var(--duration) var(--transition), background-color var(--duration) var(--transition);
-  background-color: var(--background);
-  color: var(--text);
+:root.dark {
+  --background: var(--black);
+  --text: var(--white);
+  --hover: var(--white-hover);
+  --inverse: var(--black);
+  --inverse-hover: var(--black-hover);
 }
 
-header {
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  padding-top: 1.5rem;
-  margin-bottom: min(7.5vh, 5rem);
-}
-
-main {
-  display: grid;
-  gap: min(15vh, 10rem);
-  place-items: center;
-  place-content: center;
-  overflow: clip;
-  margin-bottom: min(15vh, 10rem);
-}
-
-footer {
-  display: flex;
-  justify-content: center;
-  position: relative;
-  z-index: -1;
-  overflow-x: clip;
-}
-
-footer div {
-  position: absolute;
-  bottom: 0;
-  display: grid;
-  grid-template-columns: repeat(2, auto);
-  grid-template-rows: repeat(2, auto);
-  justify-content: space-between;
-  grid-auto-flow: column;
-  width: 90vw;
-  color: var(--inverse);
-}
-
-footer ul {
-  display: flex;
-  gap: 4ch;
-  padding: 0;
-  margin: 0;
-}
-
-section {
-  display: grid;
-  margin-inline: auto;
-  font-size: clamp(3.125rem, 10vw, 5rem);
-  place-items: center;
-  width: min(90vw, 80rem);
-}
+/* Reset */
 
 /* Box sizing rules */
 *,
@@ -140,49 +105,132 @@ select {
   font: inherit;
 }
 
-:root {
-  /* Your default theme */
-  --white: #fafafa;
-  --cloud-white: #fafafae6;
-  --white-hover: hsl(0, 0%, 83%);
-  --black: #181a26;
-  --shadow-black: #181a2633;
-  --black-hover: hsl(231, 23%, 27%);
-  --sky-blue: hsl(212, 97%, 85%);
-  --yellow-1: #feef90;
-  --yellow-2: #f2d202;
-  --blue: #0030a8;
-  --red: #db0028;
-  --green: #419e3d;
-  --purple: #5b1be4;
+/* General styles */
 
-  --cow-helmet: #ababab33;
-  --cow-pink: #e0705c;
-  --cow-yellow: #d6aa51;
-  --skin: #ffe2c7;
-  --grey-hc: #acb1c9;
-  --grey-bc: #8d96b4;
-  --grey-shadow: hsl(227, 11%, 75%);
-  --grey-mb: #dadde7;
-  --grey-dc: #ccced7;
-  --space-rock-grey: hsl(226, 21%, 88%);
-
-  --background: var(--sky-blue);
-  --text: var(--black);
-  --hover: var(--black-hover);
-  --inverse: var(--white);
-  --inverse-hover: var(--white-hover);
-
-  --duration: calc(var(--mult, 1) * 300ms);
-  --transition: cubic-bezier(0.22, 0.61, 0.36, 1);
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-:root.dark {
-  --background: var(--black);
-  --text: var(--white);
-  --hover: var(--white-hover);
-  --inverse: var(--black);
-  --inverse-hover: var(--black-hover);
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+    Helvetica Neue, sans-serif;
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background);
+  color: var(--text);
+  transition: color var(--duration) var(--transition), background-color var(--duration) var(--transition);
+  will-change: color, background-color;
+}
+
+main {
+  display: grid;
+  gap: min(15vh, 10rem);
+  place-items: center;
+  place-content: center;
+  margin-bottom: min(15vh, 10rem);
+  overflow-x: clip;
+}
+
+main::before,
+main::after {
+  position: fixed;
+  z-index: 1;
+  transition: transform calc(2 * var(--duration)) var(--transition);
+  will-change: transform;
+}
+
+.no-preference main::before,
+.no-preference main::after {
+  content: url('public/cloud.svg');
+}
+
+main::before {
+  inset: -25vh -40vh auto;
+  transform: translateY(-107.5vh);
+}
+
+main::after {
+  inset: auto -40vh -5vh;
+  transform: translateY(107.5vh);
+}
+
+@media only screen and (min-width: 60rem) {
+  main::before {
+    inset: -15vw -7.5vw;
+    transform: translateX(107.5vw);
+  }
+
+  main::after {
+    inset: 15vw -7.5vw;
+    transform: translateX(-107.5vw);
+  }
+}
+
+main.cover.cover::before,
+main.cover.cover::after,
+main.loading.loading::before,
+main.loading.loading::after {
+  transform: translate(0);
+}
+
+.no-preference main > *,
+.no-preference footer {
+  opacity: 0;
+  transition: opacity var(--duration) var(--transition);
+  will-change: opacity;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  padding-top: 1.5rem;
+  margin-bottom: min(7.5vh, 5rem);
+}
+
+main:not(.cover) > *,
+main:not(.cover) + footer {
+  opacity: 1;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: -1;
+  overflow-x: clip;
+}
+
+footer div {
+  position: absolute;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(2, auto);
+  justify-content: space-between;
+  grid-auto-flow: column;
+  width: 90vw;
+  color: var(--inverse);
+}
+
+footer ul {
+  display: flex;
+  gap: 4ch;
+  padding: 0;
+  margin: 0;
+}
+
+section {
+  display: grid;
+  margin-inline: auto;
+  font-size: clamp(3.125rem, 10vw, 5rem);
+  place-items: center;
+  width: min(90vw, 80rem);
 }
 
 /* Utilities */
@@ -211,6 +259,7 @@ Enabled for 1ms initially, then removed in App.tsx
   --duration: 0;
 }
 
+.no-animate,
 .reduce-motion * {
   animation-play-state: paused !important;
   transition-delay: 0ms !important;

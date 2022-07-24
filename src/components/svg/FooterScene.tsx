@@ -2,7 +2,7 @@ import { splitProps, VoidComponent } from 'solid-js';
 import { VoidSVG } from './svg-types';
 import styles from './Svg.module.css';
 
-const viewBox = '0 -50 2196 825';
+const viewBox = '0 0 2196 775';
 
 export const FooterScene: VoidSVG = (props) => {
   const [local, others] = splitProps(props, ['class']);

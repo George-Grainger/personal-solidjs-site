@@ -6,10 +6,11 @@
   background-color: var(--btn-bg, var(--purple));
   color: var(--btn-text, var(--white));
   text-transform: uppercase;
-  transition: filter var(--duration) var(--transition);
   filter: drop-shadow(0.15em 0.15em 0 var(--text));
   transform: skewX(-15deg);
   font-style: italic;
+  transition: filter var(--duration) var(--transition);
+  will-change: filter;
 }
 
 .btn:focus {
@@ -30,6 +31,7 @@
   margin-right: 0.5em;
   position: relative;
   transition: margin 500ms;
+  will-change: margin;
 }
 
 .arrows {
@@ -37,20 +39,20 @@
   height: 0.875em;
 }
 
+.arrows path {
+  transition: transform var(--duration) var(--transition);
+  will-change: transform;
+}
+
 .arrows path:nth-child(1) {
-  --time: 600ms;
-  transition: transform calc(0.8 * var(--duration)) var(--transition);
+  --time: 200ms;
+  transition-duration: calc(0.8 * var(--duration));
   transform: translateX(-60%);
 }
 
 .arrows path:nth-child(2) {
   --time: 400ms;
-  transition: transform var(--duration) var(--transition);
   transform: translateX(-30%);
-}
-
-.arrows path:nth-child(3) {
-  --time: 200ms;
 }
 
 .btn:hover span:last-child {
@@ -58,12 +60,22 @@
 }
 
 .btn:hover path {
-  animation: colour_anim 1s infinite var(--time);
   transform: translateX(0);
+  fill: var(--yellow-2);
+}
+
+:global(.no-preference) .btn:hover path {
+  animation: colour_anim 1s infinite calc(-1 * var(--time, 600ms));
 }
 
 @keyframes colour_anim {
+  0% {
+    fill: currentColor;
+  }
   50% {
     fill: var(--yellow-2);
+  }
+  100% {
+    fill: currentColor;
   }
 }

@@ -1,7 +1,7 @@
 import { useI18n } from '@solid-primitives/i18n';
 import { makeIntersectionObserver } from '@solid-primitives/intersection-observer';
-import { Accessor, Component, Index, onMount } from 'solid-js';
-import { Button } from '../components/Button';
+import { Accessor, Component, Index } from 'solid-js';
+import { TransitionButton } from '../components/Button';
 import { Card, CardProps } from '../components/Card';
 import { HeroScene } from '../components/svg';
 import { FullPageCloudGroup1, FullPageCloudGroup2 } from '../components/svg/Clouds';
@@ -26,10 +26,6 @@ const Home: Component<{}> = () => {
     { threshold: 0.4 },
   );
 
-  onMount(() => {
-    setTimeout(() => document.documentElement.classList.remove('no-animate'));
-  });
-
   const [t] = useI18n();
 
   const { currentSong, topSongs } = useSpotify();
@@ -41,9 +37,9 @@ const Home: Component<{}> = () => {
         <h2 class={styles.subtitle}>{t('home.subtitle', {}, 'Thanks for stopping by')}</h2>
         <HeroScene class={styles.svgScene} />
         <p class={styles.intro}>{t('home.intro-paragraph', {}, "I'm George a computer science student based in Manchester.")}</p>
-        <Button href="#projects" class={styles.btn}>
+        <TransitionButton href="#projects" class={styles.btn}>
           {t('home.projects', {}, 'Projects')}
-        </Button>
+        </TransitionButton>
       </section>
 
       <section class={styles.projectSection}>
