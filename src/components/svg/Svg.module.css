@@ -9,6 +9,11 @@
   will-change: transform;
 }
 
+:global(.reduce-motion) .svg-transition-opacity,
+:global(.reduce-motion) .svg-transition-transform {
+  --duration: 0;
+}
+
 /* Svg related classes */
 .svgScene {
   --cow-helmet: hsla(0, 0%, 67%, 0.2);
@@ -35,11 +40,6 @@
   width: min(160vw, 110rem);
   margin-left: 10%;
   flex: 1 0 auto;
-}
-
-:global(.reduce-motion) .heroSvg,
-:global(.reduce-motion) .footerSvg {
-  --duration: 0;
 }
 
 /* Sun related classes */
@@ -262,18 +262,18 @@ g.mountainGroup ~ .mountainGroup path:nth-child(3n + 1) {
 /* Surface related classes */
 .surface,
 .backgroundImage {
-  --surface-l1: #54aa50;
+  --surface-l1: var(--clr-footer);
   --surface-l2: var(--green);
-  --surface-l3: #2e902c;
-  --surface-l4: #1f8421;
-  --surface-l5: #1a751e;
+  --surface-l3: hsl(119, 53%, 37%);
+  --surface-l4: hsl(121, 62%, 32%);
+  --surface-l5: hsl(123, 64%, 28%);
   --surface-l6: hsl(125, 66%, 24%);
   --surface-l7: hsl(125, 66%, 20%);
 }
 
 :global(.dark) .surface,
 :global(.dark) .backgroundImage {
-  --surface-l1: hsl(227, 23%, 88%);
+  --surface-l1: var(--clr-footer);
   --surface-l2: hsl(225, 24%, 80%);
   --surface-l3: hsl(227, 24%, 73%);
   --surface-l4: hsl(227, 24%, 66%);

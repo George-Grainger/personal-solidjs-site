@@ -19,10 +19,14 @@ export const Card: VoidComponent<CardProps> = (props) => {
     const elIndex = Number(el.getAttribute('attr-index'));
     const PER_ROW = Number(getComputedStyle(el.parentElement as Element).getPropertyValue('--num-per-row'));
     const adjacent = el.parentElement?.querySelectorAll(`article:nth-child(${PER_ROW}n + ${elIndex % PER_ROW})`);
+    const projectTitle = el.parentElement?.previousElementSibling?.querySelector('h2');
 
-    // if (matchMedia('(max-width: 60rem)').matches) {
-    //   el.scrollIntoView(true);
-    // }
+    if (matchMedia('(max-width: 60rem)').matches) {
+      // el.scrollIntoView(true);
+    }
+    if (PER_ROW === 1 || (matchMedia('(max-width: 80rem)').matches && elIndex % PER_ROW === 1) || elIndex % PER_ROW === 2) {
+      projectTitle?.classList.add(styles.moveUp);
+    }
 
     adjacent?.forEach((sibling) => {
       const siblingIndex = Number(sibling.getAttribute('attr-index'));
@@ -35,8 +39,8 @@ export const Card: VoidComponent<CardProps> = (props) => {
   };
 
   const handleMouseLeave = (e: MouseEvent) => {
-    const moved = (e.target as Element).parentElement?.querySelectorAll(`article.${styles.moveUp}, article.${styles.moveDown}`);
-    moved?.forEach((sibling) => sibling.classList.remove(styles.moveUp, styles.moveDown));
+    const moved = (e.target as Element).parentElement?.parentElement?.querySelectorAll(`.${styles.moveUp}, .${styles.moveDown}`);
+    moved?.forEach((el) => el.classList.remove(styles.moveUp, styles.moveDown));
   };
 
   return (
@@ -44,7 +48,7 @@ export const Card: VoidComponent<CardProps> = (props) => {
       <div class={styles.front}>
         <img class={styles.thumbnail} src={props.thumbnail} alt={props.alt || ''} />
         <h3 class={styles.frontTitle}>{props.title}</h3>
-        <p class={styles.subtitle}>{props.subtitle}</p>
+        <strong class={styles.subtitle}>{props.subtitle}</strong>
       </div>
 
       <div class={styles.back}>
@@ -52,15 +56,13 @@ export const Card: VoidComponent<CardProps> = (props) => {
         <p class={styles.description}>{props.description}</p>
         <div class={styles.languages}>
           <Python />
-          <p>Python</p>
+          <strong>Python</strong>
           <JavaScript />
-          <p>JavaScript</p>
+          <strong>JavaScript</strong>
           <CPP />
-          <p>C++</p>
+          <strong>C++</strong>
         </div>
-        <TransitionButton href="/about" class={styles.btn}>
-          More info
-        </TransitionButton>
+        <TransitionButton href="/about">More info</TransitionButton>
       </div>
     </article>
   );

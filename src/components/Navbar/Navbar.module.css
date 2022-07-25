@@ -1,6 +1,6 @@
 /* Generic Nav */
 .nav {
-  font-size: clamp(1.125rem, 5vw, 1.5rem);
+  font-size: clamp(1.125rem, 3.5vw, 1.375rem);
   display: flex;
   justify-content: space-evenly;
   max-width: 70rem;
@@ -31,7 +31,7 @@
 }
 
 .nav .link {
-  font-size: 1.75rem;
+  font-size: 1.1em;
   display: flex;
 }
 
@@ -92,8 +92,7 @@
   --transition: cubic-bezier(0.22, 0.61, 0.36, 1);
 
   fill: hsl(212, 97%, 68%);
-  height: 3rem;
-  aspect-ratio: 37 / 19;
+  height: 2em;
   cursor: pointer;
 }
 

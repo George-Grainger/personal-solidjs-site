@@ -6,6 +6,7 @@
   position: relative;
   isolation: isolate;
   transition: transform var(--duration) var(--transition);
+  will-change: transform;
 }
 
 .card::before {
@@ -24,7 +25,6 @@
 .card::after {
   content: attr(attr-index);
   position: absolute;
-  font-size: 0.5em;
   right: 10%;
   font-weight: 600;
   color: var(--white);
@@ -44,11 +44,15 @@
 }
 
 .moveUp {
-  transform: translateY(-15%);
+  transform: translateY(-10%);
+}
+
+h2.moveUp {
+  transform: translateY(-75%);
 }
 
 .moveDown {
-  transform: translateY(10%);
+  transform: translateY(5%);
 }
 
 .front,
@@ -59,9 +63,10 @@
 .front {
   display: flex;
   flex-direction: column;
-  gap: 0.075em;
+  gap: 0.5em;
   transition: transform var(--duration) var(--transition);
 }
+
 .card:hover .front {
   transform: translateY(-33%) scale(0.6);
 }
@@ -74,18 +79,14 @@
 
 .frontTitle,
 .subtitle {
-  margin-inline: 0.25rem;
+  line-height: 1;
+  margin-inline: 0.25em;
   transition: opacity var(--duration) var(--transition);
   will-change: opacity;
 }
 
-.frontTitle {
-  font-size: 0.6em;
-}
-
 .subtitle {
-  font-size: 0.35em;
-  font-weight: 600;
+  font-size: 0.75em;
   color: var(--hover);
 }
 
@@ -97,15 +98,17 @@
 .back {
   display: flex;
   flex-direction: column;
-  text-align: center;
   justify-content: space-between;
-  gap: 0.4em;
+  align-items: center;
+  text-align: center;
+  gap: 1em;
   margin-block: 55% 0.5em;
   opacity: 0;
   transform: translateY(15%);
   pointer-events: none;
   transition: transform var(--duration) var(--transition), opacity calc(0.5 * var(--duration)) var(--transition);
   will-change: transform, opacity;
+  padding-bottom: 1em;
 }
 
 .card:hover .back {
@@ -115,19 +118,20 @@
 }
 
 .backTitle {
-  font-size: 0.7em;
-  line-height: 1;
+  font-size: 1.67em;
 }
 
 .description {
-  font-size: 0.4em;
+  font-size: 0.89em;
+  width: 110%;
 }
 
-.languages > p {
+.languages > strong {
+  display: block;
   text-transform: uppercase;
   color: var(--hover);
   font-weight: 600;
-  font-size: 0.25em;
+  font-size: 0.6em;
 }
 
 .languages {
@@ -136,15 +140,12 @@
   margin-inline: auto;
 }
 
-.btn {
-  font-size: 0.5em;
-}
-
 .icon {
   --a-duration: calc(4 * var(--duration));
   width: var(--size, 0.75em);
   overflow: visible;
   cursor: pointer;
+  font-size: 2em;
 }
 
 .icon path {
@@ -192,5 +193,19 @@
   }
   100% {
     fill-opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 60em) {
+  .card ~ .card {
+    margin-top: -20%;
+  }
+
+  .moveUp {
+    transform: translateY(-15%);
+  }
+
+  .moveDown {
+    transform: translateY(15%);
   }
 }

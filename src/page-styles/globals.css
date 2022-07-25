@@ -15,6 +15,7 @@
   --red: hsl(349, 100%, 43%);
   --green: hsl(118, 44%, 43%);
   --purple: hsl(259, 79%, 50%);
+  --clr-footer: hsl(117, 36%, 49%);
 
   --background: var(--sky-blue);
   --text: var(--black);
@@ -32,6 +33,7 @@
   --hover: var(--white-hover);
   --inverse: var(--black);
   --inverse-hover: var(--black-hover);
+  --clr-footer: hsl(227, 23%, 88%);
 }
 
 /* Reset */
@@ -136,24 +138,30 @@ body {
 
 main {
   display: grid;
-  gap: min(15vh, 10rem);
+  gap: min(10vh, 10rem);
   place-items: center;
   place-content: center;
-  margin-bottom: min(15vh, 10rem);
+  margin-bottom: min(10vh, 10rem);
   overflow-x: clip;
+  font-size: clamp(1.125rem, 3.5vw, 1.375rem);
 }
 
 main::before,
 main::after {
+  content: url('/cloud.svg');
   position: fixed;
   z-index: 1;
   transition: transform calc(2 * var(--duration)) var(--transition);
   will-change: transform;
 }
 
-.no-preference main::before,
-.no-preference main::after {
-  content: url('/cloud.svg');
+.reduce-motion main:not(.no-delay)::before,
+.reduce-motion main:not(.no-delay)::after {
+  display: none;
+}
+
+strong {
+  font-weight: 600;
 }
 
 main::before {
@@ -184,8 +192,8 @@ header {
   position: sticky;
   top: 0;
   z-index: 999;
-  padding-top: 1.5rem;
-  margin-bottom: min(7.5vh, 5rem);
+  padding-top: 1rem;
+  margin-bottom: 5vh;
 }
 
 main:not(.cover) > *,
@@ -209,20 +217,21 @@ footer {
 }
 
 .footerText {
+  /* Margin - prevent rounding artifacts */
+  margin-top: -4px;
   display: grid;
-  padding: 0 12.5vw 1.25em;
+  padding: 0 5vw 1em;
   color: var(--inverse);
-  background-color: hsl(117, 36%, 49%);
+  background-color: var(--clr-footer);
   z-index: 1;
   gap: 0.25em;
   grid-template-columns: repeat(2, auto);
   grid-template-rows: repeat(2, auto);
   grid-auto-flow: column;
   justify-content: space-between;
-}
-
-.footerText strong {
-  font-size: 1.25em;
+  text-align: center;
+  transition: color var(--duration) var(--transition), background-color var(--duration) var(--transition);
+  will-change: color, background-color;
 }
 
 .footerText ul {
@@ -236,7 +245,6 @@ footer {
 section {
   display: grid;
   margin-inline: auto;
-  font-size: clamp(3.125rem, 10vw, 5rem);
   place-items: center;
   width: min(90vw, 80rem);
 }
@@ -250,6 +258,11 @@ section {
   main::after {
     inset: 15vw -7.5vw;
     transform: translateX(-107.5vw);
+  }
+
+  .footerText {
+    text-align: start;
+    padding: 0 15vw 1.25em;
   }
 
   .footerText ul {
