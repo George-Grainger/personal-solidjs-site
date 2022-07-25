@@ -98,7 +98,7 @@ export const AppContextProvider: ParentComponent = (props) => {
 
   return (
     <AppContext.Provider value={store}>
-      <Title>{t('global.title', {}, 'George Grainger · Your next employee')}</Title>
+      <Title>{t('global.title', {}, "George Grainger's Home")}</Title>
       <Meta name="lang" content={locale()} />
       <I18nContext.Provider value={i18n}>{props.children}</I18nContext.Provider>
     </AppContext.Provider>

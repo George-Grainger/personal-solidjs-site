@@ -1,5 +1,5 @@
 import { useI18n } from '@solid-primitives/i18n';
-import { createSignal, Index, VoidComponent } from 'solid-js';
+import { createEffect, createSignal, Index, VoidComponent } from 'solid-js';
 import { AnimationSelect } from './AnimationSelect';
 import { DarkmodeToggle } from './DarkmodeToggle';
 import LanguageSelect from './LanguageSelect';
@@ -10,6 +10,19 @@ import { TransitionLink } from '../Button';
 export const Navbar: VoidComponent<{}> = () => {
   const [t] = useI18n();
   const [expanded, setExpanded] = createSignal(false);
+
+  const handleClick = () => {
+    (document.querySelector('main') as Element).classList.add('no-delay');
+    setExpanded(!expanded());
+  };
+
+  createEffect(() => {
+    if (!expanded()) {
+      (document.querySelector('main') as Element).classList.add('no-delay');
+      setTimeout(() => (document.querySelector('main') as Element).classList.remove('no-delay'));
+    }
+    (document.querySelector('main') as Element).classList.toggle('cover', expanded());
+  });
 
   return (
     <header>
@@ -25,7 +38,7 @@ export const Navbar: VoidComponent<{}> = () => {
             {(defaultLink, i) => (
               <li class={styles.link}>
                 {/* Requires reasonable assumptions links consistent across all languages */}
-                <TransitionLink href={t(`global.nav.${i}.path`, {}, defaultLink().path)}>
+                <TransitionLink href={t(`global.nav.${i}.path`, {}, defaultLink().path)} onClick={() => setExpanded(false)}>
                   {t(`global.nav.${i}.title`, {}, defaultLink().title)}
                 </TransitionLink>
               </li>
@@ -44,12 +57,7 @@ export const Navbar: VoidComponent<{}> = () => {
           </li>
         </ul>
         <li>
-          <button
-            class={styles.hamburgerContainer}
-            aria-controls="primary-nav-links"
-            aria-expanded={expanded()}
-            onClick={() => setExpanded(!expanded())}
-          >
+          <button class={styles.hamburgerContainer} aria-controls="primary-nav-links" aria-expanded={expanded()} onClick={handleClick}>
             <svg class={styles.hamburger} aria-hidden="true" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
               <path d="M22 22H0v-4h22v4Zm0-9H0V9h22v4Zm0-9H0V0h22v4Z" />
             </svg>

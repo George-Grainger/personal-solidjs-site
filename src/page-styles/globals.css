@@ -127,6 +127,12 @@ body {
   will-change: color, background-color;
 }
 
+#root {
+  display: grid;
+  min-height: 100vh;
+  place-content: space-between;
+}
+
 main {
   display: grid;
   gap: min(15vh, 10rem);
@@ -146,29 +152,17 @@ main::after {
 
 .no-preference main::before,
 .no-preference main::after {
-  content: url('public/cloud.svg');
+  content: url('/cloud.svg');
 }
 
 main::before {
-  inset: -25vh -40vh auto;
+  inset: -15vh -55vh auto;
   transform: translateY(-107.5vh);
 }
 
 main::after {
-  inset: auto -40vh -5vh;
+  inset: auto -55vh -5vh;
   transform: translateY(107.5vh);
-}
-
-@media only screen and (min-width: 60rem) {
-  main::before {
-    inset: -15vw -7.5vw;
-    transform: translateX(107.5vw);
-  }
-
-  main::after {
-    inset: 15vw -7.5vw;
-    transform: translateX(-107.5vw);
-  }
 }
 
 main.cover.cover::before,
@@ -201,26 +195,39 @@ main:not(.cover) + footer {
 footer {
   display: flex;
   justify-content: center;
-  position: relative;
-  z-index: -1;
   overflow-x: clip;
+  flex-direction: column;
+  isolation: isolate;
 }
 
-footer div {
-  position: absolute;
-  bottom: 0;
+.footerImage {
+  position: relative;
+  display: flex;
+  flex: 1 0 auto;
+  justify-content: center;
+}
+
+.footerText {
   display: grid;
+  padding: 0 12.5vw 1.25em;
+  color: var(--inverse);
+  background-color: hsl(117, 36%, 49%);
+  z-index: 1;
+  gap: 0.25em;
   grid-template-columns: repeat(2, auto);
   grid-template-rows: repeat(2, auto);
-  justify-content: space-between;
   grid-auto-flow: column;
-  width: 90vw;
-  color: var(--inverse);
+  justify-content: space-between;
 }
 
-footer ul {
+.footerText strong {
+  font-size: 1.25em;
+}
+
+.footerText ul {
   display: flex;
-  gap: 4ch;
+  flex-direction: column;
+  gap: 0.5em 4ch;
   padding: 0;
   margin: 0;
 }
@@ -231,6 +238,22 @@ section {
   font-size: clamp(3.125rem, 10vw, 5rem);
   place-items: center;
   width: min(90vw, 80rem);
+}
+
+@media only screen and (min-width: 60rem) {
+  main::before {
+    inset: -15vw -7.5vw;
+    transform: translateX(107.5vw);
+  }
+
+  main::after {
+    inset: 15vw -7.5vw;
+    transform: translateX(-107.5vw);
+  }
+
+  .footerText ul {
+    flex-direction: row;
+  }
 }
 
 /* Utilities */

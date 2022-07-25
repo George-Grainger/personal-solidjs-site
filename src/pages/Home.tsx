@@ -32,7 +32,7 @@ const Home: Component<{}> = () => {
 
   return (
     <>
-      <section class={styles.heroSection}>
+      <section class={styles.heroSection} id="hero">
         <h1 class={styles.title}>{t('home.title', {}, 'Hello there')}</h1>
         <h2 class={styles.subtitle}>{t('home.subtitle', {}, 'Thanks for stopping by')}</h2>
         <HeroScene class={styles.svgScene} />
@@ -47,14 +47,14 @@ const Home: Component<{}> = () => {
           <FullPageCloudGroup1 class={styles.projectsCloud} />
           <h2 class={styles.projectTitle}>{t('home.projects', {}, 'Projects')}</h2>
         </div>
-        <div class={styles.projects}>
+        <div class={styles.projects} id="projects">
           <Index each={t('home.project-cards', {})}>
             {(data: Accessor<Omit<CardProps, 'index'>>, i) => <Card index={i + 1} {...data()} />}
           </Index>
         </div>
       </section>
 
-      <section class={styles.aboutSection}>
+      <section class={styles.aboutSection} id="about-me">
         <div use:intersectionObserver class={styles.cloudWrapper}>
           <FullPageCloudGroup2 />
         </div>

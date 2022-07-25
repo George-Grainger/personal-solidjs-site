@@ -9,13 +9,16 @@ type PreloadableComponent = Component<any> & {
 };
 
 export const TransitionLink: ParentComponent<JSX.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string }> = (props) => {
-  const [local, others] = splitProps(props, ['children', 'href']);
+  const [local, others] = splitProps(props, ['children', 'href', 'onClick']);
 
   const location = useLocation();
   const navigate = useNavigate();
 
   let prevTimeout: number | undefined;
   const handleClick = (e: MouseEvent) => {
+    // Run onClick method if passed as prop
+    local.onClick && (local.onClick as (e: MouseEvent) => any)(e);
+
     // Don't transition for links to same page
     if (local.href.startsWith('#') || local.href.includes(`${location.pathname}/#`)) {
       return true;
@@ -23,7 +26,9 @@ export const TransitionLink: ParentComponent<JSX.AnchorHTMLAttributes<HTMLAnchor
 
     e.preventDefault();
     const main = document.querySelector('main') as Element;
-    const delayInS = Number(getComputedStyle(main, '::before').getPropertyValue('transition-duration').replace('s', ''));
+    const delayInS = main.classList.contains('no-delay')
+      ? 0
+      : Number(getComputedStyle(main, '::before').getPropertyValue('transition-duration').replace('s', ''));
 
     (routes.find((route) => route.path === local.href)?.component as PreloadableComponent)?.preload();
 
@@ -31,20 +36,20 @@ export const TransitionLink: ParentComponent<JSX.AnchorHTMLAttributes<HTMLAnchor
       main?.classList.add('cover');
 
       setTimeout(() => {
-        navigate(local.href);
-      }, delayInS * 333 || 200);
+        navigate(local.href, { scroll: true });
+      }, delayInS * 333);
 
       clearTimeout(prevTimeout);
       prevTimeout = setTimeout(() => {
         main?.classList.remove('cover');
-      }, delayInS * 1000 || 600);
+      }, delayInS * 1000);
     }
 
     return false;
   };
 
   return (
-    <NavLink href={local.href || '/'} {...others} onClick={handleClick}>
+    <NavLink href={local.href || '/'} {...others} end={true} onClick={handleClick}>
       {local.children}
     </NavLink>
   );

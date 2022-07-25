@@ -32,9 +32,9 @@
 
 .footerSvg {
   composes: svgScene;
-
-  width: min(200vw, 160rem);
+  width: min(160vw, 110rem);
   margin-left: 10%;
+  flex: 1 0 auto;
 }
 
 :global(.reduce-motion) .heroSvg,
@@ -333,6 +333,7 @@ g.mountainGroup ~ .mountainGroup path:nth-child(3n + 1) {
 .backgroundImage {
   position: absolute;
   z-index: -1;
+  inset: 0 -5vw;
   width: 110vw;
   height: 100%;
 }

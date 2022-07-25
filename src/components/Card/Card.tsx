@@ -20,6 +20,10 @@ export const Card: VoidComponent<CardProps> = (props) => {
     const PER_ROW = Number(getComputedStyle(el.parentElement as Element).getPropertyValue('--num-per-row'));
     const adjacent = el.parentElement?.querySelectorAll(`article:nth-child(${PER_ROW}n + ${elIndex % PER_ROW})`);
 
+    // if (matchMedia('(max-width: 60rem)').matches) {
+    //   el.scrollIntoView(true);
+    // }
+
     adjacent?.forEach((sibling) => {
       const siblingIndex = Number(sibling.getAttribute('attr-index'));
       if (siblingIndex < elIndex) {

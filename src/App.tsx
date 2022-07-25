@@ -2,6 +2,7 @@ import { Router, useIsRouting, useRoutes } from 'solid-app-router';
 import { onMount, Suspense, VoidComponent } from 'solid-js';
 import { MetaProvider } from 'solid-meta';
 import { AppContextProvider } from './AppContext';
+import { TransitionLink } from './components/Button';
 import { Navbar } from './components/Navbar';
 import { FooterScene } from './components/svg';
 import { routes } from './routes';
@@ -29,31 +30,39 @@ const App: VoidComponent<{}> = () => {
       <MetaProvider>
         <AppContextProvider>
           <Navbar />
-          <Suspense fallback={<p>Loading</p>}>
-            {/* Need to use higher order function since must be placed within Router */}
-            <main classList={{ loading: useIsRouting()() }}>
+          {/* Need to use higher order function since must be placed within Router */}
+          <main classList={{ loading: useIsRouting()() }}>
+            <Suspense
+              fallback={
+                <section>
+                  <p>Loading</p>
+                </section>
+              }
+            >
               <Routes />
-            </main>
-            <footer>
+            </Suspense>
+          </main>
+          <footer>
+            <div class="footerImage">
               <FooterScene />
-              <div>
-                <span>Preferences</span>
-                <ul role="list">
-                  <li>
-                    <a>Test 1</a>
-                  </li>
-                  <li>
-                    <a>Test 2</a>
-                  </li>
-                  <li>
-                    <a>Test 3</a>
-                  </li>
-                </ul>
-                <span>Created by</span>
-                <span>George Grainger</span>
-              </div>
-            </footer>
-          </Suspense>
+            </div>
+            <div class="footerText">
+              <strong>Preferences</strong>
+              <ul role="list">
+                <li>
+                  <TransitionLink href="/">Test 1</TransitionLink>
+                </li>
+                <li>
+                  <TransitionLink href="/about-me">Test 2</TransitionLink>
+                </li>
+                <li>
+                  <TransitionLink href="/projects">Test 3</TransitionLink>
+                </li>
+              </ul>
+              <strong>Created by</strong>
+              <span>George Grainger</span>
+            </div>
+          </footer>
         </AppContextProvider>
       </MetaProvider>
     </Router>
