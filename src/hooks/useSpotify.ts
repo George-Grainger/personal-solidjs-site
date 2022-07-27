@@ -14,20 +14,22 @@ interface NowPlayingGeneric extends NotPlaying {
   imgUrl: string;
 }
 
-interface NowPlayingTrack extends NowPlayingGeneric {
+export interface NowPlayingTrack extends NowPlayingGeneric {
   type: 'track';
   album: string;
 }
 
-interface NowPlayingShow extends NowPlayingGeneric {
+export interface NowPlayingShow extends NowPlayingGeneric {
   type: 'show';
   description: string;
 }
 
-interface TopTrack {
+export interface TopTrack {
   artist: string;
+  previewUrl: string;
   songUrl: string;
   title: string;
+  albumImageUrl: string;
 }
 
 export const useSpotify = () => {
@@ -132,8 +134,10 @@ export const useSpotify = () => {
 
     const tracks = items.slice(0, 10).map((track) => ({
       artist: track.artists.map((_artist) => _artist.name).join(', '),
+      previewUrl: track.preview_url,
       songUrl: track.external_urls.spotify,
       title: track.name,
+      albumImageUrl: track.album.images[0].url,
     }));
 
     return { expiresAt, tracks };

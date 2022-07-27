@@ -141,7 +141,6 @@ main {
   gap: min(10vh, 10rem);
   place-items: center;
   place-content: center;
-  margin-bottom: min(10vh, 10rem);
   overflow-x: clip;
   font-size: clamp(1.125rem, 3.5vw, 1.375rem);
 }
@@ -166,12 +165,12 @@ strong {
 
 main::before {
   inset: -15vh -55vh auto;
-  transform: translateY(-107.5vh);
+  transform: translateY(-107.5vmax);
 }
 
 main::after {
   inset: auto -55vh -5vh;
-  transform: translateY(107.5vh);
+  transform: translateY(107.5vmax);
 }
 
 main.cover.cover::before,
@@ -252,12 +251,12 @@ section {
 @media only screen and (min-width: 60rem) {
   main::before {
     inset: -15vw -7.5vw;
-    transform: translateX(107.5vw);
+    transform: translateX(107.5vmax);
   }
 
   main::after {
     inset: 15vw -7.5vw;
-    transform: translateX(-107.5vw);
+    transform: translateX(-107.5vmax);
   }
 
   .footerText {

@@ -43,8 +43,8 @@
 
 .hamburgerContainer {
   display: none;
-  border-radius: 0.3em;
-  outline: 0.125em solid currentColor;
+  border-radius: 0.5rem;
+  outline: 0.175rem solid currentColor;
   background-color: var(--inverse);
   padding: 0.167em 0.375em;
 }
@@ -55,7 +55,6 @@
 
 .hamburger {
   height: 1em;
-  fill: var(--text);
   z-index: 1;
   margin: auto;
 }
@@ -65,6 +64,7 @@
     display: flex;
     color: var(--black);
     pointer-events: none;
+    font-size: 1.5em;
   }
 
   .nav .hamburgerContainer {
@@ -228,7 +228,7 @@
 
 :global(.reduce-motion) .button,
 .strikethrough {
-  stroke: var(--text);
+  stroke: currentColor;
 }
 
 .animationSelect,

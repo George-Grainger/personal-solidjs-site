@@ -1,11 +1,12 @@
 import { useI18n } from '@solid-primitives/i18n';
 import { makeIntersectionObserver } from '@solid-primitives/intersection-observer';
-import { Accessor, Component, Index } from 'solid-js';
+import { Accessor, Component, Index, Suspense } from 'solid-js';
 import { TransitionButton } from '../components/Button';
-import { Card, CardProps } from '../components/Card';
+import { Card, CardProps, SpotifyCard } from '../components/Card';
 import { HeroScene } from '../components/svg';
 import { FullPageCloudGroup1, FullPageCloudGroup2 } from '../components/svg/Clouds';
 import { useSpotify } from '../hooks/useSpotify';
+
 import styles from '../page-styles/home.module.css';
 
 const Home: Component<{}> = () => {
@@ -27,7 +28,6 @@ const Home: Component<{}> = () => {
   );
 
   const [t] = useI18n();
-
   const { currentSong, topSongs } = useSpotify();
 
   return (
@@ -80,17 +80,19 @@ const Home: Component<{}> = () => {
           <div>
             <h3>Spotify</h3>
             <p>See what my current top songs are (updated daily!)</p>
-            <ol>
-              <li>song 1</li>
-              <li>song 2</li>
-              <li>song 3</li>
-              <li>song 4</li>
-              <li>song 5</li>
-              <li>song 6</li>
-              <li>song 7</li>
-              <li>song 8</li>
-              <li>song 9</li>
-              <li>song 10</li>
+            <ol class={styles.spotifyList}>
+              <Suspense fallback={<p>Loading...</p>}>
+                <Index each={topSongs()?.tracks.slice(0, 9)}>
+                  {(track, i) => {
+                    const ORIGINS = ['0%', '50%', '100%'];
+                    return (
+                      <li style={{ 'transform-origin': `${ORIGINS[i % 3]} ${ORIGINS[Math.floor(i / 3)]}` }}>
+                        <SpotifyCard {...track()} />
+                      </li>
+                    );
+                  }}
+                </Index>
+              </Suspense>
             </ol>
             <p>Currently listening to:</p>
           </div>

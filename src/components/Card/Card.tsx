@@ -17,14 +17,19 @@ export const Card: VoidComponent<CardProps> = (props) => {
   const handleMouseEnter = (e: MouseEvent) => {
     const el = e.target as Element;
     const elIndex = Number(el.getAttribute('attr-index'));
-    const PER_ROW = Number(getComputedStyle(el.parentElement as Element).getPropertyValue('--num-per-row'));
+    const PER_ROW = getComputedStyle(el.parentElement as Element)
+      .getPropertyValue('grid-template-columns')
+      .split(' ').length;
+
     const adjacent = el.parentElement?.querySelectorAll(`article:nth-child(${PER_ROW}n + ${elIndex % PER_ROW})`);
     const projectTitle = el.parentElement?.previousElementSibling?.querySelector('h2');
 
-    if (matchMedia('(max-width: 60rem)').matches) {
-      // el.scrollIntoView(true);
+    if (matchMedia('(pointer: coarse)').matches) {
+      el.scrollIntoView(true);
     }
-    if (PER_ROW === 1 || (matchMedia('(max-width: 80rem)').matches && elIndex % PER_ROW === 1) || elIndex % PER_ROW === 2) {
+    // Check if it's a middle value
+    const mid = (PER_ROW + 1) / 2;
+    if (elIndex % PER_ROW === Math.floor(mid) % PER_ROW || elIndex % PER_ROW === Math.ceil(mid) % PER_ROW) {
       projectTitle?.classList.add(styles.moveUp);
     }
 
@@ -62,7 +67,9 @@ export const Card: VoidComponent<CardProps> = (props) => {
           <CPP />
           <strong>C++</strong>
         </div>
-        <TransitionButton href="/about">More info</TransitionButton>
+        <TransitionButton href="/about" class={styles.btn}>
+          More info
+        </TransitionButton>
       </div>
     </article>
   );

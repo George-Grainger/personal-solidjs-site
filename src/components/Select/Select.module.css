@@ -2,10 +2,10 @@
 .select {
   --drop-duration: 200ms;
   line-height: 1;
-  border-radius: 0.5em;
-  border: 0.125em solid currentColor;
+  border-radius: 0.5rem;
+  border: 0.175rem solid currentColor;
   width: var(--select-width, 100%);
-  color: var(--text);
+  color: currentColor;
   background-color: var(--inverse);
   display: flex;
 }

@@ -1,6 +1,6 @@
 .heroSection {
   font-size: clamp(1.125rem, 3.5vw, 1.875rem);
-  gap: 0.125em 0.5em;
+  gap: 0.5em 5em;
 }
 
 .title {
@@ -18,8 +18,13 @@
 .intro {
   text-align: center;
   max-width: 32ch;
-  margin-block: 1rem;
-  font-size: 0.7em;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  font-size: clamp(1.125rem, 2.5vw, 0.7em);
+}
+
+.btn {
+  font-size: clamp(1.5rem, 3vw, 0.85em);
 }
 
 .aboutSection,
@@ -35,6 +40,8 @@
   place-self: start center;
   isolation: isolate;
   display: grid;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .projectSection .cloudWrapper {
@@ -53,7 +60,7 @@
 .aboutTitle {
   z-index: -1;
   font-weight: 700;
-  font-size: 2em;
+  font-size: 2.5em;
 }
 
 .projectTitle {
@@ -66,19 +73,17 @@
 }
 
 .projects {
-  --num-per-row: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 1em 4em;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, min(75vw, 18em));
   justify-content: center;
-  width: min(75vw, 80rem);
-  flex-wrap: wrap;
+  gap: 1em 4em;
+  width: min(90vw, 80rem);
   font-size: 1.125rem;
 }
 
 .aboutContent {
   display: grid;
-  gap: 0.5em 1em;
+  gap: 1em 2em;
   width: min(90vw, 80rem);
 }
 
@@ -88,21 +93,42 @@
 }
 
 .aboutContent h3 {
-  text-align: center;
   line-height: 1;
 }
 
-.aboutContent div {
+.aboutContent > div {
   display: flex;
   flex-direction: column;
-  gap: 0.125em;
+  gap: 0.25em;
 }
 .aboutContent p + h3 {
   margin-top: 0.5em;
 }
 
-.aboutContent ol {
-  margin-block: 0;
+.spotifyList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  align-items: center;
+  gap: 1.25%;
+  aspect-ratio: 1;
+  padding: 0;
+}
+
+.spotifyList > li {
+  isolation: isolate;
+  list-style: none;
+  position: relative;
+  z-index: 0;
+  /* Required z-index transition otherwise cards drop behind others when shrinking */
+  transition: transform var(--duration) var(--transition), z-index 0ms linear var(--delay, var(--duration));
+  will-change: transform, z-index;
+}
+
+.spotifyList > li:focus-within {
+  --delay: 0ms;
+  transform: scale(308%);
+  z-index: 1;
 }
 
 @media only screen and (min-width: 60rem) {
@@ -140,10 +166,5 @@
 
   .btn {
     margin-bottom: 12.5%;
-  }
-
-  .projects {
-    --num-per-row: 3;
-    flex-direction: row;
   }
 }

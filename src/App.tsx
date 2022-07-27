@@ -7,12 +7,12 @@ import { Navbar } from './components/Navbar';
 import { FooterScene } from './components/svg';
 import { routes } from './routes';
 
-// Should be executed once on initial page load to prevent initial animation occuring
-onMount(() => {
-  setTimeout(() => document.documentElement.classList.remove('no-animate'));
-});
-
 const App: VoidComponent<{}> = () => {
+  // Should be executed once on initial page load to prevent initial animation occuring
+  onMount(() => {
+    setTimeout(() => document.documentElement.classList.remove('no-animate'));
+  });
+
   // don't require clean up since will be useful throughout site use
   document.addEventListener('keydown', (e: KeyboardEvent) => {
     if (e.key !== 'Tab') return;

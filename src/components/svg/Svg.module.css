@@ -343,7 +343,8 @@ g.mountainGroup ~ .mountainGroup path:nth-child(3n + 1) {
 }
 
 .backgroundImage > path,
-.surface path {
+.surface > path,
+.craters > path {
   transition: fill var(--duration) var(--transition);
   will-change: fill;
 }

@@ -39,12 +39,16 @@ export const Select: ParentComponent<SelectProps> = (props) => {
   };
 
   return (
-    <div class={`${props.class || ''} ${styles.wrapper}`} classList={{ [styles.show]: optionsVisible() }}>
+    <div
+      class={`${props.class || ''} ${styles.wrapper}`}
+      classList={{ [styles.show]: optionsVisible() }}
+      onFocusOut={(e) => !e.currentTarget?.matches(':focus-within') && setOptionsVisible(false)}
+      tabIndex={0}
+    >
       <button
         aria-label={t('global.select.view_options', {}, 'View options')}
         class={styles.title}
         onClick={() => setOptionsVisible((v) => !v)}
-        onBlur={(e) => !e.currentTarget.parentElement?.matches(':focus-within') && setOptionsVisible(false)}
       >
         <span class="sr-only">{t('global.select.current', {}, 'Currently selected:')}</span>
         <Switch fallback={'Choose an option'}>{getCheckedMatches()}</Switch>

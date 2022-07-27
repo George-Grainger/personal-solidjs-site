@@ -2,7 +2,6 @@
   --br: 0.5rem;
   --duration: 250ms;
   display: grid;
-  flex: 1 1 25%;
   position: relative;
   isolation: isolate;
   transition: transform var(--duration) var(--transition);
@@ -43,16 +42,20 @@
   transform: translateX(100%);
 }
 
-.moveUp {
-  transform: translateY(-10%);
-}
-
 h2.moveUp {
   transform: translateY(-75%);
 }
 
+.btn {
+  font-size: 1.25em;
+}
+
+.moveUp {
+  transform: translateY(-15%);
+}
+
 .moveDown {
-  transform: translateY(5%);
+  transform: translateY(25%);
 }
 
 .front,
@@ -96,10 +99,8 @@ h2.moveUp {
 }
 
 .back {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  place-items: center;
   text-align: center;
   gap: 1em;
   margin-block: 55% 0.5em;
@@ -196,16 +197,184 @@ h2.moveUp {
   }
 }
 
-@media only screen and (max-width: 60em) {
-  .card ~ .card {
-    margin-top: -20%;
-  }
-
+@media only screen and (min-width: 40em) {
   .moveUp {
-    transform: translateY(-15%);
+    transform: translateY(-10%);
   }
 
   .moveDown {
-    transform: translateY(15%);
+    transform: translateY(5%);
   }
+}
+
+.spotifyCard {
+  position: relative;
+  font-size: 0.5em;
+  aspect-ratio: 1;
+  color: white;
+  overflow: hidden;
+}
+
+.spotifyCard:focus-within .spotifyDetails {
+  transform: translateY(0);
+}
+
+.spotifyLink {
+  display: contents;
+}
+
+.spotifyLink svg {
+  width: 1.25em;
+  grid-row: span 2;
+  place-self: center;
+  transition: transform var(--duration) var(--transition);
+  will-change: transform;
+}
+
+.spotifyLink svg:hover {
+  transform: scale(1.2);
+}
+
+.spotifyDetails {
+  position: absolute;
+  display: grid;
+  grid-template-columns: auto 1.25em;
+  inset: auto 0 -1px;
+  padding: 15% 5% 5%;
+  background-image: linear-gradient(transparent 5%, var(--black) 75%);
+  transform: translateY(100%);
+  transition: transform var(--duration) var(--transition) calc(var(--duration) / 3);
+  will-change: transform;
+  column-gap: 1em;
+}
+
+.songTitle {
+  font-weight: 300;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.artist {
+  font-size: 0.75em;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 1em auto 1em;
+  align-items: center;
+  gap: 0.5em;
+  margin-top: 0.25em;
+  grid-column: 1 / -1;
+}
+
+.controls button {
+  display: contents;
+}
+
+.timelineWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.2em;
+  width: 100%;
+}
+.timelineWrapper span {
+  font-size: 0.4em;
+}
+
+.timeline {
+  -webkit-appearance: none;
+  height: 0.25em;
+  background-color: #5e5e5e;
+  border-radius: 0.5rem;
+  background-size: 0% 100%;
+  background-image: linear-gradient(var(--white), var(--white));
+  background-repeat: no-repeat;
+  margin-block: 0.1em 0;
+  width: 80%;
+}
+
+/* Also why do these need to all be done separately!!! */
+.timeline::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.1s;
+  background-color: var(--white);
+}
+
+.timeline::-moz-range-thumb {
+  -webkit-appearance: none;
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.1s;
+  background-color: var(--white);
+  border: none;
+}
+
+.timeline::-ms-thumb {
+  -webkit-appearance: none;
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.1s;
+  background-color: var(--white);
+}
+
+.timeline::-webkit-slider-thumb:hover {
+  background-color: hsl(141, 76%, 48%);
+  box-shadow: 0 0 0 0.125em hsla(0, 0%, 98%, 0.42);
+}
+
+.timeline:hover::-webkit-slider-thumb {
+  opacity: 1;
+}
+
+.timeline::-moz-range-thumb:hover {
+  background-color: hsl(141, 76%, 48%);
+  box-shadow: 0 0 0 0.125em hsla(0, 0%, 98%, 0.42);
+}
+
+.timeline:hover::-moz-range-thumb {
+  opacity: 1;
+}
+
+.timeline::-ms-thumb:hover {
+  background-color: hsl(141, 76%, 48%);
+  box-shadow: 0 0 0 0.125em hsla(0, 0%, 98%, 0.42);
+}
+
+.timeline:hover::-ms-thumb {
+  opacity: 1;
+}
+
+.timeline::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+}
+
+.timeline::-moz-range-track {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+}
+
+.timeline::-ms-track {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: none;
+  background: transparent;
 }
