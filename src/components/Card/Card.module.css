@@ -228,10 +228,13 @@ h2.moveUp {
   display: contents;
 }
 
-.spotifyLink svg {
-  width: 1.25em;
+.spotifyCard .spotifyLink svg {
   grid-row: span 2;
   place-self: center;
+}
+
+.spotifyLink svg {
+  width: 1.25em;
   transition: transform var(--duration) var(--transition);
   will-change: transform;
 }
@@ -253,7 +256,8 @@ h2.moveUp {
   column-gap: 1em;
 }
 
-.spotifyCard .songTitle {
+.songTitle,
+.artist {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -265,31 +269,81 @@ h2.moveUp {
 
 .artist {
   font-size: 0.75em;
-  white-space: nowrap;
 }
 
 .lastPlayedCard {
   --timeline: hsl(0, 0%, 37%);
+  position: relative;
   display: grid;
+  align-items: center;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(5, auto);
-  place-content: space-between;
   padding: 1em;
-  gap: 0.25em 1em;
+  gap: 0.75em 1em;
   background-color: var(--white);
   border-radius: 0.5rem;
-  text-align: center;
-  font-size: 1.25em;
+  font-size: clamp(1em, 3.5vw, 1.2em);
+}
+
+.heading {
+  grid-column: span 2;
+}
+
+.spotifySvg {
+  position: absolute;
+  inset: 1em 1.25em auto auto;
+}
+
+.details p {
+  font-size: 0.67em;
+}
+
+.details .songTitle {
+  font-size: 1em;
+}
+
+.details .artist {
+  font-size: 0.85em;
+}
+
+.details .playedAt {
+  font-weight: 300;
+  margin-bottom: 1em;
+  font-size: 0.6em;
 }
 
 .lastPlayedCard img {
   border-radius: 0.5em;
-  grid-row: 1 / -1;
-  aspect-ratio: 1;
 }
 
 .lastPlayedCard .controls {
   font-size: 1.3em;
+}
+.currentlyPlaying {
+  margin-top: 1em;
+}
+
+.progressArea {
+  display: flex;
+  align-items: center;
+  gap: 0.25em;
+  margin-bottom: 1em;
+}
+
+.progressBar {
+  position: relative;
+  flex: 1 1 auto;
+  background-color: var(--timeline);
+  height: 0.25em;
+  border-radius: 100vmax;
+  overflow: hidden;
+}
+
+.progressBar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: hsl(141, 76%, 48%);
+  transform: translateX(var(--translate, -100%));
 }
 
 .controls {

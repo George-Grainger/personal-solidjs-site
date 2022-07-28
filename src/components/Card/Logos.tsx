@@ -1,4 +1,5 @@
 import { VoidComponent } from 'solid-js';
+import { VoidSVG } from '../svg/svg-types';
 import styles from './Card.module.css';
 
 export const Python: VoidComponent<{}> = () => {
@@ -239,9 +240,9 @@ export const SolidJS: VoidComponent<{}> = () => {
   );
 };
 
-export const SpotifyLogo = () => {
+export const SpotifyLogo: VoidSVG = (props) => {
   return (
-    <svg viewBox="0 0 336 336" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 336 336" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
       <path d="M0 168c0 92 76 168 168 168s168-76 168-168a168 168 0 0 0-336 0Z" fill="#1DD75E" />
       <path
         fill-rule="evenodd"

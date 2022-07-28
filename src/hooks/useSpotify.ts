@@ -14,7 +14,7 @@ export interface LastPlayedMedia extends TopTrack {
   isPlaying: boolean;
   duration: number;
   progressMs: number;
-  description?: string;
+  playedAt: string;
 }
 
 // Set global so the incrementing of time carries on between pages and interval doesn't double enter
@@ -36,14 +36,14 @@ export const useSpotify = () => {
   const basic = btoa(`${client_id}:${client_secret}`);
 
   const triggerProgressIncrement = (providedProgress: number = 0, duration: number = 0) => {
-    if (providedProgress <= playerProgress() || providedProgress > duration) {
+    if (providedProgress <= playerProgress() || providedProgress >= duration) {
       return;
     }
     setPlayerProgress(providedProgress);
     lastInterval && clearInterval(lastInterval);
     lastInterval = setInterval(() => {
       if (playerProgress() < duration) {
-        setPlayerProgress((val) => val + 1000);
+        setPlayerProgress((val) => Math.min(val + 1000, duration));
       } else {
         clearInterval(lastInterval);
         setPlayerProgress(0);
@@ -95,35 +95,19 @@ export const useSpotify = () => {
 
     const nowPlaying: CurrentlyPlaying = await response.json();
 
-    if (nowPlaying.item === null) {
+    if (nowPlaying.item === null || nowPlaying.currently_playing_type !== 'track') {
       return { expiresAt, track: { isPlaying: false } };
     }
 
-    // Allow for progress to be reset to match online
     setPlayerProgress(0);
 
-    let creator, imgUrl;
-    if (nowPlaying.currently_playing_type === 'track') {
-      const item = nowPlaying.item as Track;
-      creator = item.artists.map((_artist) => _artist.name).join(', ');
-      imgUrl = item.album.images[0].url;
-    } else {
-      const item = nowPlaying.item as Episode;
-      creator = item.show.name;
-      imgUrl = item.show.images[0].url;
-    }
-
+    const baseTrack = filterTrackData([nowPlaying.item as Track])[0];
     const track: LastPlayedMedia = {
-      creator,
-      imgUrl,
+      ...baseTrack,
       isPlaying: nowPlaying.is_playing,
-      title: nowPlaying.item.name,
-      playUrl: nowPlaying.item.external_urls.spotify,
       duration: nowPlaying.item.duration_ms,
       progressMs: nowPlaying.progress_ms || 0,
-      // One of the two below will be undefined
-      description: (nowPlaying.item as Episode).description,
-      previewUrl: (nowPlaying.item as Track).preview_url,
+      playedAt: new Date().toISOString(),
     };
 
     return { expiresAt, track };
@@ -139,9 +123,18 @@ export const useSpotify = () => {
     });
 
     const expiresAt = Date.now() + FIVE_MINUTES;
-    const { items }: { items: { track: Track; playedAt: string }[] } = await response.json();
-    const track = filterTrackData([items[0].track])[0];
-    return { expiresAt, track: { ...track, isPlaying: false, duration: 0, progressMs: 0 } };
+    const { items }: { items: { track: Track; played_at: string }[] } = await response.json();
+    const baseTrack = filterTrackData([items[0].track])[0];
+
+    const track = {
+      ...baseTrack,
+      isPlaying: false,
+      duration: 0,
+      progressMs: 0,
+      playedAt: items[0].played_at,
+    };
+
+    return { expiresAt, track };
   };
 
   const requestTopTracks = async () => {

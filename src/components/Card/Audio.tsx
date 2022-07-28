@@ -51,14 +51,16 @@ interface ParentEventOptions {
 
 export const Audio: VoidComponent<JSX.AudioHTMLAttributes<HTMLAudioElement> & { parentOptions?: ParentEventOptions }> = (props) => {
   const [local, others] = splitProps(props, ['onTimeUpdate', 'onLoadedData', 'onEnded', 'parentOptions']);
+  const parentRef = local.parentOptions?.parentRef;
 
   let audio: HTMLAudioElement | undefined;
-  let timeline: HTMLInputElement | undefined;
 
   const [paused, setPaused] = createSignal(true);
   const [muted, setMuted] = createSignal(false);
-  const [currentTime, setCurrentTime] = createSignal('0:00');
-  const [totalTime, setTotalTime] = createSignal('0:00');
+  const [currentTime, setCurrentTime] = createSignal(0);
+  const [totalTime, setTotalTime] = createSignal(1);
+
+  const getPercentage = (val = 0) => 100 * (val || currentTime() / totalTime());
 
   const fadeVolumeOut = () => {
     if (!audio) {
@@ -68,63 +70,46 @@ export const Audio: VoidComponent<JSX.AudioHTMLAttributes<HTMLAudioElement> & { 
     if (!fadeVolumeOut.isRunning) {
       fadeVolumeOut.isRunning = true;
     }
-    if (audio.volume <= 0.0125) {
+    if (audio.volume === 0) {
       fadeVolumeOut.isRunning = false;
       setPaused(true);
       audio.volume = 1;
     } else {
-      audio.volume -= 0.0125;
+      audio.volume = Math.max(audio.volume - 0.0125, 0);
       window.requestAnimationFrame(fadeVolumeOut);
     }
   };
   fadeVolumeOut.isRunning = false;
   const fadeOut = () => !fadeVolumeOut.isRunning && fadeVolumeOut();
 
-  if (local.parentOptions?.parentRef) {
+  if (parentRef) {
     createEffect(() => {
       const unPause = () => setPaused(false);
       if (local.parentOptions?.playOnFocus?.()) {
-        local.parentOptions.parentRef?.addEventListener('focus', unPause);
+        parentRef?.addEventListener('focus', unPause);
       }
-      onCleanup(() => local.parentOptions?.parentRef?.removeEventListener('focus', unPause));
+      onCleanup(() => parentRef?.removeEventListener('focus', unPause));
     });
 
     onMount(() => {
       if (local.parentOptions?.fadeOutOnFocusOut?.()) {
-        local.parentOptions.parentRef?.addEventListener('focusout', fadeOut);
+        parentRef?.addEventListener('focusout', (e: Event) => !parentRef?.matches(':focus-within') && fadeOut());
       }
-      onCleanup(() => local.parentOptions?.parentRef?.removeEventListener('onfocusout', fadeOut));
+      onCleanup(() => parentRef?.removeEventListener('onfocusout', fadeOut));
     });
   }
-
-  createEffect(() => {
-    paused() ? audio?.pause() : audio?.play();
-  });
 
   createEffect(() => {
     if (audio) audio.muted = muted();
   });
 
-  const changeTimelinePosition = () => {
-    if (audio && timeline) {
-      const percentagePosition = (100 * audio.currentTime) / audio.duration || 0;
-      updateBackground(percentagePosition);
-      timeline.value = percentagePosition.toString();
-      audio.duration - audio.currentTime < 1.5 && !fadeVolumeOut.isRunning && fadeVolumeOut();
-    }
-  };
+  createEffect(() => {
+    paused() ? audio?.pause() : audio?.play();
+  });
 
-  const updateBackground = (position: number) => {
-    if (audio && timeline) {
-      setCurrentTime(new Date().millisToISOTime(position * audio.duration * 10));
-      timeline.style.backgroundSize = `${position}% 100%`;
-    }
-  };
-
-  const changeSeek = () => {
-    if (audio && timeline) {
-      audio.currentTime = (parseFloat(timeline.value) * audio.duration) / 100;
-    }
+  const updateBackground = (e: Event) => {
+    const target = e.target as HTMLInputElement;
+    target.style.backgroundSize = `${Number(target.value)}% 100%`;
   };
 
   const handleTogglePause = (_: Event, force = undefined) => {
@@ -133,17 +118,23 @@ export const Audio: VoidComponent<JSX.AudioHTMLAttributes<HTMLAudioElement> & { 
     local.parentOptions?.setAutoPlay?.(!newPaused);
   };
 
+  const handleChange = (e: Event) => {
+    const newTime = (Number((e.target as HTMLInputElement).value) * totalTime()) / 1000;
+    setCurrentTime(newTime);
+    if (audio) audio.currentTime = newTime / 100;
+  };
+
   return (
     <>
       <audio
         ref={audio}
         onTimeUpdate={(e) => {
           local.onTimeUpdate && (local.onTimeUpdate as (e: Event) => any)(e);
-          changeTimelinePosition();
+          setCurrentTime((e.target as HTMLAudioElement).currentTime * 1000);
         }}
         onLoadedData={(e) => {
           local.onLoadedData && (local.onLoadedData as (e: Event) => any)(e);
-          setTotalTime(new Date().millisToISOTime(audio!.duration * 1000));
+          setTotalTime((e.target as HTMLAudioElement).duration * 1000);
         }}
         onEnded={(e) => {
           local.onEnded && (local.onEnded as (e: Event) => any)(e);
@@ -159,21 +150,19 @@ export const Audio: VoidComponent<JSX.AudioHTMLAttributes<HTMLAudioElement> & { 
           </Show>
         </button>
         <div class={styles.timelineWrapper}>
-          <span>{currentTime()}</span>
+          <span>{new Date().millisToISOTime(currentTime())}</span>
           <input
-            ref={timeline}
-            onChange={changeSeek}
+            style={{ 'background-size': `${getPercentage()}% 100%` }}
+            onChange={handleChange}
             onKeyPress={(e) => e.key === ' ' && handleTogglePause(e)}
-            onInput={(e) => updateBackground(Number((e.target as HTMLInputElement).value))}
+            onInput={updateBackground}
             type="range"
             class={styles.timeline}
             classList={{ playing: !paused() }}
-            min={0}
-            max={100}
             step={1}
-            value={0}
+            value={getPercentage()}
           />
-          <span>{totalTime()}</span>
+          <span>{new Date().millisToISOTime(totalTime())}</span>
         </div>
         <button onClick={() => setMuted(!muted())}>
           <Show when={muted()} fallback={<SoundIcon />}>
