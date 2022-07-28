@@ -127,7 +127,7 @@
 
 .spotifyList > li:focus-within {
   --delay: 0ms;
-  transform: scale(308%);
+  transform: scale(318%);
   z-index: 1;
 }
 

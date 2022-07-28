@@ -79,12 +79,12 @@ const Home: Component<{}> = () => {
           </div>
           <div>
             <h3>Spotify</h3>
-            <p>See what my current top songs are (updated daily!)</p>
+            <p>Up to date information on my top and recent songs</p>
             <ol class={styles.spotifyList}>
               <Suspense fallback={<p>Loading...</p>}>
                 <Index each={topSongs()}>
                   {(track, i) => {
-                    const ORIGINS = ['0%', '50%', '100%'];
+                    const ORIGINS = ['2%', '50%', '98%'];
                     return (
                       <li style={{ 'transform-origin': `${ORIGINS[i % 3]} ${ORIGINS[Math.floor(i / 3)]}` }}>
                         <TopTrackCard {...track()} />

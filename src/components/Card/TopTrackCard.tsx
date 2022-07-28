@@ -11,9 +11,9 @@ export const TopTrackCard: VoidComponent<TopTrack> = (props) => {
   let parent: HTMLDivElement | undefined;
 
   return (
-    <div ref={parent} class={styles.spotifyCard} tabindex={0}>
+    <div ref={parent} class={styles.topTrackCard} tabindex={0}>
       <img src={props.imgUrl} alt={`Album image for ${props.title}`} />
-      <div class={styles.spotifyDetails}>
+      <div class={styles.topTrackdetails}>
         <p class={styles.songTitle}>{props.title}</p>
         <a class={styles.spotifyLink} href={props.playUrl} target="_blank" rel="noopener noreferrer">
           <SpotifyLogo />

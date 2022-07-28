@@ -17,6 +17,7 @@
   --purple: hsl(259, 79%, 50%);
   --clr-footer: hsl(117, 36%, 49%);
 
+  --card: var(--white);
   --background: var(--sky-blue);
   --text: var(--black);
   --hover: var(--black-hover);
@@ -34,6 +35,7 @@
   --inverse: var(--black);
   --inverse-hover: var(--black-hover);
   --clr-footer: hsl(227, 23%, 88%);
+  --card: var(--black-hover);
 }
 
 /* Reset */

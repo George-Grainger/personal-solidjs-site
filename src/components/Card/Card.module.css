@@ -16,7 +16,7 @@
   transform: scale(0.9, 0.4);
   transform-origin: 50% 20%;
   border-radius: var(--br);
-  background-color: var(--white);
+  background-color: var(--card);
   transition: transform calc(var(--duration)) var(--transition), opacity calc(0.5 * var(--duration)) var(--transition);
   will-change: transform, opacity;
 }
@@ -208,19 +208,43 @@ h2.moveUp {
 }
 
 .spotifyCard {
+  --spotify-green: hsl(141, 76%, 48%);
+  --progress: var(--white);
   --timeline: hsl(0, 0%, 37%);
+  background-color: var(--card);
+  border-radius: 0.5rem;
   position: relative;
-  font-size: 0.5em;
-  aspect-ratio: 1;
-  color: white;
-  overflow: hidden;
 }
 
 .spotifyCard img {
   aspect-ratio: 1;
+  border-radius: inherit;
 }
 
-.spotifyCard:focus-within .spotifyDetails {
+.topTrackCard {
+  composes: spotifyCard;
+  aspect-ratio: 1;
+  font-size: 0.5em;
+  color: var(--white);
+  overflow: hidden;
+}
+
+.lastPlayedCard {
+  composes: spotifyCard;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  padding: 1em;
+  gap: 0.75em 1em;
+
+  font-size: clamp(1em, 3.5vw, 1.2em);
+}
+
+:global(.light) .lastPlayedCard {
+  --progress: var(--spotify-green);
+}
+
+.topTrackCard:focus-within .topTrackdetails {
   transform: translateY(0);
 }
 
@@ -228,7 +252,7 @@ h2.moveUp {
   display: contents;
 }
 
-.spotifyCard .spotifyLink svg {
+.topTrackCard .spotifyLink svg {
   grid-row: span 2;
   place-self: center;
 }
@@ -243,23 +267,27 @@ h2.moveUp {
   transform: scale(1.2);
 }
 
-.spotifyDetails {
+.topTrackdetails {
   position: absolute;
   display: grid;
   grid-template-columns: auto 1.25em;
+  column-gap: 1em;
   inset: auto 0 -1px;
   padding: 15% 5% 5%;
   background-image: linear-gradient(transparent 5%, var(--black) 75%);
   transform: translateY(100%);
   transition: transform var(--duration) var(--transition) calc(var(--duration) / 3);
   will-change: transform;
-  column-gap: 1em;
+}
+
+.text-ellipses {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .songTitle,
 .artist {
-  text-overflow: ellipsis;
-  overflow: hidden;
+  composes: text-ellipses;
   white-space: nowrap;
 }
 
@@ -271,19 +299,6 @@ h2.moveUp {
   font-size: 0.75em;
 }
 
-.lastPlayedCard {
-  --timeline: hsl(0, 0%, 37%);
-  position: relative;
-  display: grid;
-  align-items: center;
-  grid-template-columns: 1fr 1fr;
-  padding: 1em;
-  gap: 0.75em 1em;
-  background-color: var(--white);
-  border-radius: 0.5rem;
-  font-size: clamp(1em, 3.5vw, 1.2em);
-}
-
 .heading {
   grid-column: span 2;
 }
@@ -291,6 +306,10 @@ h2.moveUp {
 .spotifySvg {
   position: absolute;
   inset: 1em 1.25em auto auto;
+}
+
+.details {
+  composes: text-ellipses;
 }
 
 .details p {
@@ -309,10 +328,6 @@ h2.moveUp {
   font-weight: 300;
   margin-bottom: 1em;
   font-size: 0.6em;
-}
-
-.lastPlayedCard img {
-  border-radius: 0.5em;
 }
 
 .lastPlayedCard .controls {
@@ -342,7 +357,7 @@ h2.moveUp {
   content: '';
   position: absolute;
   inset: 0;
-  background-color: hsl(141, 76%, 48%);
+  background-color: var(--progress);
   transform: translateX(var(--translate, -100%));
 }
 
@@ -371,12 +386,13 @@ h2.moveUp {
 }
 
 .timeline {
+  --shadow: 0 0 0 0.125em hsla(0, 0%, 98%, 0.42);
   -webkit-appearance: none;
   height: 0.25em;
   background-color: var(--timeline);
   border-radius: 0.5rem;
   background-size: 0% 100%;
-  background-image: linear-gradient(var(--white), var(--white));
+  background-image: linear-gradient(var(--progress), var(--progress));
   background-repeat: no-repeat;
   margin-block: 0.1em 0;
   width: 100%;
@@ -391,7 +407,7 @@ h2.moveUp {
   cursor: pointer;
   opacity: 0;
   transition: all 0.1s;
-  background-color: var(--white);
+  background-color: var(--progress);
 }
 
 .timeline::-moz-range-thumb {
@@ -402,7 +418,7 @@ h2.moveUp {
   cursor: pointer;
   opacity: 0;
   transition: all 0.1s;
-  background-color: var(--white);
+  background-color: var(--progress);
   border: none;
 }
 
@@ -414,12 +430,12 @@ h2.moveUp {
   cursor: pointer;
   opacity: 0;
   transition: all 0.1s;
-  background-color: var(--white);
+  background-color: var(--progress);
 }
 
 .timeline::-webkit-slider-thumb:hover {
-  background-color: hsl(141, 76%, 48%);
-  box-shadow: 0 0 0 0.125em hsla(0, 0%, 98%, 0.42);
+  background-color: var(--spotify-green);
+  box-shadow: var(--shadow);
 }
 
 .timeline:hover::-webkit-slider-thumb {
@@ -427,8 +443,8 @@ h2.moveUp {
 }
 
 .timeline::-moz-range-thumb:hover {
-  background-color: hsl(141, 76%, 48%);
-  box-shadow: 0 0 0 0.125em hsla(0, 0%, 98%, 0.42);
+  background-color: var(--spotify-green);
+  box-shadow: var(--shadow);
 }
 
 .timeline:hover::-moz-range-thumb {
@@ -436,31 +452,10 @@ h2.moveUp {
 }
 
 .timeline::-ms-thumb:hover {
-  background-color: hsl(141, 76%, 48%);
-  box-shadow: 0 0 0 0.125em hsla(0, 0%, 98%, 0.42);
+  background-color: var(--spotify-green);
+  box-shadow: var(--shadow);
 }
 
 .timeline:hover::-ms-thumb {
   opacity: 1;
-}
-
-.timeline::-webkit-slider-runnable-track {
-  -webkit-appearance: none;
-  box-shadow: none;
-  border: none;
-  background: transparent;
-}
-
-.timeline::-moz-range-track {
-  -webkit-appearance: none;
-  box-shadow: none;
-  border: none;
-  background: transparent;
-}
-
-.timeline::-ms-track {
-  -webkit-appearance: none;
-  box-shadow: none;
-  border: none;
-  background: transparent;
 }
