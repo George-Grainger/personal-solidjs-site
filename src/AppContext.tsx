@@ -4,6 +4,19 @@ import { createI18nContext, I18nContext } from '@solid-primitives/i18n';
 import { useLocation } from 'solid-app-router';
 import useLocalStorage from './hooks/useLocalStorage';
 
+// Useful functions to create time from milliseconds in '0:00' format
+declare global {
+  interface Date {
+    millisToISOTime: (milliseconds: number) => string;
+  }
+}
+
+Date.prototype.millisToISOTime = (milliseconds: number) => {
+  const date = new Date(0);
+  date.setMilliseconds(milliseconds);
+  return date.toISOString().substring(15, 19);
+};
+
 const langs: { [lang: string]: any } = {
   en: async () => (await import('../lang/en/en')).default(),
   fr: async () => (await import('../lang/fr/fr')).default(),

@@ -208,11 +208,16 @@ h2.moveUp {
 }
 
 .spotifyCard {
+  --timeline: hsl(0, 0%, 37%);
   position: relative;
   font-size: 0.5em;
   aspect-ratio: 1;
   color: white;
   overflow: hidden;
+}
+
+.spotifyCard img {
+  aspect-ratio: 1;
 }
 
 .spotifyCard:focus-within .spotifyDetails {
@@ -248,17 +253,43 @@ h2.moveUp {
   column-gap: 1em;
 }
 
-.songTitle {
-  font-weight: 300;
-  white-space: nowrap;
+.spotifyCard .songTitle {
   text-overflow: ellipsis;
   overflow: hidden;
+  white-space: nowrap;
+}
+
+.songTitle {
+  font-weight: 300;
 }
 
 .artist {
   font-size: 0.75em;
-  font-weight: 600;
   white-space: nowrap;
+}
+
+.lastPlayedCard {
+  --timeline: hsl(0, 0%, 37%);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(5, auto);
+  place-content: space-between;
+  padding: 1em;
+  gap: 0.25em 1em;
+  background-color: var(--white);
+  border-radius: 0.5rem;
+  text-align: center;
+  font-size: 1.25em;
+}
+
+.lastPlayedCard img {
+  border-radius: 0.5em;
+  grid-row: 1 / -1;
+  aspect-ratio: 1;
+}
+
+.lastPlayedCard .controls {
+  font-size: 1.3em;
 }
 
 .controls {
@@ -277,9 +308,10 @@ h2.moveUp {
 .timelineWrapper {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.2em;
-  width: 100%;
 }
+
 .timelineWrapper span {
   font-size: 0.4em;
 }
@@ -287,13 +319,13 @@ h2.moveUp {
 .timeline {
   -webkit-appearance: none;
   height: 0.25em;
-  background-color: #5e5e5e;
+  background-color: var(--timeline);
   border-radius: 0.5rem;
   background-size: 0% 100%;
   background-image: linear-gradient(var(--white), var(--white));
   background-repeat: no-repeat;
   margin-block: 0.1em 0;
-  width: 80%;
+  width: 100%;
 }
 
 /* Also why do these need to all be done separately!!! */

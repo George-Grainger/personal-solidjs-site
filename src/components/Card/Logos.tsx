@@ -238,3 +238,17 @@ export const SolidJS: VoidComponent<{}> = () => {
     </svg>
   );
 };
+
+export const SpotifyLogo = () => {
+  return (
+    <svg viewBox="0 0 336 336" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 168c0 92 76 168 168 168s168-76 168-168a168 168 0 0 0-336 0Z" fill="#1DD75E" />
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M83 229c58-13 108-7 147 17 11 6 22-11 11-18-44-27-98-34-162-19-12 2-10 22 4 20Zm-3-48c53-16 122-8 167 20 14 9 28-13 14-22-52-32-127-41-188-23-16 4-10 30 7 25Zm-17-81c-19 7-8 36 9 30 51-16 141-13 195 19 18 10 34-18 17-27-62-37-162-40-221-22Z"
+        fill="#000"
+      />
+    </svg>
+  );
+};

@@ -1,8 +1,7 @@
-import { createEffect, createSignal, Show, VoidComponent } from 'solid-js';
-import { TopTrack } from '../../hooks/useSpotify';
+import { Accessor, createEffect, createSignal, JSX, onCleanup, onMount, Setter, Show, splitProps, VoidComponent } from 'solid-js';
 import styles from './Card.module.css';
 
-const PlayIcon = () => {
+const PlayIcon: VoidComponent<{}> = () => {
   return (
     <svg fill="currentColor" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
       <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm144.1 454.9L437.7 677.8a8.02 8.02 0 0 1-12.7-6.5V353.7a8 8 0 0 1 12.7-6.5L656.1 506a7.9 7.9 0 0 1 0 12.9z"></path>
@@ -10,7 +9,7 @@ const PlayIcon = () => {
   );
 };
 
-const PauseIcon = () => {
+const PauseIcon: VoidComponent<{}> = () => {
   return (
     <svg fill="currentColor" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
       <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm-80 600c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V360c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v304zm224 0c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V360c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v304z"></path>
@@ -18,7 +17,7 @@ const PauseIcon = () => {
   );
 };
 
-const SoundIcon = () => {
+const SoundIcon: VoidComponent<{}> = () => {
   return (
     <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -33,7 +32,7 @@ const SoundIcon = () => {
   );
 };
 
-const MuteIcon = () => {
+const MuteIcon: VoidComponent<{}> = () => {
   return (
     <svg stroke="currentColor" fill="currentColor" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
       <path fill="none" stroke-linecap="square" stroke-miterlimit="10" stroke-width="32" d="M416 432L64 80"></path>
@@ -43,22 +42,16 @@ const MuteIcon = () => {
   );
 };
 
-const SpotifyLogo = () => {
-  return (
-    <svg viewBox="0 0 336 336" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0 168c0 92 76 168 168 168s168-76 168-168a168 168 0 0 0-336 0Z" fill="#1DD75E" />
-      <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M83 229c58-13 108-7 147 17 11 6 22-11 11-18-44-27-98-34-162-19-12 2-10 22 4 20Zm-3-48c53-16 122-8 167 20 14 9 28-13 14-22-52-32-127-41-188-23-16 4-10 30 7 25Zm-17-81c-19 7-8 36 9 30 51-16 141-13 195 19 18 10 34-18 17-27-62-37-162-40-221-22Z"
-        fill="#000"
-      />
-    </svg>
-  );
-};
+interface ParentEventOptions {
+  parentRef?: HTMLElement;
+  playOnFocus?: Accessor<boolean>;
+  fadeOutOnFocusOut?: Accessor<boolean>;
+  setAutoPlay?: Setter<boolean>;
+}
 
-// Not having browser support to style the HTML audio is such a pain
-export const SpotifyCard: VoidComponent<TopTrack> = (props) => {
+export const Audio: VoidComponent<JSX.AudioHTMLAttributes<HTMLAudioElement> & { parentOptions?: ParentEventOptions }> = (props) => {
+  const [local, others] = splitProps(props, ['onTimeUpdate', 'onLoadedData', 'onEnded', 'parentOptions']);
+
   let audio: HTMLAudioElement | undefined;
   let timeline: HTMLInputElement | undefined;
 
@@ -85,6 +78,24 @@ export const SpotifyCard: VoidComponent<TopTrack> = (props) => {
     }
   };
   fadeVolumeOut.isRunning = false;
+  const fadeOut = () => !fadeVolumeOut.isRunning && fadeVolumeOut();
+
+  if (local.parentOptions?.parentRef) {
+    createEffect(() => {
+      const unPause = () => setPaused(false);
+      if (local.parentOptions?.playOnFocus?.()) {
+        local.parentOptions.parentRef?.addEventListener('focus', unPause);
+      }
+      onCleanup(() => local.parentOptions?.parentRef?.removeEventListener('focus', unPause));
+    });
+
+    onMount(() => {
+      if (local.parentOptions?.fadeOutOnFocusOut?.()) {
+        local.parentOptions.parentRef?.addEventListener('focusout', fadeOut);
+      }
+      onCleanup(() => local.parentOptions?.parentRef?.removeEventListener('onfocusout', fadeOut));
+    });
+  }
 
   createEffect(() => {
     paused() ? audio?.pause() : audio?.play();
@@ -93,12 +104,6 @@ export const SpotifyCard: VoidComponent<TopTrack> = (props) => {
   createEffect(() => {
     if (audio) audio.muted = muted();
   });
-
-  const toISOTime = (seconds?: number) => {
-    const date = new Date(0);
-    seconds && date.setSeconds(seconds);
-    return date.toISOString().substring(15, 19);
-  };
 
   const changeTimelinePosition = () => {
     if (audio && timeline) {
@@ -111,7 +116,7 @@ export const SpotifyCard: VoidComponent<TopTrack> = (props) => {
 
   const updateBackground = (position: number) => {
     if (audio && timeline) {
-      setCurrentTime(toISOTime(position * audio.duration * 0.01));
+      setCurrentTime(new Date().millisToISOTime(position * audio.duration * 10));
       timeline.style.backgroundSize = `${position}% 100%`;
     }
   };
@@ -122,60 +127,60 @@ export const SpotifyCard: VoidComponent<TopTrack> = (props) => {
     }
   };
 
-  return (
-    <div
-      class={styles.spotifyCard}
-      tabindex={0}
-      onFocusOut={(e) => !e.currentTarget.parentElement?.matches(':focus-within') && fadeVolumeOut()}
-    >
-      <img src={props.albumImageUrl} alt={`Album image for ${props.title}`} />
-      <div class={styles.spotifyDetails}>
-        <p class={styles.songTitle}>{props.title}</p>
-        <a class={styles.spotifyLink} href={props.songUrl} target="_blank" rel="noopener noreferrer">
-          <SpotifyLogo />
-        </a>
-        <p class={styles.artist}>{props.artist}</p>
+  const handleTogglePause = (_: Event, force = undefined) => {
+    const newPaused = force !== undefined ? force : !paused();
+    setPaused(newPaused);
+    local.parentOptions?.setAutoPlay?.(!newPaused);
+  };
 
-        <Show when={props.previewUrl !== null}>
-          <audio
-            ref={audio}
-            onTimeUpdate={changeTimelinePosition}
-            onLoadedData={() => setTotalTime(toISOTime(audio!.duration))}
-            onEnded={() => setPaused(true)}
-            preload="auto"
-            src={props.previewUrl}
+  return (
+    <>
+      <audio
+        ref={audio}
+        onTimeUpdate={(e) => {
+          local.onTimeUpdate && (local.onTimeUpdate as (e: Event) => any)(e);
+          changeTimelinePosition();
+        }}
+        onLoadedData={(e) => {
+          local.onLoadedData && (local.onLoadedData as (e: Event) => any)(e);
+          setTotalTime(new Date().millisToISOTime(audio!.duration * 1000));
+        }}
+        onEnded={(e) => {
+          local.onEnded && (local.onEnded as (e: Event) => any)(e);
+          setPaused(true);
+        }}
+        preload={others.preload || 'auto'}
+        {...others}
+      />
+      <div class={styles.controls}>
+        <button onClick={handleTogglePause}>
+          <Show when={paused()} fallback={<PauseIcon />}>
+            <PlayIcon />
+          </Show>
+        </button>
+        <div class={styles.timelineWrapper}>
+          <span>{currentTime()}</span>
+          <input
+            ref={timeline}
+            onChange={changeSeek}
+            onKeyPress={(e) => e.key === ' ' && handleTogglePause(e)}
+            onInput={(e) => updateBackground(Number((e.target as HTMLInputElement).value))}
+            type="range"
+            class={styles.timeline}
+            classList={{ playing: !paused() }}
+            min={0}
+            max={100}
+            step={1}
+            value={0}
           />
-          <div class={styles.controls}>
-            <button onClick={() => setPaused(!paused())}>
-              <Show when={paused()} fallback={<PauseIcon />}>
-                <PlayIcon />
-              </Show>
-            </button>
-            <div class={styles.timelineWrapper}>
-              <span>{currentTime()}</span>
-              <input
-                ref={timeline}
-                onChange={changeSeek}
-                onKeyPress={(e) => e.key === ' ' && setPaused(!paused())}
-                onInput={(e) => updateBackground(Number((e.target as HTMLInputElement).value))}
-                type="range"
-                class={styles.timeline}
-                classList={{ playing: !paused() }}
-                min={0}
-                max={100}
-                step={1}
-                value={0}
-              />
-              <span>{totalTime()}</span>
-            </div>
-            <button onClick={() => setMuted(!muted())}>
-              <Show when={muted()} fallback={<SoundIcon />}>
-                <MuteIcon />
-              </Show>
-            </button>
-          </div>
-        </Show>
+          <span>{totalTime()}</span>
+        </div>
+        <button onClick={() => setMuted(!muted())}>
+          <Show when={muted()} fallback={<SoundIcon />}>
+            <MuteIcon />
+          </Show>
+        </button>
       </div>
-    </div>
+    </>
   );
 };

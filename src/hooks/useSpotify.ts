@@ -1,48 +1,66 @@
-import { createResource } from 'solid-js';
+import { createResource, createSignal, ResourceFetcher, ResourceFetcherInfo } from 'solid-js';
 import { CurrentlyPlaying, Episode, Track } from 'spotify-types';
 import useLocalStorage from './useLocalStorage';
 
-interface NotPlaying {
-  expiresAt: number;
-  isPlaying: Boolean;
-}
-
-interface NowPlayingGeneric extends NotPlaying {
-  playingUrl: string;
+export interface TopTrack {
   title: string;
   creator: string;
   imgUrl: string;
+  playUrl: string;
+  previewUrl?: string;
 }
 
-export interface NowPlayingTrack extends NowPlayingGeneric {
-  type: 'track';
-  album: string;
+export interface LastPlayedMedia extends TopTrack {
+  isPlaying: boolean;
+  duration: number;
+  progressMs: number;
+  description?: string;
 }
 
-export interface NowPlayingShow extends NowPlayingGeneric {
-  type: 'show';
-  description: string;
-}
-
-export interface TopTrack {
-  artist: string;
-  previewUrl: string;
-  songUrl: string;
-  title: string;
-  albumImageUrl: string;
-}
+// Set global so the incrementing of time carries on between pages and interval doesn't double enter
+const [playerProgress, setPlayerProgress] = createSignal(0);
+let lastInterval: number | undefined;
 
 export const useSpotify = () => {
   const NOW_PLAYING_ENDPOINT = `https://api.spotify.com/v1/me/player/currently-playing`;
-  const TOP_TRACKS_ENDPOINT = `https://api.spotify.com/v1/me/top/tracks`;
+  const RECENTLY_PLAYED_ENDPOINT = `https://api.spotify.com/v1/me/player/recently-played?limit=1`;
+  const TOP_TRACKS_ENDPOINT = `https://api.spotify.com/v1/me/top/tracks?limit=9`;
   const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
   const ONE_DAY = 86400000;
-  const TWO_MINS = 120000;
+  const THIRTY_SECONDS = 30000;
+  const FIVE_MINUTES = 300000;
 
   const client_id = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
   const client_secret = import.meta.env.VITE_SPOTIFY_CLIENT_SECRET;
   const refresh_token = import.meta.env.VITE_SPOTIFY_REFRESH_TOKEN;
   const basic = btoa(`${client_id}:${client_secret}`);
+
+  const triggerProgressIncrement = (providedProgress: number = 0, duration: number = 0) => {
+    if (providedProgress <= playerProgress() || providedProgress > duration) {
+      return;
+    }
+    setPlayerProgress(providedProgress);
+    lastInterval && clearInterval(lastInterval);
+    lastInterval = setInterval(() => {
+      if (playerProgress() < duration) {
+        setPlayerProgress((val) => val + 1000);
+      } else {
+        clearInterval(lastInterval);
+        setPlayerProgress(0);
+        refetchMostRecentMedia();
+      }
+    }, 1000);
+  };
+
+  const filterTrackData = (tracks: Track[]) => {
+    return tracks.map((track) => ({
+      title: track.name,
+      creator: track.artists.map((_artist) => _artist.name).join(', '),
+      imgUrl: track.album.images[0].url,
+      playUrl: track.external_urls.spotify,
+      previewUrl: track.preview_url,
+    }));
+  };
 
   const getAccessToken = async () => {
     const response = await fetch(TOKEN_ENDPOINT, {
@@ -69,54 +87,61 @@ export const useSpotify = () => {
       },
     });
 
-    const expiresAt = Date.now() + TWO_MINS;
+    const expiresAt = Date.now() + THIRTY_SECONDS;
 
     if (response.status === 204 || response.status > 400) {
-      return { expiresAt, isPlaying: false };
+      return { expiresAt, track: { isPlaying: false } };
     }
 
     const nowPlaying: CurrentlyPlaying = await response.json();
 
     if (nowPlaying.item === null) {
-      return { expiresAt, isPlaying: false };
+      return { expiresAt, track: { isPlaying: false } };
     }
 
-    const type = nowPlaying.item.hasOwnProperty('show') ? 'show' : 'track';
-    const isPlaying = nowPlaying.is_playing;
-    const title = nowPlaying.item.name;
-    const playingUrl = nowPlaying.item.external_urls.spotify;
+    // Allow for progress to be reset to match online
+    setPlayerProgress(0);
 
-    if (type === 'show') {
-      // Playing a show (e.g. a podcast)
-      const description = (nowPlaying.item as Episode).description;
-      const show = (nowPlaying.item as Episode).show.name;
-      const showImageUrl = (nowPlaying.item as Episode).show.images[0].url;
-      return {
-        expiresAt,
-        type,
-        isPlaying,
-        playingUrl,
-        title,
-        description,
-        show,
-        showImageUrl,
-      };
+    let creator, imgUrl;
+    if (nowPlaying.currently_playing_type === 'track') {
+      const item = nowPlaying.item as Track;
+      creator = item.artists.map((_artist) => _artist.name).join(', ');
+      imgUrl = item.album.images[0].url;
+    } else {
+      const item = nowPlaying.item as Episode;
+      creator = item.show.name;
+      imgUrl = item.show.images[0].url;
     }
 
-    // Must be playing a song
-    const artist = (nowPlaying.item as Track).artists.map((_artist) => _artist.name).join(', ');
-    const album = (nowPlaying.item as Track).album.name;
-    const albumImageUrl = (nowPlaying.item as Track).album.images[0].url;
-    return {
-      expiresAt,
-      type,
-      isPlaying,
-      playingUrl,
-      title,
-      album,
-      albumImageUrl,
-      artist,
+    const track: LastPlayedMedia = {
+      creator,
+      imgUrl,
+      isPlaying: nowPlaying.is_playing,
+      title: nowPlaying.item.name,
+      playUrl: nowPlaying.item.external_urls.spotify,
+      duration: nowPlaying.item.duration_ms,
+      progressMs: nowPlaying.progress_ms || 0,
+      // One of the two below will be undefined
+      description: (nowPlaying.item as Episode).description,
+      previewUrl: (nowPlaying.item as Track).preview_url,
     };
+
+    return { expiresAt, track };
+  };
+
+  const requestRecentlyPlayed = async () => {
+    const { access_token } = await getAccessToken();
+
+    const response = await fetch(RECENTLY_PLAYED_ENDPOINT, {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    });
+
+    const expiresAt = Date.now() + FIVE_MINUTES;
+    const { items }: { items: { track: Track; playedAt: string }[] } = await response.json();
+    const track = filterTrackData([items[0].track])[0];
+    return { expiresAt, track: { ...track, isPlaying: false, duration: 0, progressMs: 0 } };
   };
 
   const requestTopTracks = async () => {
@@ -129,32 +154,33 @@ export const useSpotify = () => {
     });
 
     const expiresAt = Date.now() + ONE_DAY;
-
     const { items }: { items: Track[] } = await response.json();
-
-    const tracks = items.slice(0, 10).map((track) => ({
-      artist: track.artists.map((_artist) => _artist.name).join(', '),
-      previewUrl: track.preview_url,
-      songUrl: track.external_urls.spotify,
-      title: track.name,
-      albumImageUrl: track.album.images[0].url,
-    }));
+    const tracks = filterTrackData(items);
 
     return { expiresAt, tracks };
   };
 
-  const getNowPlaying = async () => {
+  const getMostRecent = async (_: boolean, { refetching }: ResourceFetcherInfo<LastPlayedMedia | undefined>) => {
     // Use local storage to act as cache to prevent needless api calls
-    const [getCurrentSong, setCurrentSong] = useLocalStorage<NowPlayingShow | NowPlayingTrack | NotPlaying | null>('now-playing', null);
+    const [getCurrentSong, setCurrentSong] = useLocalStorage<{ expiresAt: number; track: LastPlayedMedia } | null>('most-recent', null);
     const expiry = getCurrentSong()?.expiresAt;
 
-    if (expiry && expiry > Date.now()) {
-      return getCurrentSong();
+    if (expiry && expiry > Date.now() && !refetching) {
+      const track = getCurrentSong()?.track;
+      triggerProgressIncrement(track?.progressMs, track?.duration);
+      return track;
     }
 
-    const nowPlaying = requestNowPlaying();
-    setCurrentSong(await nowPlaying);
-    return nowPlaying;
+    // If currently playing show that song, otherwise return the most recently played song
+    const [recentlyPlayed, nowPlaying] = await Promise.all([requestRecentlyPlayed(), requestNowPlaying()]);
+    const media = (nowPlaying.track.isPlaying ? nowPlaying : recentlyPlayed) as unknown as {
+      expiresAt: number;
+      track: LastPlayedMedia;
+    };
+
+    setCurrentSong(media);
+    triggerProgressIncrement(media.track.progressMs, media.track.duration);
+    return media.track;
   };
 
   const getTopTracks = async () => {
@@ -162,15 +188,16 @@ export const useSpotify = () => {
     const [getTopTracks, setTopTracks] = useLocalStorage<{ expiresAt: number; tracks: TopTrack[] } | null>('top-tracks', null);
     const expiry = getTopTracks()?.expiresAt;
     if (expiry && expiry > Date.now()) {
-      return getTopTracks();
+      return getTopTracks()?.tracks;
     }
 
-    const topTracks = requestTopTracks();
-    setTopTracks(await topTracks);
-    return topTracks;
+    const topTracks = await requestTopTracks();
+    setTopTracks(topTracks);
+    return topTracks.tracks;
   };
 
-  const [currentSong, { refetch: refetchCurrentSong }] = createResource(getNowPlaying);
+  const [mostRecentMedia, { refetch: refetchMostRecentMedia }] = createResource(getMostRecent);
+
   const [topSongs, { refetch: refetchTopSongs }] = createResource(getTopTracks);
-  return { currentSong, refetchCurrentSong, topSongs, refetchTopSongs };
+  return { mostRecentMedia, refetchMostRecentMedia, topSongs, refetchTopSongs, playerProgress };
 };

@@ -2,7 +2,7 @@ import { useI18n } from '@solid-primitives/i18n';
 import { makeIntersectionObserver } from '@solid-primitives/intersection-observer';
 import { Accessor, Component, Index, Suspense } from 'solid-js';
 import { TransitionButton } from '../components/Button';
-import { Card, CardProps, SpotifyCard } from '../components/Card';
+import { Card, CardProps, LastPlayedMediaCard, TopTrackCard } from '../components/Card';
 import { HeroScene } from '../components/svg';
 import { FullPageCloudGroup1, FullPageCloudGroup2 } from '../components/svg/Clouds';
 import { useSpotify } from '../hooks/useSpotify';
@@ -28,7 +28,7 @@ const Home: Component<{}> = () => {
   );
 
   const [t] = useI18n();
-  const { currentSong, topSongs } = useSpotify();
+  const { mostRecentMedia, topSongs } = useSpotify();
 
   return (
     <>
@@ -82,19 +82,21 @@ const Home: Component<{}> = () => {
             <p>See what my current top songs are (updated daily!)</p>
             <ol class={styles.spotifyList}>
               <Suspense fallback={<p>Loading...</p>}>
-                <Index each={topSongs()?.tracks.slice(0, 9)}>
+                <Index each={topSongs()}>
                   {(track, i) => {
                     const ORIGINS = ['0%', '50%', '100%'];
                     return (
                       <li style={{ 'transform-origin': `${ORIGINS[i % 3]} ${ORIGINS[Math.floor(i / 3)]}` }}>
-                        <SpotifyCard {...track()} />
+                        <TopTrackCard {...track()} />
                       </li>
                     );
                   }}
                 </Index>
               </Suspense>
             </ol>
-            <p>Currently listening to:</p>
+            <Suspense fallback={<p>Loading...</p>}>
+              <LastPlayedMediaCard {...mostRecentMedia()!} />
+            </Suspense>
           </div>
         </div>
       </section>
