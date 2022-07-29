@@ -46,5 +46,28 @@
       "thumbnail": "/game-cover.jpg",
       "alt": ""
     }
-  ]
+  ],
+  "about": "Sur moi",
+  "academic-title": "Académique",
+  "academic-paragraphs": [
+    "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus officia vitae omnis officiis fugit, sed tempora voluptatibus libero velit minus. Cum est nostrum delectus, placeat dicta quo ex obcaecati. Necessitatibus.",
+    "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus officia vitae omnis officiis fugit, sed tempora voluptatibus libero velit minus. Cum est nostrum delectus, placeat dicta quo ex obcaecati. Necessitatibus."
+  ],
+  "experience-title": "Expérience",
+  "experience-paragraphs": [
+    "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus officia vitae omnis officiis fugit, sed tempora voluptatibus libero velit minus. Cum est nostrum delectus, placeat dicta quo ex obcaecati. Necessitatibus.",
+    "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus officia vitae omnis officiis fugit, sed tempora voluptatibus libero velit minus. Cum est nostrum delectus, placeat dicta quo ex obcaecati. Necessitatibus."
+  ],
+  "interests-title": "Intérêts",
+  "interests-paragraphs": [
+    "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus officia vitae omnis officiis fugit, sed tempora voluptatibus libero velit minus. Cum est nostrum delectus, placeat dicta quo ex obcaecati. Necessitatibus."
+  ],
+  "cv": "Voir mon CV",
+  "spotify-tagline": "Informations sur mes chansons récentes et préférées",
+  "latest-song": "Dernière chanson jouée",
+  "album-img-alt": "Image de l'album pour {{title}}",
+  "played-on": "Joué le {{date}} à {{time}}",
+  "check-back": "Revenez quand j'écoute un flux en direct",
+  "current-playing": "J'écoute actuellement à...",
+  "stick-around": "Reste dans le coin pour voir ce que j'écoute ensuite"
 }

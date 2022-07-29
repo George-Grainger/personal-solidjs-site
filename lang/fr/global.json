@@ -25,7 +25,22 @@
     "body": "Cette page n'existe pas"
   },
   "footer": {
-    "updated": "Mis à jour le {{date}}"
+    "preferences": "Préférences",
+    "preference-links": [
+      {
+        "title": "Langues",
+        "path": "/languages"
+      },
+      {
+        "title": "Thème",
+        "path": "/theme"
+      },
+      {
+        "title": "Accessibilité",
+        "path": "/accessibility"
+      }
+    ],
+    "created-by": "Créé par"
   },
   "dark_mode": "Mode sombre",
   "light_mode": "Mode lumière",

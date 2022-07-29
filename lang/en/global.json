@@ -25,7 +25,22 @@
     "body": "This page doesn't exist"
   },
   "footer": {
-    "updated": "Last updated {{date}}"
+    "preferences": "Preferences",
+    "preference-links": [
+      {
+        "title": "Languages",
+        "path": "/languages"
+      },
+      {
+        "title": "Theme",
+        "path": "/theme"
+      },
+      {
+        "title": "Accessibility",
+        "path": "/accessibility"
+      }
+    ],
+    "created-by": "Created by"
   },
   "dark_mode": "Dark mode",
   "light_mode": "Light mode",

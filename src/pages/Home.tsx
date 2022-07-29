@@ -1,7 +1,7 @@
 import { useI18n } from '@solid-primitives/i18n';
 import { makeIntersectionObserver } from '@solid-primitives/intersection-observer';
-import { Accessor, Component, Index, Suspense } from 'solid-js';
-import { TransitionButton } from '../components/Button';
+import { Accessor, Component, For, Index, Suspense } from 'solid-js';
+import { Button, TransitionButton } from '../components/Button';
 import { ProjectCard, ProjectCardProps, LastPlayedMediaCard, TopTrackCard } from '../components/Card';
 import { HeroScene } from '../components/svg';
 import { AsteroidGroup1 } from '../components/svg/Asteroids';
@@ -35,9 +35,9 @@ const Home: Component<{}> = () => {
     <>
       <section class={styles.heroSection} id="hero">
         <h1 class={styles.title}>{t('home.title', {}, 'Hello there')}</h1>
-        <h2 class={styles.subtitle}>{t('home.subtitle', {}, 'Thanks for stopping by')}</h2>
+        <h2 class={styles.subtitle}>{t('home.subtitle', {}, 'Hello there')}</h2>
         <HeroScene class={styles.svgScene} />
-        <p class={styles.intro}>{t('home.intro-paragraph', {}, "I'm George a computer science student based in Manchester.")}</p>
+        <p class={styles.intro}>{t('home.intro-paragraph', {}, "I'm George, a computer science student based in Manchester")}</p>
         <TransitionButton href="#projects" class={styles.btn}>
           {t('home.projects', {}, 'Projects')}
         </TransitionButton>
@@ -50,7 +50,7 @@ const Home: Component<{}> = () => {
           <h2 class={styles.projectTitle}>{t('home.projects', {}, 'Projects')}</h2>
         </div>
         <div class={styles.projects} id="projects">
-          <Index each={t('home.project-cards', {})}>
+          <Index each={t('home.project-cards')}>
             {(data: Accessor<Omit<ProjectCardProps, 'index'>>, i) => <ProjectCard index={i + 1} {...data()} />}
           </Index>
         </div>
@@ -62,27 +62,19 @@ const Home: Component<{}> = () => {
           <AsteroidGroup1 moveOnReduceMotion={true} />
         </div>
         <div class={styles.aboutContent} id="about-me">
-          <h2 class={styles.aboutTitle}>{t('home.about', {}, 'About Me')}</h2>
-          <div>
-            <h3>Academic</h3>
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus officia vitae omnis officiis fugit, sed tempora
-              voluptatibus libero velit minus. Cum est nostrum delectus, placeat dicta quo ex obcaecati. Necessitatibus.
-            </p>
-            <h3>Experience</h3>
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus officia vitae omnis officiis fugit, sed tempora
-              voluptatibus libero velit minus. Cum est nostrum delectus, placeat dicta quo ex obcaecati. Necessitatibus.
-            </p>
-            <h3>Interests</h3>
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus officia vitae omnis officiis fugit, sed tempora
-              voluptatibus libero velit minus. Cum est nostrum delectus, placeat dicta quo ex obcaecati. Necessitatibus.
-            </p>
+          <h2 class={styles.aboutTitle}>{t('home.about', {}, 'About me')}</h2>
+          <div class="flow">
+            <h3>{t('home.academic-title', {}, 'Academic')}</h3>
+            <For each={t('home.academic-paragraphs')}>{(paragraph: string) => <p>{paragraph}</p>}</For>
+            <h3>{t('home.experience-title', {}, 'Experience')}</h3>
+            <For each={t('home.experience-paragraphs')}>{(paragraph: string) => <p>{paragraph}</p>}</For>
+            <h3>{t('home.interests-title')}</h3>
+            <For each={t('home.interests-paragraphs', {}, 'Interests')}>{(paragraph: string) => <p>{paragraph}</p>}</For>
+            <TransitionButton>{t('home.cv', {}, 'View my CV')}</TransitionButton>
           </div>
           <div>
             <h3>Spotify</h3>
-            <p>Up to date information on my top and recent songs</p>
+            <p>{t('home.spotify-tagline', {}, 'Information on my favourite songs and recent listening')}</p>
             <ol class={styles.spotifyList}>
               <Suspense fallback={<p>Loading...</p>}>
                 <Index each={topSongs()}>

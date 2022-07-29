@@ -2,9 +2,8 @@ import { Router, useIsRouting, useRoutes } from 'solid-app-router';
 import { onMount, Suspense, VoidComponent } from 'solid-js';
 import { MetaProvider } from 'solid-meta';
 import { AppContextProvider } from './AppContext';
-import { TransitionLink } from './components/Button';
+import { Footer } from './components/Footer';
 import { Navbar } from './components/Navbar';
-import { FooterScene } from './components/svg';
 import { routes } from './routes';
 
 const App: VoidComponent<{}> = () => {
@@ -42,27 +41,7 @@ const App: VoidComponent<{}> = () => {
               <Routes />
             </Suspense>
           </main>
-          <footer>
-            <div class="footerImage">
-              <FooterScene />
-            </div>
-            <div class="footerText">
-              <strong>Preferences</strong>
-              <ul role="list">
-                <li>
-                  <TransitionLink href="/">Test 1</TransitionLink>
-                </li>
-                <li>
-                  <TransitionLink href="/about-me">Test 2</TransitionLink>
-                </li>
-                <li>
-                  <TransitionLink href="/projects">Test 3</TransitionLink>
-                </li>
-              </ul>
-              <strong>Created by</strong>
-              <span>George Grainger</span>
-            </div>
-          </footer>
+          <Footer />
         </AppContextProvider>
       </MetaProvider>
     </Router>

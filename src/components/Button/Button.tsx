@@ -1,11 +1,10 @@
-import { JSX, ParentComponent, splitProps } from 'solid-js';
+import { JSX, ParentComponent, splitProps, VoidComponent } from 'solid-js';
 import styles from './Button.module.css';
 import { TransitionLink } from './TransitionLink';
 
-const ButtonContent: ParentComponent<{}> = ({ children }) => {
+const ButtonArrows: VoidComponent<{}> = () => {
   return (
     <>
-      <span>{children}</span>
       <span>
         <svg class={styles.arrows} viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
           <g stroke="none" stroke-width="1" fill-rule="evenodd">
@@ -22,8 +21,9 @@ const ButtonContent: ParentComponent<{}> = ({ children }) => {
 export const TransitionButton: ParentComponent<JSX.AnchorHTMLAttributes<HTMLAnchorElement>> = (props) => {
   const [local, others] = splitProps(props, ['class', 'children', 'href']);
   return (
-    <TransitionLink class={`${styles.btn} ${local.class}`} href={local.href || ''} {...others}>
-      <ButtonContent>{local.children}</ButtonContent>
+    <TransitionLink class={`${styles.btn} ${local.class || ''}`} href={local.href || ''} {...others}>
+      <span>{local.children}</span>
+      <ButtonArrows />
     </TransitionLink>
   );
 };
@@ -31,8 +31,9 @@ export const TransitionButton: ParentComponent<JSX.AnchorHTMLAttributes<HTMLAnch
 export const Button: ParentComponent<JSX.ButtonHTMLAttributes<HTMLButtonElement>> = (props) => {
   const [local, others] = splitProps(props, ['class', 'children']);
   return (
-    <button class={`${styles.btn} ${local.class}`} {...others}>
-      <ButtonContent>{local.children}</ButtonContent>
+    <button class={`${styles.btn} ${local.class || ''}`} {...others}>
+      <span>{local.children}</span>
+      <ButtonArrows />
     </button>
   );
 };
