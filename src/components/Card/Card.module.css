@@ -13,7 +13,7 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  transform: scale(0.9, 0.4);
+  transform: scale(0.9, 0.33);
   transform-origin: 50% 20%;
   border-radius: var(--br);
   background-color: var(--card);
@@ -43,7 +43,7 @@
 }
 
 h2.moveUp {
-  transform: translateY(-75%);
+  transform: translateY(-60%);
 }
 
 .btn {
@@ -51,11 +51,11 @@ h2.moveUp {
 }
 
 .moveUp {
-  transform: translateY(-15%);
+  transform: translateY(-10%);
 }
 
 .moveDown {
-  transform: translateY(25%);
+  transform: translateY(var(--move-by, 5%));
 }
 
 .front,
@@ -68,6 +68,7 @@ h2.moveUp {
   flex-direction: column;
   gap: 0.5em;
   transition: transform var(--duration) var(--transition);
+  margin-bottom: auto;
 }
 
 .card:hover .front {
@@ -103,7 +104,7 @@ h2.moveUp {
   place-items: center;
   text-align: center;
   gap: 1em;
-  margin-block: 55% 0.5em;
+  margin-top: 55%;
   opacity: 0;
   transform: translateY(15%);
   pointer-events: none;
@@ -194,16 +195,6 @@ h2.moveUp {
   }
   100% {
     fill-opacity: 1;
-  }
-}
-
-@media only screen and (min-width: 40em) {
-  .moveUp {
-    transform: translateY(-10%);
-  }
-
-  .moveDown {
-    transform: translateY(5%);
   }
 }
 

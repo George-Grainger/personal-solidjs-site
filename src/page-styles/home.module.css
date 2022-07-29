@@ -76,9 +76,14 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, min(75vw, 18em));
   justify-content: center;
-  gap: 1em 4em;
+  gap: 2em 4em;
   width: min(90vw, 80rem);
   font-size: 1.125rem;
+  margin-bottom: 2.5%;
+}
+
+.projects:target {
+  scroll-margin-top: 15rem;
 }
 
 .aboutContent {
@@ -87,7 +92,12 @@
   width: min(90vw, 80rem);
 }
 
+.aboutContent:target {
+  scroll-margin-top: 0;
+}
+
 .aboutTitle {
+  margin-top: 2em;
   text-align: center;
   grid-column: 1 / -1;
 }
@@ -121,12 +131,12 @@
   position: relative;
   z-index: 0;
   /* Required z-index transition otherwise cards drop behind others when shrinking */
-  transition: transform var(--duration) var(--transition), z-index 0ms linear var(--delay, var(--duration));
+  transition: transform var(--duration) var(--transition), z-index var(--duration) linear;
   will-change: transform, z-index;
 }
 
 .spotifyList > li:focus-within {
-  --delay: 0ms;
+  transition-duration: var(--duration), 0ms;
   transform: scale(318%);
   z-index: 1;
 }
@@ -151,8 +161,11 @@
   }
 
   .intro {
-    max-width: 40ch;
     margin-top: 0;
+  }
+
+  :lang('en') .intro {
+    max-width: 40ch;
   }
 
   .svgScene {

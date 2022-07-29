@@ -1,4 +1,4 @@
-export * from './Card';
+export * from './ProjectCard';
 export * from './TopTrackCard';
 export * from './LastPlayedTrackCard';
 export * from './Logos';

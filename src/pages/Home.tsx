@@ -2,7 +2,7 @@ import { useI18n } from '@solid-primitives/i18n';
 import { makeIntersectionObserver } from '@solid-primitives/intersection-observer';
 import { Accessor, Component, Index, Suspense } from 'solid-js';
 import { TransitionButton } from '../components/Button';
-import { Card, CardProps, LastPlayedMediaCard, TopTrackCard } from '../components/Card';
+import { ProjectCard, ProjectCardProps, LastPlayedMediaCard, TopTrackCard } from '../components/Card';
 import { HeroScene } from '../components/svg';
 import { FullPageCloudGroup1, FullPageCloudGroup2 } from '../components/svg/Clouds';
 import { useSpotify } from '../hooks/useSpotify';
@@ -49,16 +49,16 @@ const Home: Component<{}> = () => {
         </div>
         <div class={styles.projects} id="projects">
           <Index each={t('home.project-cards', {})}>
-            {(data: Accessor<Omit<CardProps, 'index'>>, i) => <Card index={i + 1} {...data()} />}
+            {(data: Accessor<Omit<ProjectCardProps, 'index'>>, i) => <ProjectCard index={i + 1} {...data()} />}
           </Index>
         </div>
       </section>
 
-      <section class={styles.aboutSection} id="about-me">
+      <section class={styles.aboutSection}>
         <div use:intersectionObserver class={styles.cloudWrapper}>
           <FullPageCloudGroup2 />
         </div>
-        <div class={styles.aboutContent}>
+        <div class={styles.aboutContent} id="about-me">
           <h2 class={styles.aboutTitle}>{t('home.about', {}, 'About Me')}</h2>
           <div>
             <h3>Academic</h3>

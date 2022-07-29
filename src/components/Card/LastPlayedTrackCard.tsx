@@ -10,7 +10,7 @@ const WhenNotPlaying: VoidComponent<{ playedAt: string }> = ({ playedAt }) => {
       <p class={styles.playedAt}>
         Played on {new Date(playedAt || 0).toLocaleDateString()} at {new Date(playedAt || 0).toLocaleTimeString().substring(0, 5)}
       </p>
-      <p>Check back for a live feed when I'm listening</p>
+      <p>Check again when I'm playing for a live feed</p>
     </>
   );
 };

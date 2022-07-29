@@ -80,8 +80,12 @@ input[type='reset'] {
 }
 
 /* Set core root defaults */
-html:focus-within {
+html {
   scroll-behavior: smooth;
+}
+
+:target {
+  scroll-margin-top: 5.625rem;
 }
 
 a {
@@ -141,6 +145,7 @@ body {
 main {
   display: grid;
   gap: min(10vh, 10rem);
+  margin-bottom: min(10vh, 10rem);
   place-items: center;
   place-content: center;
   overflow-x: clip;
