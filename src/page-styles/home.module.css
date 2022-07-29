@@ -61,6 +61,10 @@
   font-size: 2.5em;
 }
 
+:global(.reduce-motion) .projectTitle {
+  --duration: 0;
+}
+
 .projectTitle {
   place-self: start center;
   position: sticky;
@@ -111,6 +115,10 @@
 }
 .aboutContent p + h3 {
   margin-top: 0.5em;
+}
+
+:global(.reduce-motion) .spotifyList {
+  --duration: 0;
 }
 
 .spotifyList {

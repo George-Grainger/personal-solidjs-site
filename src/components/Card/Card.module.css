@@ -6,6 +6,11 @@
   isolation: isolate;
   transition: transform var(--duration) var(--transition);
   will-change: transform;
+  scroll-margin-top: calc(10rem + var(--move-by, 0px));
+}
+
+:global(.reduce-motion) .card {
+  --duration: 0;
 }
 
 .card::before {
@@ -17,8 +22,9 @@
   transform-origin: 50% 20%;
   border-radius: var(--br);
   background-color: var(--card);
-  transition: transform calc(var(--duration)) var(--transition), opacity calc(0.5 * var(--duration)) var(--transition);
-  will-change: transform, opacity;
+  transition: transform var(--duration) var(--transition), opacity calc(0.5 * var(--duration)) var(--transition),
+    background-color var(--duration) var(--transition);
+  will-change: transform, opacity, background-color;
 }
 
 .card::after {
@@ -107,7 +113,6 @@ h2.moveUp {
   margin-top: 55%;
   opacity: 0;
   transform: translateY(15%);
-  pointer-events: none;
   transition: transform var(--duration) var(--transition), opacity calc(0.5 * var(--duration)) var(--transition);
   will-change: transform, opacity;
   padding-bottom: 1em;
@@ -116,7 +121,6 @@ h2.moveUp {
 .card:hover .back {
   opacity: 1;
   transform: translateY(0);
-  pointer-events: initial;
 }
 
 .backTitle {
@@ -205,6 +209,8 @@ h2.moveUp {
   background-color: var(--card);
   border-radius: 0.5rem;
   position: relative;
+  transition: background-color var(--duration) var(--transition);
+  will-change: background-color;
 }
 
 .spotifyCard img {

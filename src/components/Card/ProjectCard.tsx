@@ -35,8 +35,9 @@ export const ProjectCard: VoidComponent<ProjectCardProps> = (props) => {
     onCleanup(() => window.removeEventListener('resize', calcualteOffsets));
   });
 
-  const handleMouseEnter = (e: MouseEvent) => {
-    const el = e.target as Element;
+  const handleMouseEnter = (e: Event) => {
+    const el = card as HTMLElement;
+
     const elIndex = Number(el.getAttribute('attr-index'));
     const PER_ROW = getComputedStyle(el.parentElement as Element)
       .getPropertyValue('grid-template-columns')
@@ -45,7 +46,7 @@ export const ProjectCard: VoidComponent<ProjectCardProps> = (props) => {
     const adjacent = el.parentElement?.querySelectorAll(`article:nth-child(${PER_ROW}n + ${elIndex % PER_ROW})`);
     const projectTitle = el.parentElement?.previousElementSibling?.querySelector('h2');
 
-    if (matchMedia('(pointer: coarse)').matches) {
+    if (matchMedia('(max-width: 60rem)').matches && matchMedia('(pointer: coarse)').matches) {
       el.scrollIntoView(true);
     }
     // Check if it's a middle value
@@ -66,13 +67,20 @@ export const ProjectCard: VoidComponent<ProjectCardProps> = (props) => {
     });
   };
 
-  const handleMouseLeave = (e: MouseEvent) => {
-    const moved = (e.target as Element).parentElement?.parentElement?.querySelectorAll(`.${styles.moveUp}, .${styles.moveDown}`);
+  const handleMouseLeave = (e: Event) => {
+    const moved = card?.parentElement?.parentElement?.querySelectorAll(`.${styles.moveUp}, .${styles.moveDown}`);
     moved?.forEach((el) => el.classList.remove(styles.moveUp, styles.moveDown));
   };
 
   return (
-    <article ref={card} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} class={styles.card} attr-index={props.index}>
+    <article
+      ref={card}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onTouchStart={handleMouseEnter}
+      class={styles.card}
+      attr-index={props.index}
+    >
       <div class={styles.front}>
         <img class={styles.thumbnail} src={props.thumbnail} alt={props.alt || ''} loading="lazy" />
         <h3 class={styles.frontTitle}>{props.title}</h3>

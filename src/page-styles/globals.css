@@ -178,10 +178,6 @@ main::after {
   display: none;
 }
 
-strong {
-  font-weight: 600;
-}
-
 main::before {
   inset: -15vh -55vh auto;
   transform: translateY(-107.5vmax);
@@ -269,6 +265,10 @@ section {
   margin-inline: auto;
   place-items: center;
   width: min(90vw, 80rem);
+}
+
+strong {
+  font-weight: 600;
 }
 
 @media only screen and (min-width: 60rem) {

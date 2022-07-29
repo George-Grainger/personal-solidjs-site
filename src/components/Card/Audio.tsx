@@ -62,6 +62,7 @@ export const Audio: VoidComponent<JSX.AudioHTMLAttributes<HTMLAudioElement> & { 
 
   const getPercentage = (val = 0) => 100 * (val || currentTime() / totalTime());
 
+  let animationFrameId: number | undefined;
   const fadeVolumeOut = () => {
     if (!audio) {
       return;
@@ -76,7 +77,7 @@ export const Audio: VoidComponent<JSX.AudioHTMLAttributes<HTMLAudioElement> & { 
       audio.volume = 1;
     } else {
       audio.volume = Math.max(audio.volume - 0.0125, 0);
-      window.requestAnimationFrame(fadeVolumeOut);
+      animationFrameId = window.requestAnimationFrame(fadeVolumeOut);
     }
   };
   fadeVolumeOut.isRunning = false;
@@ -84,7 +85,14 @@ export const Audio: VoidComponent<JSX.AudioHTMLAttributes<HTMLAudioElement> & { 
 
   if (parentRef) {
     createEffect(() => {
-      const unPause = () => setPaused(false);
+      const unPause = () => {
+        setPaused(false);
+        if (animationFrameId) {
+          fadeVolumeOut.isRunning = false;
+          window.cancelAnimationFrame(animationFrameId);
+        }
+        if (audio) audio.volume = 1;
+      };
       if (local.parentOptions?.playOnFocus?.()) {
         parentRef?.addEventListener('focus', unPause);
       }
