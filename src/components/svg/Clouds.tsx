@@ -2,7 +2,7 @@ import { VoidSVG } from './svg-types';
 import styles from './Svg.module.css';
 import { splitProps } from 'solid-js';
 
-export const FullPageCloudGroup1: VoidSVG = (props) => {
+export const FullPageCloudGroup1: VoidSVG<{ moveOnReduceMotion?: boolean }> = (props) => {
   const [local, others] = splitProps(props, ['class']);
 
   return (
@@ -26,14 +26,14 @@ export const FullPageCloudGroup1: VoidSVG = (props) => {
   );
 };
 
-export const FullPageCloudGroup2: VoidSVG = (props) => {
-  const [local, others] = splitProps(props, ['class']);
+export const FullPageCloudGroup2: VoidSVG<{ moveOnReduceMotion?: boolean }> = (props) => {
+  const [local, others] = splitProps(props, ['class', 'moveOnReduceMotion']);
 
   return (
     <svg
       viewBox="0 0 1378 507"
       fill="var(--cloud-white)"
-      class={`${styles.aboutClouds} ${local.class || ''}`}
+      class={`${styles.fullPageClouds} ${local.class || ''}`}
       {...others}
       xmlns="http://www.w3.org/2000/svg"
     >

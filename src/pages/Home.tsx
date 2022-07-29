@@ -4,6 +4,7 @@ import { Accessor, Component, Index, Suspense } from 'solid-js';
 import { TransitionButton } from '../components/Button';
 import { ProjectCard, ProjectCardProps, LastPlayedMediaCard, TopTrackCard } from '../components/Card';
 import { HeroScene } from '../components/svg';
+import { AsteroidGroup1 } from '../components/svg/Asteroids';
 import { FullPageCloudGroup1, FullPageCloudGroup2 } from '../components/svg/Clouds';
 import { useSpotify } from '../hooks/useSpotify';
 
@@ -44,7 +45,8 @@ const Home: Component<{}> = () => {
 
       <section class={styles.projectSection}>
         <div class={styles.cloudWrapper}>
-          <FullPageCloudGroup1 class={styles.projectsCloud} />
+          <FullPageCloudGroup1 />
+          <AsteroidGroup1 />
           <h2 class={styles.projectTitle}>{t('home.projects', {}, 'Projects')}</h2>
         </div>
         <div class={styles.projects} id="projects">
@@ -56,7 +58,8 @@ const Home: Component<{}> = () => {
 
       <section class={styles.aboutSection}>
         <div use:intersectionObserver class={styles.cloudWrapper}>
-          <FullPageCloudGroup2 />
+          <FullPageCloudGroup2 moveOnReduceMotion={true} />
+          <AsteroidGroup1 moveOnReduceMotion={true} />
         </div>
         <div class={styles.aboutContent} id="about-me">
           <h2 class={styles.aboutTitle}>{t('home.about', {}, 'About Me')}</h2>

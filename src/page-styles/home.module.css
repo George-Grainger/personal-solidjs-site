@@ -48,12 +48,10 @@
   height: calc(100% + min(10vh, 10rem));
 }
 
-.projectsCloud,
 .projectTitle,
 .aboutContent,
 .cloudWrapper {
-  grid-row: 1 / 1;
-  grid-column: 1 / 1;
+  grid-area: 1 / 1;
 }
 
 .projectTitle,

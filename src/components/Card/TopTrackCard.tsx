@@ -12,7 +12,7 @@ export const TopTrackCard: VoidComponent<TopTrack> = (props) => {
 
   return (
     <div ref={parent} class={styles.topTrackCard} tabindex={0}>
-      <img src={props.imgUrl} alt={`Album image for ${props.title}`} />
+      <img src={props.imgUrl} alt={`Album image for ${props.title}`} loading="lazy" />
       <div class={styles.topTrackdetails}>
         <p class={styles.songTitle}>{props.title}</p>
         <a class={styles.spotifyLink} href={props.playUrl} target="_blank" rel="noopener noreferrer">

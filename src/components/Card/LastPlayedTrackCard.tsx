@@ -8,7 +8,7 @@ const WhenNotPlaying: VoidComponent<{ playedAt: string }> = ({ playedAt }) => {
   return (
     <>
       <p class={styles.playedAt}>
-        Played on {new Date(playedAt || 0).toLocaleDateString()} at {new Date(playedAt || 0).toLocaleTimeString().substring(0, 5)}
+        Played on {new Date(playedAt || 0).toLocaleDateString()} at {new Date(playedAt || 0).toLocaleTimeString().slice(0, -3)}
       </p>
       <p>Check again when I'm playing for a live feed</p>
     </>
@@ -39,7 +39,7 @@ export const LastPlayedMediaCard: VoidComponent<LastPlayedMedia> = (props) => {
       <a class={styles.spotifyLink} href={props.playUrl} target="_blank" rel="noopener noreferrer">
         <SpotifyLogo class={styles.spotifySvg} />
       </a>
-      <img src={props.imgUrl} alt={`Album image for ${props.title}`} />
+      <img src={props.imgUrl} alt={`Album image for ${props.title}`} loading="lazy" />
       <div class={styles.details}>
         <p class={styles.songTitle}>{props.title}</p>
         <strong class={styles.artist}>{props.creator}</strong>

@@ -25,7 +25,6 @@
   --grey-shadow: hsl(227, 11%, 75%);
   --grey-mb: hsl(226, 21%, 88%);
   --grey-dc: hsl(229, 12%, 82%);
-  --space-rock-grey: hsl(226, 21%, 88%);
 
   overflow: visible;
 }
@@ -189,34 +188,43 @@ g.mountainGroup ~ .mountainGroup path:nth-child(3n + 1) {
 }
 
 /* Full page clouds */
-.fullPageClouds {
+.fullPageSvg {
   overflow: visible;
   width: min(240vw, 160rem);
+  grid-area: 1 / -1;
 }
 
-:global(.no-preference) .fullPageClouds g {
+.fullPageClouds {
+  composes: fullPageSvg;
+  --rm-translation: max(20vw, 48%);
+}
+
+.fullPageAsteroids {
+  composes: fullPageSvg;
+  --rm-translation: max(20vw, 30%);
+}
+
+:global(.no-preference) .fullPageSvg > g {
   transition: transform calc(2.5 * var(--duration)) var(--transition);
   will-change: transform;
 }
 
-.aboutClouds {
-  composes: fullPageClouds;
-}
-
 :global(.animate-now) .moveToLeft,
-:global(.reduce-motion) .aboutClouds .moveToLeft {
-  transform: translateX(min(-20vw, -45%));
+:global(.reduce-motion) .moveOnReduceMotion .moveToLeft {
+  transform: translateX(calc(-1 * var(--rm-translation)));
 }
 
 :global(.animate-now) .moveToRight,
-:global(.reduce-motion) .aboutClouds .moveToRight {
-  transform: translateX(max(20vw, 48%));
+:global(.reduce-motion) .moveOnReduceMotion .moveToRight {
+  transform: translateX(var(--rm-translation));
 }
 
+:global(.light) .fullPageAsteroids .moveToLeft,
 :global(.dark) .fullPageClouds .moveToLeft {
   transform: translateX(min(-35vw, -66.67%));
 }
 
+:global(.light) .fullPageAsteroids .moveToRight,
 :global(.dark) .fullPageClouds .moveToRight {
   transform: translateX(max(35vw, 56%));
 }

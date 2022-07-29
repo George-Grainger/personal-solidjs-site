@@ -3,10 +3,10 @@
 /* Theme */
 :root {
   --white: hsl(0, 0%, 98%);
-  --cloud-white: hsla(0, 0%, 98%, 0.902);
+
   --white-hover: hsl(0, 0%, 83%);
   --black: hsl(231, 23%, 12%);
-  --shadow-black: hsla(231, 23%, 12%, 0.2);
+
   --black-hover: hsl(231, 23%, 27%);
   --sky-blue: hsl(212, 97%, 85%);
   --yellow-1: hsl(52, 98%, 78%);
@@ -23,6 +23,10 @@
   --hover: var(--black-hover);
   --inverse: var(--white);
   --inverse-hover: var(--white-hover);
+
+  --cloud-white: hsla(0, 0%, 98%, 0.902);
+  --space-rock-grey: hsl(226, 21%, 88%);
+  --shadow-black: hsla(231, 23%, 12%, 0.2);
 
   --duration: calc(var(--mult, 1) * 300ms);
   --transition: cubic-bezier(0.22, 0.61, 0.36, 1);
@@ -161,6 +165,14 @@ main::after {
   will-change: transform;
 }
 
+.dark main::before {
+  content: url('/asteroid1.svg');
+}
+
+.dark main::after {
+  content: url('/asteroid2.svg');
+}
+
 .reduce-motion main:not(.no-delay)::before,
 .reduce-motion main:not(.no-delay)::after {
   display: none;
@@ -180,6 +192,10 @@ main::after {
   transform: translateY(107.5vmax);
 }
 
+.dark main::after {
+  inset: auto -52.5vh -5vh;
+}
+
 main.cover.cover::before,
 main.cover.cover::after,
 main.loading.loading::before,
@@ -187,7 +203,7 @@ main.loading.loading::after {
   transform: translate(0);
 }
 
-.no-preference main > *,
+.no-preference main > section,
 .no-preference footer {
   opacity: 0;
   transition: opacity var(--duration) var(--transition);
@@ -202,7 +218,7 @@ header {
   margin-bottom: 5vh;
 }
 
-main:not(.cover) > *,
+main:not(.cover) > section,
 main:not(.cover) + footer {
   opacity: 1;
 }
@@ -264,6 +280,14 @@ section {
   main::after {
     inset: 15vw -7.5vw;
     transform: translateX(-107.5vmax);
+  }
+
+  .dark main::before {
+    inset: -18.5vw 0vw;
+  }
+
+  .dark main::after {
+    inset: 18.5vw 0vw;
   }
 
   .footerText {
