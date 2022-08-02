@@ -1,18 +1,38 @@
+import { useI18n } from '@solid-primitives/i18n';
 import type { VoidComponent } from 'solid-js';
 import { useAppContext } from '../../AppContext';
 import styles from './Navbar.module.css';
 
+declare module 'solid-js' {
+  namespace JSX {
+    interface SvgSVGAttributes<T> {
+      role?: 'button';
+    }
+  }
+}
+
 export const DarkmodeToggle: VoidComponent<{}> = () => {
   const context = useAppContext();
+  const [t] = useI18n();
+
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key == ' ') {
+      e.preventDefault();
+      context.isDark = !context.isDark;
+    }
+  };
 
   return (
     <svg
-      aria-role="button"
       onClick={() => (context.isDark = !context.isDark)}
+      role="button"
+      onKeyDown={handleKeyDown}
       class={styles.toggle}
       viewBox="0 0 370 190"
       xmlns="http://www.w3.org/2000/svg"
+      tabIndex={0}
     >
+      <title>{context.isDark ? t('global.light_mode', {}, 'Toggle light mode') : t('global.dark_mode', {}, 'Toggle dark mode')}</title>
       <path d="M275 5H95a90 90 0 0 0 0 180h180a90 90 0 1 0 0-180Z" class={styles.outline} />
       <g clip-path="url(#a)">
         <g class={styles.stars}>

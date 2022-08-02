@@ -9,6 +9,7 @@ interface SelectProps {
 }
 
 export const Select: ParentComponent<SelectProps> = (props) => {
+  let button: HTMLButtonElement | undefined;
   const [t] = useI18n();
   const elements = children(() => props.children)() as HTMLElement[];
 
@@ -25,6 +26,7 @@ export const Select: ParentComponent<SelectProps> = (props) => {
       setCurrentlySelected(el.value);
       props.onChange(el.value);
     });
+    button?.focus();
   };
 
   const getCheckedMatches = () => {
@@ -43,9 +45,9 @@ export const Select: ParentComponent<SelectProps> = (props) => {
       class={`${props.class || ''} ${styles.wrapper}`}
       classList={{ [styles.show]: optionsVisible() }}
       onFocusOut={(e) => !e.currentTarget?.matches(':focus-within') && setOptionsVisible(false)}
-      tabIndex={0}
     >
       <button
+        ref={button}
         aria-label={t('global.select.view_options', {}, 'View options')}
         class={styles.title}
         onClick={() => setOptionsVisible((v) => !v)}
@@ -53,7 +55,7 @@ export const Select: ParentComponent<SelectProps> = (props) => {
         <span class="sr-only">{t('global.select.current', {}, 'Currently selected:')}</span>
         <Switch fallback={'Choose an option'}>{getCheckedMatches()}</Switch>
       </button>
-      <fieldset class={styles.select} onClick={() => setOptionsVisible(false)} onChange={handleChange}>
+      <fieldset class={styles.select} aria-visible={optionsVisible()} onClick={() => setOptionsVisible(false)} onChange={handleChange}>
         <legend class="sr-only">{props.legend}</legend>
         {props.children}
       </fieldset>

@@ -27,14 +27,14 @@ const WhenNotPlaying: VoidComponent<{ playedAt: string }> = ({ playedAt }) => {
 const WhenPlaying: VoidComponent<{ duration: number }> = ({ duration }) => {
   const [t] = useI18n();
   const { playerProgress } = useSpotify();
-  const getPercentage = () => 100 * (playerProgress() / duration) - 100;
+  const getPercentage = () => 100 * (playerProgress() / duration);
 
   return (
     <>
       <p class={styles.currentlyPlaying}>{t('home.current-playing', {}, "I'm currently listening at...")}</p>
       <div class={styles.progressArea}>
         <p>{new Date().millisToISOTime(playerProgress())}</p>
-        <div style={{ '--translate': `${getPercentage()}%` }} class={styles.progressBar}></div>
+        <progress aria-label="Song progress" class={styles.progressBar} max={100} value={getPercentage()}></progress>
         <p>{new Date().millisToISOTime(duration)}</p>
       </div>
       <p>{t('home.stick-around', {}, 'Stick around to see what I listen to next')}</p>
@@ -49,6 +49,7 @@ export const LastPlayedMediaCard: VoidComponent<LastPlayedMedia> = (props) => {
     <div class={styles.lastPlayedCard}>
       <strong class={styles.heading}>{t('home.latest-song', {}, 'Latest song played')}</strong>
       <a class={styles.spotifyLink} href={props.playUrl} target="_blank" rel="noopener noreferrer">
+        <span class="sr-only">{`Listen to ${props.title} on Spotify`}</span>
         <SpotifyLogo class={styles.spotifySvg} />
       </a>
       <img src={props.imgUrl} alt={t('home.album-img-alt', { title: props.title })} loading="lazy" />
@@ -60,7 +61,13 @@ export const LastPlayedMediaCard: VoidComponent<LastPlayedMedia> = (props) => {
         </Show>
       </div>
       <Show when={props.previewUrl}>
-        <Audio src={props.previewUrl} />
+        <Audio
+          src={props.previewUrl}
+          id={props.title
+            .toLowerCase()
+            .replaceAll(/[(),.'"%$!\\\/]/g, '')
+            .replaceAll(' ', '-')}
+        />
       </Show>
     </div>
   );

@@ -14,11 +14,11 @@ export const AnimationSelect: VoidComponent<{}> = () => {
     <Select class={styles.animationSelect} legend="Show animations?" onChange={(e) => (context.isReduceMotion = e === 'reduce')}>
       <SelectOption id="animations-on" name={NAME} value="no-preference" checked={!context.isReduceMotion}>
         <span>{t('global.keep_animation', {}, 'Keep animations')}</span>
-        <AnimationsSVG />
+        <AnimationsSVG aria-hidden={true} />
       </SelectOption>
       <SelectOption id="animations-less" name={NAME} value="reduce" checked={context.isReduceMotion}>
         <span>{t('global.reduce_animation', {}, 'Reduce animations')}</span>
-        <AnimationsSVG class={styles.strikethrough} />
+        <AnimationsSVG class={styles.strikethrough} aria-hidden={true} />
       </SelectOption>
     </Select>
   );

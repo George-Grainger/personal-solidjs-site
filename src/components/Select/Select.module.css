@@ -17,7 +17,9 @@
 }
 
 .title:hover,
-.label:hover {
+.title:focus,
+.label:hover,
+.label:focus {
   background-color: var(--inverse-hover);
 }
 
@@ -48,7 +50,7 @@
 }
 
 .label {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: space-between;
   padding: var(--unit-x) var(--unit-y);
@@ -89,6 +91,10 @@
   pointer-events: all;
   transform: translateY(5%);
   opacity: 1;
+}
+
+.label {
+  display: flex;
 }
 
 .show .title::before {

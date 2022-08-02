@@ -42,8 +42,8 @@
     ],
     "created-by": "Créé par"
   },
-  "dark_mode": "Mode sombre",
-  "light_mode": "Mode lumière",
+  "dark_mode": "Basculer en mode sombre",
+  "light_mode": "Basculer en mode lumière",
   "reduce_animation": "Réduire l'animation",
   "keep_animation": "Garder l'animation"
 }

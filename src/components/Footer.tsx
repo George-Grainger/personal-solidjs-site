@@ -11,7 +11,7 @@ export const Footer: VoidSVG<{}> = () => {
   return (
     <footer>
       <div class="footerImage">
-        <FooterScene />
+        <FooterScene aria-hidden={true} />
       </div>
       <div class="footerText">
         <strong>{t('global.footer.preferences', {}, 'Preferences')}</strong>

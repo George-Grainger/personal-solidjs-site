@@ -12,6 +12,7 @@ export const AsteroidGroup1: VoidSVG<{ moveOnReduceMotion?: boolean }> = (props)
       xmlns="http://www.w3.org/2000/svg"
       class={`${styles.fullPageAsteroids} ${local.class || ''}`}
       classList={{ [styles.moveOnReduceMotion]: local.moveOnReduceMotion }}
+      aria-hidden="true"
       {...others}
     >
       <g class={styles.moveToRight}>

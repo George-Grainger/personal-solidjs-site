@@ -11,17 +11,22 @@ export const TopTrackCard: VoidComponent<TopTrack> = (props) => {
   let parent: HTMLDivElement | undefined;
 
   return (
-    <div ref={parent} class={styles.topTrackCard} tabindex={0}>
+    <div ref={parent} class={styles.topTrackCard} tabindex={0} role="gridcell">
       <img src={props.imgUrl} alt={`Album image for ${props.title}`} loading="lazy" />
       <div class={styles.topTrackdetails}>
         <p class={styles.songTitle}>{props.title}</p>
         <a class={styles.spotifyLink} href={props.playUrl} target="_blank" rel="noopener noreferrer">
+          <span class="sr-only">{`Listen to ${props.title} on Spotify`}</span>
           <SpotifyLogo />
         </a>
         <strong class={styles.artist}>{props.creator}</strong>
         <Show when={props.previewUrl}>
           <Audio
             src={props.previewUrl}
+            id={props.title
+              .toLowerCase()
+              .replaceAll(/[(),.'"%$!\\\/]/g, '')
+              .replaceAll(' ', '-')}
             parentOptions={{ parentRef: parent, setAutoPlay, playOnFocus: autoPlay, fadeOutOnFocusOut: () => true }}
           />
         </Show>

@@ -36,7 +36,7 @@ const Home: Component<{}> = () => {
       <section class={styles.heroSection} id="hero">
         <h1 class={styles.title}>{t('home.title', {}, 'Hello there')}</h1>
         <h2 class={styles.subtitle}>{t('home.subtitle', {}, 'Hello there')}</h2>
-        <HeroScene class={styles.svgScene} />
+        <HeroScene class={styles.svgScene} aria-hidden={true} />
         <p class={styles.intro}>{t('home.intro-paragraph', {}, "I'm George, a computer science student based in Manchester")}</p>
         <TransitionButton href="#projects" class={styles.btn}>
           {t('home.projects', {}, 'Projects')}
@@ -45,8 +45,8 @@ const Home: Component<{}> = () => {
 
       <section class={styles.projectSection}>
         <div class={styles.cloudWrapper}>
-          <FullPageCloudGroup1 />
-          <AsteroidGroup1 />
+          <FullPageCloudGroup1 aria-hidden={true} />
+          <AsteroidGroup1 aria-hidden={true} />
           <h2 class={styles.projectTitle}>{t('home.projects', {}, 'Projects')}</h2>
         </div>
         <div class={styles.projects} id="projects">
@@ -58,8 +58,8 @@ const Home: Component<{}> = () => {
 
       <section class={styles.aboutSection}>
         <div use:intersectionObserver class={styles.cloudWrapper}>
-          <FullPageCloudGroup2 moveOnReduceMotion={true} />
-          <AsteroidGroup1 moveOnReduceMotion={true} />
+          <FullPageCloudGroup2 moveOnReduceMotion={true} aria-hidden={true} />
+          <AsteroidGroup1 moveOnReduceMotion={true} aria-hidden={true} />
         </div>
         <div class={styles.aboutContent} id="about-me">
           <h2 class={styles.aboutTitle}>{t('home.about', {}, 'About me')}</h2>

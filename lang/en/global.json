@@ -42,8 +42,8 @@
     ],
     "created-by": "Created by"
   },
-  "dark_mode": "Dark mode",
-  "light_mode": "Light mode",
+  "dark_mode": "Toggle dark mode",
+  "light_mode": "Toggle light mode",
   "reduce_animation": "Reduce animations",
   "keep_animation": "Keep animations"
 }

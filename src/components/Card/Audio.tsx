@@ -4,6 +4,7 @@ import styles from './Card.module.css';
 const PlayIcon: VoidComponent<{}> = () => {
   return (
     <svg fill="currentColor" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+      <title>Play</title>
       <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm144.1 454.9L437.7 677.8a8.02 8.02 0 0 1-12.7-6.5V353.7a8 8 0 0 1 12.7-6.5L656.1 506a7.9 7.9 0 0 1 0 12.9z"></path>
     </svg>
   );
@@ -20,6 +21,7 @@ const PauseIcon: VoidComponent<{}> = () => {
 const SoundIcon: VoidComponent<{}> = () => {
   return (
     <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+      <title>Pause</title>
       <path
         fill="none"
         stroke-linecap="square"
@@ -49,7 +51,9 @@ interface ParentEventOptions {
   setAutoPlay?: Setter<boolean>;
 }
 
-export const Audio: VoidComponent<JSX.AudioHTMLAttributes<HTMLAudioElement> & { parentOptions?: ParentEventOptions }> = (props) => {
+type AudioProps = JSX.AudioHTMLAttributes<HTMLAudioElement> & { parentOptions?: ParentEventOptions; id: string | number };
+
+export const Audio: VoidComponent<AudioProps> = (props) => {
   const [local, others] = splitProps(props, ['onTimeUpdate', 'onLoadedData', 'onEnded', 'parentOptions']);
   const parentRef = local.parentOptions?.parentRef;
 
@@ -152,17 +156,22 @@ export const Audio: VoidComponent<JSX.AudioHTMLAttributes<HTMLAudioElement> & { 
         {...others}
       />
       <div class={styles.controls}>
-        <button onClick={handleTogglePause}>
+        <button aria-label={paused() ? 'Play audio' : 'Pause audio'} onClick={handleTogglePause}>
           <Show when={paused()} fallback={<PauseIcon />}>
             <PlayIcon />
           </Show>
         </button>
         <div class={styles.timelineWrapper}>
           <span>{new Date().millisToISOTime(currentTime())}</span>
+          <label class="sr-only" for={`${props.id}-progress`}>
+            Song progress
+          </label>
           <input
+            id={`${props.id}-progress`}
+            role="progressbar"
             style={{ 'background-size': `${getPercentage()}% 100%` }}
             onChange={handleChange}
-            onKeyPress={(e) => e.key === ' ' && handleTogglePause(e)}
+            onKeyDown={(e) => e.key === ' ' && handleTogglePause(e)}
             onInput={updateBackground}
             type="range"
             class={styles.timeline}
@@ -172,7 +181,7 @@ export const Audio: VoidComponent<JSX.AudioHTMLAttributes<HTMLAudioElement> & { 
           />
           <span>{new Date().millisToISOTime(totalTime())}</span>
         </div>
-        <button onClick={() => setMuted(!muted())}>
+        <button aria-label={paused() ? 'Mute audio' : 'Unmute audio'} onClick={() => setMuted(!muted())}>
           <Show when={muted()} fallback={<SoundIcon />}>
             <MuteIcon />
           </Show>

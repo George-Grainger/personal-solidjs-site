@@ -92,6 +92,12 @@ html {
   scroll-margin-top: 5.625rem;
 }
 
+:focus-visible {
+  outline: 0.25rem solid var(--purple);
+  outline-offset: 0.25rem;
+  border-radius: 0.5rem;
+}
+
 a {
   text-decoration: none;
   color: currentColor;

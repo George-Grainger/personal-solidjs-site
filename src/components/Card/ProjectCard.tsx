@@ -73,7 +73,14 @@ export const ProjectCard: VoidComponent<ProjectCardProps> = (props) => {
   };
 
   return (
-    <article ref={card} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} class={styles.card} attr-index={props.index}>
+    <article
+      ref={card}
+      id={`project-title-${props.index}`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      class={styles.card}
+      attr-index={props.index}
+    >
       <div class={styles.front}>
         <img class={styles.thumbnail} src={props.thumbnail} alt={props.alt || ''} loading="lazy" />
         <h3 class={styles.frontTitle}>{props.title}</h3>

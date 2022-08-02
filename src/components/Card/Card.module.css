@@ -240,13 +240,24 @@ h2.moveUp {
   transform: translateY(0);
 }
 
-.spotifyLink {
-  display: contents;
+.spotifyLink:focus-visible {
+  outline: none;
 }
 
-.topTrackCard .spotifyLink svg {
+.spotifyLink:focus-visible svg {
+  outline: 0.25rem solid var(--purple);
+  outline-offset: 0.125rem;
+  border-radius: 100vmax;
+}
+
+.topTrackCard .spotifyLink {
   grid-row: span 2;
   place-self: center;
+}
+
+.lastPlayedCard .spotifyLink {
+  position: absolute;
+  inset: 1em 1.25em auto auto;
 }
 
 .spotifyLink svg {
@@ -295,11 +306,6 @@ h2.moveUp {
   grid-column: span 2;
 }
 
-.spotifySvg {
-  position: absolute;
-  inset: 1em 1.25em auto auto;
-}
-
 .details {
   composes: text-ellipses;
 }
@@ -337,20 +343,21 @@ h2.moveUp {
 }
 
 .progressBar {
-  position: relative;
-  flex: 1 1 auto;
+  outline: none;
   background-color: var(--timeline);
   height: 0.25em;
   border-radius: 100vmax;
   overflow: hidden;
 }
 
-.progressBar::after {
-  content: '';
-  position: absolute;
-  inset: 0;
+.progressBar::-moz-progress-bar {
+  outline: none;
   background-color: var(--progress);
-  transform: translateX(var(--translate, -100%));
+}
+
+.progressBar::-webkit-progress-value {
+  outline: none;
+  background-color: var(--progress);
 }
 
 .controls {
@@ -363,7 +370,8 @@ h2.moveUp {
 }
 
 .controls button {
-  display: contents;
+  aspect-ratio: 1;
+  line-height: 1;
 }
 
 .timelineWrapper {

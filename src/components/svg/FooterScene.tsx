@@ -819,7 +819,7 @@ const Defs: VoidComponent<{}> = () => {
 
 const Background: VoidComponent<{}> = () => {
   return (
-    <svg class={styles.backgroundImage} viewBox={viewBox} xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <svg class={styles.backgroundImage} viewBox={viewBox} xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden={true}>
       <path d="M14 461h2182v97H14v-97Z" fill="var(--surface-l5)" />
       <path d="M14 478h2182v97H14v-97Z" fill="var(--surface-l4)" />
       <path d="M14 519h2182v97H14v-97Z" fill="var(--surface-l3)" />

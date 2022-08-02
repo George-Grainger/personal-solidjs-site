@@ -53,13 +53,13 @@ export const Navbar: VoidComponent<{}> = () => {
           </Index>
         </ul>
         <ul aria-label="Site settings" role="list">
-          <li>
+          <li aria-label="Dark mode preference">
             <DarkmodeToggle />
           </li>
-          <li>
+          <li aria-label="Animations preference">
             <AnimationSelect />
           </li>
-          <li>
+          <li aria-label="Language preference">
             <LanguageSelect />
           </li>
         </ul>

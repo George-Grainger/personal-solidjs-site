@@ -1,5 +1,6 @@
 import { NavLink, useLocation, useNavigate } from 'solid-app-router';
 import { Component, JSX, ParentComponent, splitProps } from 'solid-js';
+import { useAppContext } from '../../AppContext';
 import { routes } from '../../routes';
 
 type PreloadableComponent = Component<any> & {
@@ -11,6 +12,7 @@ type PreloadableComponent = Component<any> & {
 export const TransitionLink: ParentComponent<JSX.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string }> = (props) => {
   const [local, others] = splitProps(props, ['children', 'href', 'onClick']);
 
+  const context = useAppContext();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -26,9 +28,10 @@ export const TransitionLink: ParentComponent<JSX.AnchorHTMLAttributes<HTMLAnchor
 
     e.preventDefault();
     const header = document.querySelector('header') as Element;
-    const delayInS = header.classList.contains('no-delay')
-      ? 0
-      : Number(getComputedStyle(header, '::before').getPropertyValue('transition-duration').replace('s', ''));
+    const delayInS =
+      context.isReduceMotion || header.classList.contains('no-delay')
+        ? 0
+        : Number(getComputedStyle(header, '::before').getPropertyValue('transition-duration').replace('s', ''));
 
     (routes.find((route) => route.path === local.href)?.component as PreloadableComponent)?.preload();
 
