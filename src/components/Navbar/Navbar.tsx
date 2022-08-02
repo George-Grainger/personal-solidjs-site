@@ -10,22 +10,29 @@ import { TransitionLink } from '../Button';
 export const Navbar: VoidComponent<{}> = () => {
   const [t] = useI18n();
   const [expanded, setExpanded] = createSignal(false);
+  let header: HTMLElement | undefined;
 
   const handleClick = () => {
-    (document.querySelector('main') as Element).classList.add('no-delay');
+    header?.classList.add('no-delay');
     setExpanded(!expanded());
   };
 
   createEffect(() => {
     if (!expanded()) {
-      (document.querySelector('main') as Element).classList.add('no-delay');
-      setTimeout(() => (document.querySelector('main') as Element).classList.remove('no-delay'));
+      header?.classList.add('no-delay');
+      setTimeout(() => header?.classList.remove('no-delay'));
     }
-    (document.querySelector('main') as Element).classList.toggle('cover', expanded());
+    header?.classList.toggle('cover', expanded());
+  });
+
+  window.addEventListener('resize', () => {
+    if (matchMedia('(min-width: 60rem)').matches) {
+      setExpanded(false);
+    }
   });
 
   return (
-    <header>
+    <header ref={header}>
       <nav class={styles.nav}>
         <ul
           class={styles.links}

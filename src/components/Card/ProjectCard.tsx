@@ -59,28 +59,21 @@ export const ProjectCard: VoidComponent<ProjectCardProps> = (props) => {
     adjacent?.forEach((sibling) => {
       const siblingIndex = Number(sibling.getAttribute('attr-index'));
       if (siblingIndex < elIndex) {
-        sibling.classList.add(styles.moveUp);
+        (sibling as HTMLElement)?.style.setProperty('--move-by', `-10%`);
       } else if (siblingIndex > elIndex) {
         (sibling as HTMLElement)?.style.setProperty('--move-by', `${difference}px`);
-        sibling.classList.add(styles.moveDown);
       }
     });
   };
 
   const handleMouseLeave = (e: Event) => {
-    const moved = card?.parentElement?.parentElement?.querySelectorAll(`.${styles.moveUp}, .${styles.moveDown}`);
-    moved?.forEach((el) => el.classList.remove(styles.moveUp, styles.moveDown));
+    const parent = card?.parentElement as HTMLElement;
+    parent.querySelectorAll('article').forEach((el) => el.style.removeProperty('--move-by'));
+    parent.parentElement?.querySelector(`.${styles.moveUp}`)?.classList.remove(styles.moveUp);
   };
 
   return (
-    <article
-      ref={card}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onTouchStart={handleMouseEnter}
-      class={styles.card}
-      attr-index={props.index}
-    >
+    <article ref={card} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} class={styles.card} attr-index={props.index}>
       <div class={styles.front}>
         <img class={styles.thumbnail} src={props.thumbnail} alt={props.alt || ''} loading="lazy" />
         <h3 class={styles.frontTitle}>{props.title}</h3>

@@ -41,7 +41,7 @@
   isolation: isolate;
   display: grid;
   pointer-events: none;
-  z-index: 1;
+  z-index: 11;
 }
 
 .projectSection .cloudWrapper {
@@ -90,12 +90,17 @@
 
 .aboutContent {
   display: grid;
-  gap: 4em;
+  place-items: start;
+  gap: 2em;
   width: min(90vw, 80rem);
 }
 
 .aboutContent h3 + p {
   --flow-spacer: 0;
+}
+
+.aboutContent a {
+  --flow-spacer: 2.5em;
 }
 
 .aboutContent h3 {
@@ -118,6 +123,11 @@
 
 :global(.reduce-motion) .spotifyList {
   --duration: 0;
+}
+
+.spotify {
+  composes: global(flow);
+  grid-row: span 2;
 }
 
 .spotifyList {
@@ -179,7 +189,6 @@
   }
 
   .aboutContent {
-    gap: 2em;
     grid-template-columns: repeat(2, 1fr);
   }
 

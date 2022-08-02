@@ -7,6 +7,7 @@
   transition: transform var(--duration) var(--transition);
   will-change: transform;
   scroll-margin-top: calc(10rem + var(--move-by, 0px));
+  transform: translateY(var(--move-by, 0px));
 }
 
 :global(.reduce-motion) .card {
@@ -54,14 +55,6 @@ h2.moveUp {
 
 .btn {
   font-size: 1.25em;
-}
-
-.moveUp {
-  transform: translateY(-10%);
-}
-
-.moveDown {
-  transform: translateY(var(--move-by, 5%));
 }
 
 .front,
@@ -112,15 +105,17 @@ h2.moveUp {
   gap: 1em;
   margin-top: 55%;
   opacity: 0;
+  padding-bottom: 1em;
+  pointer-events: none;
   transform: translateY(15%);
   transition: transform var(--duration) var(--transition), opacity calc(0.5 * var(--duration)) var(--transition);
   will-change: transform, opacity;
-  padding-bottom: 1em;
 }
 
 .card:hover .back {
   opacity: 1;
   transform: translateY(0);
+  pointer-events: auto;
 }
 
 .backTitle {

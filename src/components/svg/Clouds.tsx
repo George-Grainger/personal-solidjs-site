@@ -34,6 +34,7 @@ export const FullPageCloudGroup2: VoidSVG<{ moveOnReduceMotion?: boolean }> = (p
       viewBox="0 0 1378 507"
       fill="var(--cloud-white)"
       class={`${styles.fullPageClouds} ${local.class || ''}`}
+      classList={{ [styles.moveOnReduceMotion]: local.moveOnReduceMotion }}
       {...others}
       xmlns="http://www.w3.org/2000/svg"
     >

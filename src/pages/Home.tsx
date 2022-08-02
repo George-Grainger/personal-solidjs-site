@@ -70,9 +70,8 @@ const Home: Component<{}> = () => {
             <For each={t('home.experience-paragraphs')}>{(paragraph: string) => <p>{paragraph}</p>}</For>
             <h3>{t('home.interests-title')}</h3>
             <For each={t('home.interests-paragraphs', {}, 'Interests')}>{(paragraph: string) => <p>{paragraph}</p>}</For>
-            <TransitionButton>{t('home.cv', {}, 'View my CV')}</TransitionButton>
           </div>
-          <div>
+          <div class={styles.spotify}>
             <h3>Spotify</h3>
             <p>{t('home.spotify-tagline', {}, 'Information on my favourite songs and recent listening')}</p>
             <ol class={styles.spotifyList}>
@@ -93,6 +92,7 @@ const Home: Component<{}> = () => {
               <LastPlayedMediaCard {...mostRecentMedia()!} />
             </Suspense>
           </div>
+          <TransitionButton>{t('home.cv', {}, 'View my CV')}</TransitionButton>
         </div>
       </section>
     </>

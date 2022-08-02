@@ -25,15 +25,15 @@ export const TransitionLink: ParentComponent<JSX.AnchorHTMLAttributes<HTMLAnchor
     }
 
     e.preventDefault();
-    const main = document.querySelector('main') as Element;
-    const delayInS = main.classList.contains('no-delay')
+    const header = document.querySelector('header') as Element;
+    const delayInS = header.classList.contains('no-delay')
       ? 0
-      : Number(getComputedStyle(main, '::before').getPropertyValue('transition-duration').replace('s', ''));
+      : Number(getComputedStyle(header, '::before').getPropertyValue('transition-duration').replace('s', ''));
 
     (routes.find((route) => route.path === local.href)?.component as PreloadableComponent)?.preload();
 
     if (local.href !== location.pathname) {
-      main?.classList.add('cover');
+      header?.classList.add('cover');
 
       setTimeout(() => {
         navigate(local.href, { scroll: true });
@@ -41,7 +41,7 @@ export const TransitionLink: ParentComponent<JSX.AnchorHTMLAttributes<HTMLAnchor
 
       clearTimeout(prevTimeout);
       prevTimeout = setTimeout(() => {
-        main?.classList.remove('cover');
+        header?.classList.remove('cover');
       }, delayInS * 1000);
     }
 

@@ -146,6 +146,67 @@ body {
   place-content: space-between;
 }
 
+header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  padding-top: 1rem;
+  margin-bottom: 5vh;
+}
+
+header::before,
+header::after {
+  content: url('/cloud.svg');
+  position: fixed;
+  transition: transform calc(2 * var(--duration)) var(--transition);
+  will-change: transform;
+}
+
+.dark header::before {
+  content: url('/asteroid1.svg');
+}
+
+.dark header::after {
+  content: url('/asteroid2.svg');
+}
+
+.reduce-motion header:not(.no-delay)::before,
+.reduce-motion header:not(.no-delay)::after {
+  display: none;
+}
+
+header::before {
+  inset: -15vh -55vh auto;
+  transform: translateY(-107.5vmax);
+}
+
+header::after {
+  inset: auto -55vh -5vh;
+  transform: translateY(107.5vmax);
+}
+
+.dark header::after {
+  inset: auto -52.5vh -5vh;
+}
+
+header.cover.cover::before,
+header.cover.cover::after,
+header.loading.loading::before,
+header.loading.loading::after {
+  transform: translate(0);
+}
+
+.no-preference section,
+.no-preference footer {
+  opacity: 0;
+  transition: opacity var(--duration) var(--transition);
+}
+
+header:not(.cover) + main > section,
+header:not(.cover) ~ footer {
+  opacity: 1;
+}
+
 main {
   display: grid;
   gap: min(10vh, 10rem);
@@ -156,67 +217,16 @@ main {
   font-size: clamp(1.125rem, 3.5vw, 1.375rem);
 }
 
-main::before,
-main::after {
-  content: url('/cloud.svg');
-  position: fixed;
-  z-index: 1;
-  transition: transform calc(2 * var(--duration)) var(--transition);
-  will-change: transform;
-}
-
-.dark main::before {
-  content: url('/asteroid1.svg');
-}
-
-.dark main::after {
-  content: url('/asteroid2.svg');
-}
-
-.reduce-motion main:not(.no-delay)::before,
-.reduce-motion main:not(.no-delay)::after {
-  display: none;
-}
-
 main::before {
-  inset: -15vh -55vh auto;
-  transform: translateY(-107.5vmax);
-}
-
-main::after {
-  inset: auto -55vh -5vh;
-  transform: translateY(107.5vmax);
-}
-
-.dark main::after {
-  inset: auto -52.5vh -5vh;
-}
-
-main.cover.cover::before,
-main.cover.cover::after,
-main.loading.loading::before,
-main.loading.loading::after {
-  transform: translate(0);
-}
-
-.no-preference main > section,
-.no-preference footer {
-  opacity: 0;
-  transition: opacity var(--duration) var(--transition);
-  will-change: opacity;
-}
-
-header {
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  padding-top: 1rem;
-  margin-bottom: 5vh;
-}
-
-main:not(.cover) > section,
-main:not(.cover) + footer {
-  opacity: 1;
+  content: '';
+  background: inherit;
+  position: fixed;
+  inset: -2em 0 auto;
+  height: 5.5em;
+  box-shadow: inset 0 0 5rem 3rem var(--background);
+  z-index: 10;
+  filter: blur(0.75rem);
+  transition: box-shadow var(--duration) var(--transition);
 }
 
 footer {
@@ -239,7 +249,7 @@ footer {
   margin-top: -4px;
   display: grid;
   padding: 0 5vw 1em;
-  color: var(--inverse);
+  color: var(--black);
   background-color: var(--clr-footer);
   z-index: 1;
   gap: 0.25em;
@@ -248,8 +258,8 @@ footer {
   grid-auto-flow: column;
   justify-content: space-between;
   text-align: center;
-  transition: color var(--duration) var(--transition), background-color var(--duration) var(--transition);
-  will-change: color, background-color;
+  transition: background-color var(--duration) var(--transition);
+  will-change: background-color;
 }
 
 .footerText ul {
@@ -272,21 +282,21 @@ strong {
 }
 
 @media only screen and (min-width: 60rem) {
-  main::before {
+  header::before {
     inset: -15vw -7.5vw;
     transform: translateX(107.5vmax);
   }
 
-  main::after {
+  header::after {
     inset: 15vw -7.5vw;
     transform: translateX(-107.5vmax);
   }
 
-  .dark main::before {
+  .dark header::before {
     inset: -18.5vw 0vw;
   }
 
-  .dark main::after {
+  .dark header::after {
     inset: 18.5vw 0vw;
   }
 
