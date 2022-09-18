@@ -18,12 +18,22 @@ export const TransitionLink: ParentComponent<JSX.AnchorHTMLAttributes<HTMLAnchor
 
   let prevTimeout: number | undefined;
   const handleClick = (e: MouseEvent) => {
+    if (location.pathname === (local.href || '/')) {
+      return false;
+    }
+
     // Run onClick method if passed as prop
     local.onClick && (local.onClick as (e: MouseEvent) => any)(e);
 
     // Don't transition for links to same page
-    if (local.href.startsWith('#') || local.href.includes(`${location.pathname}/#`)) {
-      return true;
+    if (local.href.includes('#')) {
+      const index = local.href.indexOf('#');
+      const before = local.href.substring(0, index) || '/';
+
+      if (before === location.pathname) {
+        document.querySelector(local.href.substring(index))?.scrollIntoView(true);
+        return false;
+      }
     }
 
     e.preventDefault();

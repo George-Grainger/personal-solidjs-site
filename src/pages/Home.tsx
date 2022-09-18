@@ -57,13 +57,13 @@ const Home: Component<{}> = () => {
         </TransitionButton>
       </section>
 
-      <section class={styles.projectSection}>
+      <section class={styles.projectSection} id="projects">
         <div class={styles.cloudWrapper}>
           <FullPageCloudGroup1 aria-hidden={true} />
           <AsteroidGroup1 aria-hidden={true} />
           <h2 class={styles.projectTitle}>{t('home.projects', {}, 'Projects')}</h2>
         </div>
-        <div class={styles.projects} id="projects">
+        <div class={styles.projects}>
           <Index each={t('home.project-cards')}>
             {(data: Accessor<Omit<ProjectCardProps, 'index'>>, i) => <ProjectCard index={i + 1} {...data()} />}
           </Index>

@@ -205,6 +205,7 @@ g.mountainGroup ~ .mountainGroup path:nth-child(3n + 1) {
 
 :global(.no-preference .visible) .fullPageSvg > g {
   transition: transform calc(2.5 * var(--duration)) var(--transition);
+  will-change: transform;
 }
 
 :global(.animate-now) .moveToLeft,
@@ -346,12 +347,6 @@ g.mountainGroup ~ .mountainGroup path:nth-child(3n + 1) {
 
 .craters {
   composes: svg-transition-opacity;
-}
-
-.backgroundImage > path,
-.surface > path,
-.craters > path {
-  /* transition: fill var(--duration) var(--transition); */
 }
 
 :global(.light) .asteroids,

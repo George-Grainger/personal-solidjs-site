@@ -5,15 +5,15 @@
   "nav": [
     {
       "title": "Accueil",
-      "path": "/"
+      "path": "#hero"
     },
     {
       "title": "Projets",
-      "path": "/projects"
+      "path": "#projects"
     },
     {
       "title": "Informations",
-      "path": "/about-me"
+      "path": "#about-me"
     }
   ],
   "select": {

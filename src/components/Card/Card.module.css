@@ -272,7 +272,7 @@ h2.moveUp {
   transition: opacity var(--duration) var(--transition);
   stroke: currentColor;
   fill: currentColor;
-  filter: drop-shadow(0 0.05em 0.125em var(--inverse));
+  filter: drop-shadow(0 0.05em 0.125em var(--black));
   cursor: pointer;
   outline: unset;
   opacity: 0;
