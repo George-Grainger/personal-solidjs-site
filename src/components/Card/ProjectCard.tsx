@@ -59,17 +59,21 @@ export const ProjectCard: VoidComponent<ProjectCardProps> = (props) => {
     adjacent?.forEach((sibling) => {
       const siblingIndex = Number(sibling.getAttribute('attr-index'));
       if (siblingIndex < elIndex) {
-        (sibling as HTMLElement)?.style.setProperty('--move-by', `-10%`);
+        (sibling as HTMLElement)?.style.setProperty('--move-by', `-3rem`);
+        sibling.classList.add(styles.moveUp);
       } else if (siblingIndex > elIndex) {
         (sibling as HTMLElement)?.style.setProperty('--move-by', `${difference}px`);
+        sibling.classList.add(styles.moveDown);
       }
     });
   };
 
-  const handleMouseLeave = (e: Event) => {
-    const parent = card?.parentElement as HTMLElement;
-    parent.querySelectorAll('article').forEach((el) => el.style.removeProperty('--move-by'));
-    parent.parentElement?.querySelector(`.${styles.moveUp}`)?.classList.remove(styles.moveUp);
+  const handleMouseLeave = (e: MouseEvent) => {
+    const moved = card?.parentElement?.parentElement?.querySelectorAll(`.${styles.moveUp}, .${styles.moveDown}`);
+    moved?.forEach((el) => el.classList.remove(styles.moveUp, styles.moveDown));
+    if (!Array.from(moved || []).some((el) => el.matches(':hover'))) {
+      moved?.forEach((el) => (el as HTMLElement).style.removeProperty('--move-by'));
+    }
   };
 
   return (

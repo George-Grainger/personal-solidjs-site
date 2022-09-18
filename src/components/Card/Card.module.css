@@ -5,7 +5,6 @@
   position: relative;
   isolation: isolate;
   scroll-margin-top: calc(10rem + var(--move-by, 0px));
-  transform: translateY(var(--move-by, 0px));
 }
 
 :global(.reduce-motion) .card {
@@ -24,8 +23,7 @@
 }
 
 :global(.visible) .card::before {
-  transition: transform var(--duration) var(--transition), opacity calc(0.5 * var(--duration)) var(--transition),
-    background-color var(--duration) var(--transition);
+  transition: transform var(--duration) var(--transition), opacity calc(0.5 * var(--duration)) var(--transition);
 }
 
 .card::after {
@@ -46,6 +44,11 @@
 
 .card:hover::after {
   transform: translateX(100%);
+}
+
+.moveUp,
+.moveDown {
+  transform: translateY(var(--move-by, 0px));
 }
 
 h2.moveUp {
