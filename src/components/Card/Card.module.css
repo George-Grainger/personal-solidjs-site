@@ -250,12 +250,33 @@ h2.moveUp {
 
 .topTrackCard .spotifyLink {
   grid-row: span 2;
-  place-self: center;
+  align-self: flex-end;
 }
 
 .lastPlayedCard .spotifyLink {
   position: absolute;
   inset: 1em 1.25em auto auto;
+}
+
+.closeButton {
+  position: absolute;
+  display: flex;
+  padding: 0.125em;
+  width: 1.25em;
+  height: 1.25em;
+  top: 0.625em;
+  right: 0.75em;
+  transition: opacity var(--duration) var(--transition);
+  stroke: currentColor;
+  fill: currentColor;
+  filter: drop-shadow(0 0.05em 0.125em var(--inverse));
+  cursor: pointer;
+  outline: unset;
+  opacity: 0;
+}
+
+.topTrackCard:focus-within .closeButton {
+  opacity: 1;
 }
 
 .spotifySvg {

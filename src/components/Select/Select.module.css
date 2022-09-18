@@ -5,7 +5,8 @@
   width: var(--select-width, 100%);
   color: currentColor;
   border-radius: inherit;
-  border: none;
+  border: 0.175rem solid currentColor;
+  background-color: var(--inverse);
   display: flex;
   z-index: 1;
 }
@@ -28,39 +29,6 @@
   --unit-x: var(--size-x, 0.375em);
   --unit-y: var(--size-y, 0.375em);
   position: relative;
-}
-
-.wrapper::before,
-.wrapper::after,
-.select::before,
-.select::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  transition: opacity var(--duration) var(--transition);
-}
-
-.wrapper::before,
-.select::before {
-  background-color: var(--black);
-  outline: 0.175rem solid var(--white);
-}
-
-:global(.light) .wrapper::before,
-:global(.light) .select::before {
-  opacity: 0;
-}
-
-.wrapper::after,
-.select::after {
-  background-color: var(--white);
-  outline: 0.175rem solid var(--black);
-}
-
-:global(.dark) .wrapper::after,
-:global(.dark) .select::after {
-  opacity: 0;
 }
 
 .select {
