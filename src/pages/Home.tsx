@@ -1,7 +1,6 @@
 import { useI18n } from '@solid-primitives/i18n';
-import { makeIntersectionObserver } from '@solid-primitives/intersection-observer';
-import { Accessor, Component, For, Index, Suspense } from 'solid-js';
-import { Button, TransitionButton } from '../components/Button';
+import { Accessor, Component, For, Index, onMount, Suspense } from 'solid-js';
+import { TransitionButton } from '../components/Button';
 import { ProjectCard, ProjectCardProps, LastPlayedMediaCard, TopTrackCard } from '../components/Card';
 import { HeroScene } from '../components/svg';
 import { AsteroidGroup1 } from '../components/svg/Asteroids';
@@ -11,9 +10,18 @@ import { useSpotify } from '../hooks/useSpotify';
 import styles from '../page-styles/home.module.css';
 
 const Home: Component<{}> = () => {
+  const animationObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      } else {
+        entry.target.classList.remove('visible');
+      }
+    });
+  });
+
   let previousY = 0;
-  const { add: intersectionObserver } = makeIntersectionObserver(
-    [],
+  const aboutTriggerObserver = new IntersectionObserver(
     ([entry]) => {
       const currentY = entry.boundingClientRect.y;
       if (entry.isIntersecting) {
@@ -25,8 +33,14 @@ const Home: Component<{}> = () => {
       }
       previousY = currentY;
     },
-    { threshold: 0.4 },
+    { threshold: 0.33 },
   );
+
+  onMount(() => {
+    document.querySelectorAll('section, footer').forEach((section) => animationObserver.observe(section));
+    const aboutSection = document.querySelector('#about-section');
+    aboutSection && aboutTriggerObserver.observe(aboutSection);
+  });
 
   const [t] = useI18n();
   const { mostRecentMedia, topSongs } = useSpotify();
@@ -56,8 +70,8 @@ const Home: Component<{}> = () => {
         </div>
       </section>
 
-      <section class={styles.aboutSection}>
-        <div use:intersectionObserver class={styles.cloudWrapper}>
+      <section class={styles.aboutSection} id="about-section">
+        <div class={styles.cloudWrapper}>
           <FullPageCloudGroup2 moveOnReduceMotion={true} aria-hidden={true} />
           <AsteroidGroup1 moveOnReduceMotion={true} aria-hidden={true} />
         </div>

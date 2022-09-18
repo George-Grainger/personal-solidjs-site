@@ -9,7 +9,7 @@ import { routes } from './routes';
 const App: VoidComponent<{}> = () => {
   // Should be executed once on initial page load to prevent initial animation occuring
   onMount(() => {
-    setTimeout(() => document.documentElement.classList.remove('no-animate'));
+    setTimeout(() => document.documentElement.classList.remove('no-animate'), 300);
   });
 
   // don't require clean up since will be useful throughout site use

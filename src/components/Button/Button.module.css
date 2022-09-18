@@ -1,4 +1,5 @@
 .btn {
+  position: relative;
   display: flex;
   width: max-content;
   margin-inline: auto;
@@ -7,19 +8,36 @@
   background-color: var(--btn-bg, var(--purple));
   color: var(--btn-text, var(--white));
   text-transform: uppercase;
-  filter: drop-shadow(0.2em 0.2em 0 var(--text));
   transform: skewX(-15deg);
   font-style: italic;
-  transition: filter var(--duration) var(--transition);
-  will-change: filter;
 }
 
-.btn:focus {
-  outline: none;
+.btn::before,
+.btn::after {
+  content: '';
+  position: absolute;
+  background-color: var(--text);
+  transform-origin: top left;
+  /* transition: transform var(--duration) var(--transition), background-color var(--duration) var(--transition); */
+  transition: transform var(--duration) var(--transition);
 }
 
-.btn:hover {
-  filter: drop-shadow(0.3em 0.3em 0 var(--yellow-2));
+.btn::before {
+  inset: 100% -0.25rem -0.25rem 0.25rem;
+}
+
+.btn::after {
+  inset: 0.25rem -0.25rem -0.25rem 100%;
+}
+
+.btn:hover::before {
+  background-color: var(--yellow-2);
+  transform: translateX(0.2rem) scaleY(180%);
+}
+
+.btn:hover::after {
+  background-color: var(--yellow-2);
+  transform: translateY(0.2rem) scaleX(180%);
 }
 
 .btn span {
@@ -31,8 +49,7 @@
   width: 0.75em;
   margin-right: 0.5em;
   position: relative;
-  transition: margin 500ms;
-  will-change: margin;
+  transition: margin var(--duration) var(--transition);
 }
 
 .arrows {
@@ -42,7 +59,6 @@
 
 .arrows path {
   transition: transform var(--duration) var(--transition);
-  will-change: transform;
 }
 
 .arrows path:nth-child(1) {
@@ -66,7 +82,7 @@
 }
 
 :global(.no-preference) .btn:hover path {
-  animation: colour_anim 1s infinite calc(-1 * var(--time, 600ms));
+  animation: colour_anim calc(3 * var(--duration)) infinite calc(-1 * var(--time, 600ms));
 }
 
 @keyframes colour_anim {

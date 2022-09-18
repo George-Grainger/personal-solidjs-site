@@ -66,12 +66,11 @@
 }
 
 .projectTitle {
+  composes: global(transition-transform);
   place-self: start center;
   position: sticky;
   margin-block: 3rem;
   top: 33vh;
-  transition: transform var(--duration) var(--transition);
-  will-change: transform;
 }
 
 .projects {
@@ -147,7 +146,6 @@
   z-index: 0;
   /* Required z-index transition otherwise cards drop behind others when shrinking */
   transition: transform var(--duration) var(--transition), z-index var(--duration) linear;
-  will-change: transform, z-index;
 }
 
 .spotifyList > li:focus-within {

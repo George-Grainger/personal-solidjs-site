@@ -1,12 +1,10 @@
 /* Classes to compose */
 .svg-transition-opacity {
   transition: opacity calc(var(--mult, 1) * var(--duration)) var(--transition);
-  will-change: opacity;
 }
 
 .svg-transition-transform {
   transition: transform calc(var(--mult, 3) * var(--duration)) var(--transition) var(--delay, 0ms);
-  will-change: transform;
 }
 
 :global(.reduce-motion) .svg-transition-opacity,
@@ -192,6 +190,7 @@ g.mountainGroup ~ .mountainGroup path:nth-child(3n + 1) {
   overflow: visible;
   width: min(240vw, 160rem);
   grid-area: 1 / -1;
+  will-change: transform;
 }
 
 .fullPageClouds {
@@ -204,9 +203,8 @@ g.mountainGroup ~ .mountainGroup path:nth-child(3n + 1) {
   --rm-translation: max(20vw, 30%);
 }
 
-:global(.no-preference) .fullPageSvg > g {
+:global(.no-preference .visible) .fullPageSvg > g {
   transition: transform calc(2.5 * var(--duration)) var(--transition);
-  will-change: transform;
 }
 
 :global(.animate-now) .moveToLeft,
@@ -353,8 +351,7 @@ g.mountainGroup ~ .mountainGroup path:nth-child(3n + 1) {
 .backgroundImage > path,
 .surface > path,
 .craters > path {
-  transition: fill var(--duration) var(--transition);
-  will-change: fill;
+  /* transition: fill var(--duration) var(--transition); */
 }
 
 :global(.light) .asteroids,
@@ -482,7 +479,6 @@ g.mountainGroup ~ .mountainGroup path:nth-child(3n + 1) {
   opacity: 0;
   transition: transform calc(var(--mult, 3) * var(--duration)) var(--transition) var(--t-delay, 0ms),
     opacity var(--duration) var(--transition) var(--o-delay, calc(var(--mult, 3) * var(--duration)));
-  will-change: transform opacity;
 }
 
 .rocketFlames {

@@ -43,7 +43,7 @@ nav {
 
 .hamburgerContainer {
   display: none;
-  border-radius: 0.5rem;
+  border-radius: var(--br);
   outline: 0.175rem solid currentColor;
   background-color: var(--inverse);
   padding: 0.167em 0.375em;
@@ -80,10 +80,8 @@ nav {
   fill: var(--white);
 }
 
-.moonMask,
 .cloud > path {
   transition: transform var(--duration) var(--transition);
-  will-change: transform;
 }
 
 .toggle {
@@ -102,13 +100,11 @@ nav {
 .outline {
   stroke: var(--white);
   stroke-width: 0.625rem;
-  transition: fill var(--duration) var(--transition), stroke var(--duration) var(--transition);
-  will-change: fill, stroke;
+  /* transition: fill var(--duration) var(--transition), stroke var(--duration) var(--transition); */
 }
 
 .stars {
-  transition: opacity var(--duration) var(--transition);
-  will-change: opacity;
+  composes: global(transition-opacity);
 }
 
 .stars * {
@@ -116,20 +112,17 @@ nav {
   transition: opacity calc(0.4 * var(--duration)) var(--transition),
     transform calc(0.4 * var(--duration)) var(--transition) calc(0.8 * var(--duration));
   transform-origin: 50% 50%;
-  will-change: transform, opacity;
 }
 
 .sun {
+  composes: global(transition-transform-opacity);
   opacity: var(--is-light);
   fill: var(--yellow-2);
-  transition: transform var(--duration) var(--transition), opacity var(--duration) var(--transition);
-  will-change: transform, opacity;
 }
 
 .moon {
+  composes: global(transition-opacity);
   opacity: calc(1 - var(--is-light));
-  transition: transform var(--duration) var(--transition), opacity var(--duration) var(--transition);
-  will-change: transform, opacity;
 }
 
 .cloud > path:first-child {
@@ -143,6 +136,7 @@ nav {
 }
 
 .moonMask {
+  composes: global(transition-transform);
   fill: hsl(230, 23%, 46%);
 }
 

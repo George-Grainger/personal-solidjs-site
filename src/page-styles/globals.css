@@ -3,10 +3,8 @@
 /* Theme */
 :root {
   --white: hsl(0, 0%, 98%);
-
   --white-hover: hsl(0, 0%, 83%);
   --black: hsl(231, 23%, 12%);
-
   --black-hover: hsl(231, 23%, 27%);
   --sky-blue: hsl(212, 97%, 85%);
   --yellow-1: hsl(52, 98%, 78%);
@@ -24,12 +22,14 @@
   --inverse: var(--white);
   --inverse-hover: var(--white-hover);
 
-  --cloud-white: hsla(0, 0%, 98%, 0.902);
+  --cloud-white: hsla(0, 0%, 98%, 0.9);
   --space-rock-grey: hsl(226, 21%, 88%);
   --shadow-black: hsla(231, 23%, 12%, 0.2);
 
   --duration: calc(var(--mult, 1) * 300ms);
   --transition: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  --br: 0.5rem;
 }
 
 :root.dark {
@@ -95,7 +95,7 @@ html {
 :focus-visible {
   outline: 0.25rem solid var(--purple);
   outline-offset: 0.25rem;
-  border-radius: 0.5rem;
+  border-radius: var(--br);
 }
 
 a {
@@ -141,8 +141,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--background);
   color: var(--text);
-  transition: color var(--duration) var(--transition), background-color var(--duration) var(--transition);
-  will-change: color, background-color;
+  /* transition: color var(--duration) var(--transition), background-color var(--duration) var(--transition);
+  will-change: color, background-color; */
 }
 
 #root {
@@ -205,6 +205,9 @@ header.loading.loading::after {
 .no-preference section,
 .no-preference footer {
   opacity: 0;
+}
+
+.no-preference .visible {
   transition: opacity var(--duration) var(--transition);
 }
 
@@ -232,7 +235,7 @@ main::before {
   box-shadow: inset 0 0 5rem 3rem var(--background);
   z-index: 10;
   filter: blur(0.75rem);
-  transition: box-shadow var(--duration) var(--transition);
+  /* transition: box-shadow var(--duration) var(--transition); */
 }
 
 footer {
@@ -264,9 +267,11 @@ footer {
   grid-auto-flow: column;
   justify-content: space-between;
   text-align: center;
-  transition: background-color var(--duration) var(--transition);
-  will-change: background-color;
 }
+
+/* .visible .footerText {
+  transition: background-color var(--duration) var(--transition);
+} */
 
 .footerText ul {
   display: flex;
@@ -334,15 +339,31 @@ strong {
   display: none;
 }
 
+.transition-transform {
+  transition: transform var(--duration) var(--transition);
+}
+
+.transition-opacity {
+  transition: opacity var(--duration) var(--transition);
+}
+
+.transition-transform-opacity {
+  transition: transform var(--duration) var(--transition), opacity var(--duration) var(--transition);
+}
+
+.no-animate,
+section:not(.visible),
+footer:not(.visible) {
+  --duration: 0;
+}
+
 /* 
 Used primarily to prevent animations on first page load
 Enabled for 1ms initially, then removed in App.tsx
 */
-.no-animate {
-  --duration: 0;
-}
-
 .no-animate,
+section:not(.visible),
+footer:not(.visible),
 .reduce-motion * {
   animation-play-state: paused !important;
   transition-delay: 0ms !important;

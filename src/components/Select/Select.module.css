@@ -2,12 +2,12 @@
 .select {
   --drop-duration: 200ms;
   line-height: 1;
-  border-radius: 0.5rem;
-  border: 0.175rem solid currentColor;
   width: var(--select-width, 100%);
   color: currentColor;
-  background-color: var(--inverse);
+  border-radius: inherit;
+  border: none;
   display: flex;
+  z-index: 1;
 }
 
 .title svg,
@@ -17,32 +17,63 @@
 }
 
 .title:hover,
-.title:focus,
+.title:focus-visible,
 .label:hover,
-.label:focus {
+.label:focus-visible {
   background-color: var(--inverse-hover);
 }
 
 .wrapper {
+  border-radius: var(--br);
   --unit-x: var(--size-x, 0.375em);
   --unit-y: var(--size-y, 0.375em);
   position: relative;
+}
+
+.wrapper::before,
+.wrapper::after,
+.select::before,
+.select::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  transition: opacity var(--duration) var(--transition);
+}
+
+.wrapper::before,
+.select::before {
+  background-color: var(--black);
+  outline: 0.175rem solid var(--white);
+}
+
+:global(.light) .wrapper::before,
+:global(.light) .select::before {
+  opacity: 0;
+}
+
+.wrapper::after,
+.select::after {
+  background-color: var(--white);
+  outline: 0.175rem solid var(--black);
+}
+
+:global(.dark) .wrapper::after,
+:global(.dark) .select::after {
+  opacity: 0;
 }
 
 .select {
   display: flex;
   flex-direction: column;
   position: absolute;
-  overflow: hidden;
-  top: 100%;
+  top: 110%;
   padding: 0;
   z-index: -1;
   opacity: 0;
   pointer-events: none;
   transform: translateY(-25%);
-  transition: color var(--duration) var(--transition), background-color var(--duration) var(--transition),
-    opacity var(--drop-duration) var(--transition), transform var(--drop-duration) var(--transition);
-  will-change: color, background-color, opacity, transform;
+  transition: opacity var(--drop-duration) var(--transition), transform var(--drop-duration) var(--transition);
 }
 
 .select input[type='radio'] {
@@ -50,19 +81,19 @@
 }
 
 .label {
+  z-index: 1;
   display: none;
   align-items: center;
   justify-content: space-between;
   padding: var(--unit-x) var(--unit-y);
+  border-radius: inherit;
 }
 
 .title {
+  z-index: 1;
   padding: var(--unit-y) calc(4 * var(--unit-x)) var(--unit-y) var(--unit-x);
   position: relative;
   text-align: left;
-  transition: color var(--duration) var(--transition), background-color var(--duration) var(--transition),
-    border var(--duration) var(--transition);
-  will-change: color, background-color, border;
 }
 
 .title::before,
@@ -73,7 +104,6 @@
   border-left: var(--unit-x) solid transparent;
   border-right: var(--unit-x) solid transparent;
   transition: opacity var(--drop-duration) var(--transition);
-  will-change: opacity;
 }
 
 .title::before {

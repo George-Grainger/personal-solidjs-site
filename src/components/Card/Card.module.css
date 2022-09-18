@@ -1,11 +1,9 @@
 .card {
-  --br: 0.5rem;
+  composes: global(transition-transform);
   --duration: 250ms;
   display: grid;
   position: relative;
   isolation: isolate;
-  transition: transform var(--duration) var(--transition);
-  will-change: transform;
   scroll-margin-top: calc(10rem + var(--move-by, 0px));
   transform: translateY(var(--move-by, 0px));
 }
@@ -23,9 +21,11 @@
   transform-origin: 50% 20%;
   border-radius: var(--br);
   background-color: var(--card);
+}
+
+:global(.visible) .card::before {
   transition: transform var(--duration) var(--transition), opacity calc(0.5 * var(--duration)) var(--transition),
     background-color var(--duration) var(--transition);
-  will-change: transform, opacity, background-color;
 }
 
 .card::after {
@@ -37,8 +37,7 @@
   background-color: var(--black);
   padding: 0.5em 0.5em 0.75em;
   clip-path: polygon(100% 0%, 100% 100%, 50% 85%, 0 100%, 0 0);
-  transition: transform calc(var(--duration)) var(--transition);
-  will-change: transform;
+  transition: transform var(--duration) var(--transition);
 }
 
 .card:hover::before {
@@ -63,10 +62,10 @@ h2.moveUp {
 }
 
 .front {
+  composes: global(transition-transform);
   display: flex;
   flex-direction: column;
   gap: 0.5em;
-  transition: transform var(--duration) var(--transition);
   margin-bottom: auto;
 }
 
@@ -82,10 +81,9 @@ h2.moveUp {
 
 .frontTitle,
 .subtitle {
+  composes: global(transition-opacity);
   line-height: 1;
   margin-inline: 0.25em;
-  transition: opacity var(--duration) var(--transition);
-  will-change: opacity;
 }
 
 .subtitle {
@@ -99,6 +97,7 @@ h2.moveUp {
 }
 
 .back {
+  composes: global(transition-transform-opacity);
   display: grid;
   place-items: center;
   text-align: center;
@@ -108,8 +107,6 @@ h2.moveUp {
   padding-bottom: 1em;
   pointer-events: none;
   transform: translateY(15%);
-  transition: transform var(--duration) var(--transition), opacity calc(0.5 * var(--duration)) var(--transition);
-  will-change: transform, opacity;
 }
 
 .card:hover .back {
@@ -154,7 +151,6 @@ h2.moveUp {
   transform-origin: center;
   stroke-width: 0.15em;
   transition: transform var(--duration) var(--transition);
-  will-change: transform;
 }
 
 :global(.reduce-motion) .icon path {
@@ -202,11 +198,13 @@ h2.moveUp {
   --progress: var(--white);
   --timeline: hsl(0, 0%, 37%);
   background-color: var(--card);
-  border-radius: 0.5rem;
+  border-radius: var(--br);
   position: relative;
-  transition: background-color var(--duration) var(--transition);
-  will-change: background-color;
 }
+
+/* :global(.visible) .spotifyCard {
+  transition: background-color var(--duration) var(--transition);
+} */
 
 .spotifyCard img {
   aspect-ratio: 1;
@@ -260,10 +258,9 @@ h2.moveUp {
   inset: 1em 1.25em auto auto;
 }
 
-.spotifyLink svg {
+.spotifySvg {
+  composes: global(transition-transform);
   width: 1.25em;
-  transition: transform var(--duration) var(--transition);
-  will-change: transform;
 }
 
 .spotifyLink svg:hover {
@@ -271,6 +268,7 @@ h2.moveUp {
 }
 
 .topTrackdetails {
+  composes: global(transition-transform);
   position: absolute;
   display: grid;
   grid-template-columns: auto 1.25em;
@@ -279,8 +277,6 @@ h2.moveUp {
   padding: 15% 5% 5%;
   background-image: linear-gradient(transparent 5%, var(--black) 75%);
   transform: translateY(100%);
-  transition: transform var(--duration) var(--transition) calc(var(--duration) / 3);
-  will-change: transform;
 }
 
 .text-ellipses {
@@ -390,7 +386,7 @@ h2.moveUp {
   -webkit-appearance: none;
   height: 0.25em;
   background-color: var(--timeline);
-  border-radius: 0.5rem;
+  border-radius: var(--br);
   background-size: 0% 100%;
   background-image: linear-gradient(var(--progress), var(--progress));
   background-repeat: no-repeat;
@@ -403,10 +399,9 @@ h2.moveUp {
   -webkit-appearance: none;
   width: 0.5em;
   height: 0.5em;
-  border-radius: 50%;
+  border-radius: 100vmax;
   cursor: pointer;
   opacity: 0;
-  transition: all 0.1s;
   background-color: var(--progress);
 }
 
@@ -414,10 +409,9 @@ h2.moveUp {
   -webkit-appearance: none;
   width: 0.5em;
   height: 0.5em;
-  border-radius: 50%;
+  border-radius: 100vmax;
   cursor: pointer;
   opacity: 0;
-  transition: all 0.1s;
   background-color: var(--progress);
   border: none;
 }
@@ -426,10 +420,9 @@ h2.moveUp {
   -webkit-appearance: none;
   width: 0.5em;
   height: 0.5em;
-  border-radius: 50%;
+  border-radius: 100vmax;
   cursor: pointer;
   opacity: 0;
-  transition: all 0.1s;
   background-color: var(--progress);
 }
 
