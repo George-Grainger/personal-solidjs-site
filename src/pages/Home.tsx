@@ -49,7 +49,7 @@ const Home: Component<{}> = () => {
     <>
       <section class={styles.heroSection} id="hero">
         <h1 class={styles.title}>{t('home.title', {}, 'Hello there')}</h1>
-        <h2 class={styles.subtitle}>{t('home.subtitle', {}, 'Hello there')}</h2>
+        <h2 class={styles.subtitle}>{t('home.subtitle', {}, 'Thanks for stopping by')}</h2>
         <HeroScene class={styles.svgScene} aria-hidden={true} />
         <p class={styles.intro}>{t('home.intro-paragraph', {}, "I'm George, a computer science student based in Manchester")}</p>
         <TransitionButton href="#projects" class={styles.btn}>
@@ -89,18 +89,18 @@ const Home: Component<{}> = () => {
             <h3>Spotify</h3>
             <p>{t('home.spotify-tagline', {}, 'Information on my favourite songs and recent listening')}</p>
             <ol class={styles.spotifyList}>
-              <Suspense fallback={<p>Loading...</p>}>
-                <Index each={topSongs()}>
-                  {(track, i) => {
-                    const ORIGINS = ['2%', '50%', '98%'];
-                    return (
-                      <li style={{ 'transform-origin': `${ORIGINS[i % 3]} ${ORIGINS[Math.floor(i / 3)]}` }}>
-                        <TopTrackCard {...track()} />
-                      </li>
-                    );
-                  }}
-                </Index>
-              </Suspense>
+              {/* <Suspense fallback={<p>Loading...</p>}> */}
+              <Index each={topSongs()}>
+                {(track, i) => {
+                  const ORIGINS = ['2%', '50%', '98%'];
+                  return (
+                    <li style={{ 'transform-origin': `${ORIGINS[i % 3]} ${ORIGINS[Math.floor(i / 3)]}`, '--a-delay': `${-i * 900}ms` }}>
+                      <TopTrackCard {...track()} />
+                    </li>
+                  );
+                }}
+              </Index>
+              {/* </Suspense> */}
             </ol>
             <Suspense fallback={<p>Loading...</p>}>
               <LastPlayedMediaCard {...mostRecentMedia()!} />

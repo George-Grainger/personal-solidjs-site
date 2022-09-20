@@ -11,6 +11,10 @@
   --duration: 0;
 }
 
+:global(.reduce-motion) .card a {
+  --duration: 300ms;
+}
+
 .card::before {
   content: '';
   position: absolute;
@@ -137,7 +141,7 @@ h2.moveUp {
 
 .languages {
   columns: 3;
-  column-rule: 1px solid var(--black);
+  column-rule: 1px solid var(--text);
   margin-inline: auto;
 }
 
@@ -205,10 +209,6 @@ h2.moveUp {
   position: relative;
 }
 
-/* :global(.visible) .spotifyCard {
-  transition: background-color var(--duration) var(--transition);
-} */
-
 .spotifyCard img {
   aspect-ratio: 1;
   border-radius: inherit;
@@ -220,6 +220,40 @@ h2.moveUp {
   font-size: 0.5em;
   color: var(--white);
   overflow: hidden;
+}
+
+.trackPlaceholder {
+  composes: spotifyCard;
+  display: flex;
+  padding: 0.5em;
+}
+
+.trackPlaceholder svg {
+  fill: #dadde7;
+  animation: fading 1800ms ease calc(var(--a-delay, 0ms)) infinite, spin 7200ms linear var(--a-delay, 0ms) infinite;
+}
+
+@keyframes fading {
+  0% {
+    opacity: 1;
+  }
+
+  40% {
+    opacity: 0.5;
+  }
+
+  80% {
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(1turn);
+  }
 }
 
 .lastPlayedCard {
