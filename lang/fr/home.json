@@ -2,7 +2,7 @@
   "title": "Bonjour",
   "subtitle": "Merci d'être passé",
   "intro-paragraph": "Je m'appelle George, un étudiant en informatique vivant à Manchester",
-  "projects": "Projets",
+  "about-me": "Sur moi",
   "project-cards": [
     {
       "title": "Symput",
@@ -50,17 +50,21 @@
   "about": "Sur moi",
   "academic-title": "Académique",
   "academic-paragraphs": [
-    "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus officia vitae omnis officiis fugit, sed tempora voluptatibus libero velit minus. Cum est nostrum delectus, placeat dicta quo ex obcaecati. Necessitatibus.",
-    "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus officia vitae omnis officiis fugit, sed tempora voluptatibus libero velit minus. Cum est nostrum delectus, placeat dicta quo ex obcaecati. Necessitatibus."
+    "Je suis dans ma troisième année d'études pour mon MEng (Hons) en informatique à l'Université de Manchester.",
+    "En première année, j'ai remporté le prix Netcraft pour les 10 meilleurs étudiants avec une moyenne de 90 %. En deuxième année, j'ai continué à bien faire et j'étais dans le top 5% des étudiants (sur 400) avec une moyenne de 89%. J'ai également obtenu la meilleure note dans l'unité d'architecture système avec une moyenne de 92%.",
+    "J'apprécie une gamme d'unités de cours, en particulier celles basées sur l'IA, les graphiques et le matériel. J'ai hâte de voir comment cela joue dans mon projet de troisième année qui simule le système dopaminergique et la dépendance par l'apprentissage par renforcement - <a href=\"/third-year-project\">en savoir plus</a>."
   ],
   "experience-title": "Expérience",
-  "experience-paragraphs": [
-    "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus officia vitae omnis officiis fugit, sed tempora voluptatibus libero velit minus. Cum est nostrum delectus, placeat dicta quo ex obcaecati. Necessitatibus.",
-    "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus officia vitae omnis officiis fugit, sed tempora voluptatibus libero velit minus. Cum est nostrum delectus, placeat dicta quo ex obcaecati. Necessitatibus."
+  "experience-p": "J'ai passé un an à travailler en tant que développeur junior chez <a href=\"https://www.enigma-interactive.co.uk\" target=\"_blank\" rel=\"noopener noreferrer\">Enigma Interactive</a>. Durant cette période, j'avais trois projets principaux :",
+  "enigma-roles": [
+    "Contribuer à «l'équipe de base», cela impliquait de programmer en Java et de construire le cadre de base sur lequel d'autres sites ont été développés.",
+    "Développer une <a href=\"https://transplant-resource.newcastle-hospitals.nhs.uk\" target=\"_blank\" rel=\"noopener noreferrer\">ressource de transplantation cardiaque et pulmonaire</a> pour la confiance de la fondation Newcastle NHS - <a href=\"/nhs-site\">en savoir plus</a>.",
+    "Production d'un jeu éducatif pour Western Power, qui enseigne aux enfants les dangers potentiels des lignes électriques et comment les éviter."
   ],
   "interests-title": "Intérêts",
   "interests-paragraphs": [
-    "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus officia vitae omnis officiis fugit, sed tempora voluptatibus libero velit minus. Cum est nostrum delectus, placeat dicta quo ex obcaecati. Necessitatibus."
+    "Je joue au rugby depuis que je suis tout petit et j'aime toujours autant jouer maintenant. Depuis que je suis à l'université, j'ai aussi pratiqué l'escalade et le surf. Ceux-ci apportent de nouveaux défis et dans lesquels j'aime m'impliquer.",
+    "En particulier, j'aime l'aspect résolution de problèmes de l'escalade et le sentiment de satisfaction après avoir persévéré pour obtenir une ascension délicate."
   ],
   "cv": "Voir mon CV",
   "spotify-tagline": "Informations sur mes chansons récentes et préférées",

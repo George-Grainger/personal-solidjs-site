@@ -52,8 +52,8 @@ const Home: Component<{}> = () => {
         <h2 class={styles.subtitle}>{t('home.subtitle', {}, 'Thanks for stopping by')}</h2>
         <HeroScene class={styles.svgScene} aria-hidden={true} />
         <p class={styles.intro}>{t('home.intro-paragraph', {}, "I'm George, a computer science student based in Manchester")}</p>
-        <TransitionButton href="#projects" class={styles.btn}>
-          {t('home.projects', {}, 'Projects')}
+        <TransitionButton href="#about-me" class={styles.btn}>
+          {t('home.about-me', {}, 'About Me')}
         </TransitionButton>
       </section>
 
@@ -79,9 +79,12 @@ const Home: Component<{}> = () => {
           <h2 class={styles.aboutTitle}>{t('home.about', {}, 'About me')}</h2>
           <div class="flow">
             <h3>{t('home.academic-title', {}, 'Academic')}</h3>
-            <For each={t('home.academic-paragraphs')}>{(paragraph: string) => <p>{paragraph}</p>}</For>
+            <For each={t('home.academic-paragraphs')}>{(paragraph: string) => <p innerHTML={paragraph} />}</For>
             <h3>{t('home.experience-title', {}, 'Experience')}</h3>
-            <For each={t('home.experience-paragraphs')}>{(paragraph: string) => <p>{paragraph}</p>}</For>
+            <p innerHTML={t('home.experience-p')} />
+            <ol class={styles.enigmaRoles}>
+              <For each={t('home.enigma-roles')}>{(role: string) => <li innerHTML={role} />}</For>
+            </ol>
             <h3>{t('home.interests-title')}</h3>
             <For each={t('home.interests-paragraphs', {}, 'Interests')}>{(paragraph: string) => <p>{paragraph}</p>}</For>
           </div>
