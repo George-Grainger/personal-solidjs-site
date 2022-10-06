@@ -1,4 +1,4 @@
-import { Router, useIsRouting, useRoutes } from 'solid-app-router';
+import { Router, useIsRouting, useRoutes } from '@solidjs/router';
 import { onMount, Suspense, VoidComponent } from 'solid-js';
 import { MetaProvider } from 'solid-meta';
 import { AppContextProvider } from './AppContext';

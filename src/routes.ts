@@ -1,4 +1,4 @@
-import { RouteDefinition } from 'solid-app-router';
+import { RouteDefinition } from '@solidjs/router';
 import { Component, lazy } from 'solid-js';
 
 const lazyWithPreload = (factory: () => Promise<{ default: Component<any> }>) => {

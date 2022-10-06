@@ -1,9 +1,9 @@
 import { useI18n } from '@solid-primitives/i18n';
 import { Index } from 'solid-js';
-import { TransitionLink } from './Button';
 import { FooterScene } from './svg';
 import { VoidSVG } from './svg/svg-types';
 import { footer } from '../../lang/en/global.json';
+import { NavLink } from '@solidjs/router';
 
 export const Footer: VoidSVG<{}> = () => {
   const [t] = useI18n();
@@ -18,9 +18,9 @@ export const Footer: VoidSVG<{}> = () => {
         <ul role="list">
           <Index each={footer['preference-links']}>
             {(defaultLink, i) => (
-              <TransitionLink href={t(`global.footer.preference-links.${i}.path`, {}, defaultLink().path)}>
+              <NavLink href={t(`global.footer.preference-links.${i}.path`, {}, defaultLink().path)}>
                 {t(`global.footer.preference-links.${i}.title`, {}, defaultLink().title)}
-              </TransitionLink>
+              </NavLink>
             )}
           </Index>
         </ul>

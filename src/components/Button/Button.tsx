@@ -1,6 +1,6 @@
+import { NavLink } from '@solidjs/router';
 import { JSX, ParentComponent, splitProps, VoidComponent } from 'solid-js';
 import styles from './Button.module.css';
-import { TransitionLink } from './TransitionLink';
 
 const ButtonArrows: VoidComponent<{}> = () => {
   return (
@@ -19,10 +19,10 @@ const ButtonArrows: VoidComponent<{}> = () => {
 export const TransitionButton: ParentComponent<JSX.AnchorHTMLAttributes<HTMLAnchorElement>> = (props) => {
   const [local, others] = splitProps(props, ['class', 'children', 'href']);
   return (
-    <TransitionLink class={`${styles.btn} ${local.class || ''}`} href={local.href || ''} {...others}>
+    <NavLink class={`${styles.btn} ${local.class || ''}`} href={local.href || ''} {...others}>
       <span>{local.children}</span>
       <ButtonArrows />
-    </TransitionLink>
+    </NavLink>
   );
 };
 

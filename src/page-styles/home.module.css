@@ -118,6 +118,21 @@
   line-height: 1;
 }
 
+.aboutContent ol,
+.aboutContent ul {
+  padding-left: 1.5ch;
+  margin-top: calc(var(--flow-spacer, 1em) * 0.66);
+}
+
+.aboutContent ol ::marker,
+.aboutContent ul ::marker {
+  font-weight: 600;
+}
+
+.aboutContent li {
+  margin-top: calc(var(--flow-spacer, 1em) * 0.33);
+}
+
 :global(.reduce-motion) .spotifyList {
   --duration: 0;
 }

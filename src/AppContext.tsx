@@ -1,8 +1,9 @@
-import { ParentComponent, createContext, createEffect, useContext, createResource } from 'solid-js';
+import { Component, ParentComponent, createContext, createEffect, useContext, createResource, onMount, onCleanup } from 'solid-js';
 import { Meta, Title } from 'solid-meta';
 import { createI18nContext, I18nContext } from '@solid-primitives/i18n';
-import { useLocation } from 'solid-app-router';
+import { useLocation, useNavigate } from '@solidjs/router';
 import useLocalStorage from './hooks/useLocalStorage';
+import { routes } from './routes';
 
 // Useful functions to create time from milliseconds in '0:00' format
 declare global {
@@ -20,6 +21,12 @@ Date.prototype.millisToISOTime = (milliseconds: number) => {
 const langs: { [lang: string]: any } = {
   en: async () => (await import('../lang/en/en')).default(),
   fr: async () => (await import('../lang/fr/fr')).default(),
+};
+
+type PreloadableComponent = Component<any> & {
+  preload: () => Promise<{
+    default: Component<any>;
+  }>;
 };
 
 type DataParams = {
@@ -41,11 +48,78 @@ const AppContext = createContext<AppContextInterface>({
 });
 
 export const AppContextProvider: ParentComponent = (props) => {
+  const context = useAppContext();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  let prevTimeout: number | undefined;
+  let prevPathname = location.pathname;
+
+  const handleNavigation = (pathname: string, hash: string) => {
+    const href = pathname + hash;
+
+    // Don't transition for links to same page
+    if (hash && pathname === prevPathname) {
+      document.querySelector(hash)?.scrollIntoView(true);
+      return false;
+    }
+
+    const header = document.querySelector('header') as Element;
+    const delayInS =
+      context.isReduceMotion || header.classList.contains('no-delay')
+        ? 0
+        : Number(getComputedStyle(header, '::before').getPropertyValue('transition-duration').replace('s', ''));
+
+    (routes.find((route) => route.path === href)?.component as PreloadableComponent)?.preload();
+
+    if (pathname !== prevPathname) {
+      prevPathname = pathname;
+      header?.classList.add('cover');
+
+      setTimeout(() => {
+        navigate(href, { scroll: true });
+      }, delayInS * 333);
+
+      clearTimeout(prevTimeout);
+      prevTimeout = setTimeout(() => {
+        header?.classList.remove('cover');
+      }, delayInS * 1000);
+    }
+    return false;
+  };
+
+  onMount(() => {
+    const handleAnchorClick = (e: MouseEvent) => {
+      if (e.metaKey || e.altKey || e.ctrlKey || e.shiftKey) {
+        return false;
+      }
+
+      const a = (e.target as HTMLElement)?.closest('a') as HTMLAnchorElement | undefined;
+
+      if (!a || a.host !== window.location.host || a.hasAttribute('download')) {
+        return false;
+      }
+
+      if (a.hash) {
+        a.pathname === prevPathname ? window.history.replaceState(null, '', a.href) : window.history.pushState(null, '', a.href);
+      }
+
+      e.preventDefault();
+      return handleNavigation(a.pathname, a.hash);
+    };
+
+    const handlePopState = () => handleNavigation(location.pathname, location.hash);
+
+    window.addEventListener('popstate', handlePopState, false);
+    document.querySelector('body')?.addEventListener('click', handleAnchorClick, false);
+    onCleanup(() => document.querySelector('body')?.removeEventListener('click', handleAnchorClick));
+    onCleanup(() => document.querySelector('body')?.removeEventListener('click', handlePopState));
+  });
+
   const [isDark, setDark] = useLocalStorage('dark', window.matchMedia(DARK_MEDIA).matches);
   const [isReduceMotion, setReduceMotion] = useLocalStorage('reduce-motion', window.matchMedia(MOTION_MEDIA).matches);
 
   const browserLang = navigator.language.slice(0, 2);
-  const location = useLocation();
   const [getLocale, setLocale] = useLocalStorage<string>('locale', location.query.locale || browserLang || 'en');
 
   const i18n = createI18nContext({}, getLocale());

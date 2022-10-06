@@ -5,7 +5,7 @@ import { DarkmodeToggle } from './DarkmodeToggle';
 import LanguageSelect from './LanguageSelect';
 import styles from './Navbar.module.css';
 import { nav as englishLinks } from '../../../lang/en/global.json';
-import { TransitionLink } from '../Button';
+import { NavLink } from '@solidjs/router';
 
 export const Navbar: VoidComponent<{}> = () => {
   const [t] = useI18n();
@@ -45,9 +45,9 @@ export const Navbar: VoidComponent<{}> = () => {
             {(defaultLink, i) => (
               <li class={styles.link}>
                 {/* Requires reasonable assumptions links consistent across all languages */}
-                <TransitionLink href={t(`global.nav.${i}.path`, {}, defaultLink().path)} onClick={() => setExpanded(false)}>
+                <NavLink href={t(`global.nav.${i}.path`, {}, defaultLink().path)} onClick={() => setExpanded(false)}>
                   {t(`global.nav.${i}.title`, {}, defaultLink().title)}
-                </TransitionLink>
+                </NavLink>
               </li>
             )}
           </Index>
