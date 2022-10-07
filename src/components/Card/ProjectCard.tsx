@@ -46,7 +46,7 @@ export const ProjectCard: VoidComponent<ProjectCardProps> = (props) => {
     const adjacent = el.parentElement?.querySelectorAll(`article:nth-child(${PER_ROW}n + ${elIndex % PER_ROW})`);
     const projectTitle = el.parentElement?.previousElementSibling?.querySelector('h2');
 
-    if (matchMedia('(max-width: 60rem)').matches && matchMedia('(pointer: coarse)').matches) {
+    if (matchMedia('(pointer: coarse)').matches) {
       el.scrollIntoView(true);
     }
     // Check if it's a middle value

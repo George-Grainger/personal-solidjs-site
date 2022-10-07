@@ -20,25 +20,28 @@ const Home: Component<{}> = () => {
     });
   });
 
-  let previousY = 0;
-  const aboutTriggerObserver = new IntersectionObserver(
-    ([entry]) => {
-      const currentY = entry.boundingClientRect.y;
-      if (entry.isIntersecting) {
-        // Scroll down into area
-        entry.target.classList.add('animate-now');
-      } else if (currentY >= previousY) {
-        // Scroll up out of area
-        entry.target.classList.remove('animate-now');
-      }
-      previousY = currentY;
-    },
-    { threshold: 0.33 },
-  );
-
   onMount(() => {
+    const aboutSection = document.getElementById('about-section');
+    const mult = matchMedia('(min-width: 40rem)').matches ? 0.75 : 0.5;
+    const threshold = (mult * window?.innerHeight) / (aboutSection?.clientHeight || 1);
+
+    let previousY = 0;
+    const aboutTriggerObserver = new IntersectionObserver(
+      ([entry]) => {
+        const currentY = entry.boundingClientRect.y;
+        if (entry.isIntersecting) {
+          // Scroll down into area
+          entry.target.classList.add('animate-now');
+        } else if (currentY >= previousY) {
+          // Scroll up out of area
+          entry.target.classList.remove('animate-now');
+        }
+        previousY = currentY;
+      },
+      { threshold },
+    );
+
     document.querySelectorAll('section, footer').forEach((section) => animationObserver.observe(section));
-    const aboutSection = document.querySelector('#about-section');
     aboutSection && aboutTriggerObserver.observe(aboutSection);
   });
 
@@ -71,7 +74,7 @@ const Home: Component<{}> = () => {
       </section>
 
       <section class={styles.aboutSection} id="about-section">
-        <div class={styles.cloudWrapper}>
+        <div id="moving-wrapper" class={styles.cloudWrapper}>
           <FullPageCloudGroup2 moveOnReduceMotion={true} aria-hidden={true} />
           <AsteroidGroup1 moveOnReduceMotion={true} aria-hidden={true} />
         </div>
@@ -109,7 +112,9 @@ const Home: Component<{}> = () => {
               <LastPlayedMediaCard {...mostRecentMedia()!} />
             </Suspense>
           </div>
-          <TransitionButton>{t('home.cv', {}, 'View my CV')}</TransitionButton>
+          <TransitionButton href="/GeorgeGraingerCV.pdf" download={'GeorgeGraingerCV'}>
+            {t('home.cv', {}, 'View my CV')}
+          </TransitionButton>
         </div>
       </section>
     </>

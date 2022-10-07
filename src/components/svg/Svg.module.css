@@ -373,18 +373,6 @@ g.mountainGroup ~ .mountainGroup path:nth-child(3n + 1) {
   opacity: 0;
 }
 
-@keyframes rotate {
-  0% {
-    transform: translate(-50%, 0) rotateZ(0deg);
-  }
-  50% {
-    transform: translate(-50%, -2%) rotateZ(180deg);
-  }
-  100% {
-    transform: translate(-50%, 0%) rotateZ(360deg);
-  }
-}
-
 .smoke > path {
   animation: smokeAnimaton calc(var(--duration) * 3) linear infinite;
 }
@@ -539,31 +527,5 @@ g.mountainGroup ~ .mountainGroup path:nth-child(3n + 1) {
   }
   75% {
     transform: rotate(-10deg);
-  }
-}
-
-@keyframes flagWave {
-  0% {
-    transform: translate3d(0, 0, 0) rotateZ(5deg) rotateY(22deg);
-  }
-
-  20% {
-    transform: translate3d(0, 0, 0) rotateZ(5deg) rotateY(0deg);
-  }
-
-  40% {
-    transform: translate3d(0, 0, 0) rotateZ(6deg) rotateY(-22deg);
-  }
-
-  60% {
-    transform: translate3d(0, 0, 0) rotateZ(5deg) rotateY(0deg);
-  }
-
-  80% {
-    transform: translate3d(0, 0, 0) rotateZ(5deg) rotateY(16deg);
-  }
-
-  100% {
-    transform: translate3d(0, 0, 0) rotateZ(5deg) rotateY(22deg);
   }
 }

@@ -13,6 +13,10 @@ nav {
   display: contents;
 }
 
+.nav a {
+  text-decoration: none;
+}
+
 .nav .links {
   flex-direction: column;
   justify-content: center;
