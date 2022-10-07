@@ -1,5 +1,5 @@
 import { useI18n } from '@solid-primitives/i18n';
-import { Accessor, Component, For, Index, onMount, Suspense } from 'solid-js';
+import { Accessor, Component, createEffect, createSignal, For, Index, on, onCleanup, onMount, Suspense } from 'solid-js';
 import { TransitionButton } from '../components/Button';
 import { ProjectCard, ProjectCardProps, LastPlayedMediaCard, TopTrackCard } from '../components/Card';
 import { HeroScene } from '../components/svg';
@@ -10,6 +10,10 @@ import { useSpotify } from '../hooks/useSpotify';
 import styles from '../page-styles/home.module.css';
 
 const Home: Component<{}> = () => {
+  const [t, { locale }] = useI18n();
+
+  const { mostRecentMedia, topSongs } = useSpotify();
+
   const animationObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -21,11 +25,20 @@ const Home: Component<{}> = () => {
   });
 
   onMount(() => {
+    const [threshold, setThreshold] = createSignal(matchMedia('(min-width: 40rem)').matches ? 0.33 : 0.15);
+
     const aboutSection = document.getElementById('about-section');
-    const mult = matchMedia('(min-width: 40rem)').matches ? 0.75 : 0.5;
-    const threshold = (mult * window?.innerHeight) / (aboutSection?.clientHeight || 1);
+    const calcThreshold = () => {
+      const mult = matchMedia('(min-width: 40rem)').matches ? 0.75 : 0.5;
+      setThreshold((mult * window?.innerHeight) / aboutSection!.clientHeight);
+    };
+
+    createEffect(on(locale, calcThreshold));
+    // Timeout prevents repeated calls on initial render
+    setTimeout(() => window?.addEventListener('resize', calcThreshold));
 
     let previousY = 0;
+
     const aboutTriggerObserver = new IntersectionObserver(
       ([entry]) => {
         const currentY = entry.boundingClientRect.y;
@@ -38,15 +51,13 @@ const Home: Component<{}> = () => {
         }
         previousY = currentY;
       },
-      { threshold },
+      { threshold: threshold() },
     );
 
     document.querySelectorAll('section, footer').forEach((section) => animationObserver.observe(section));
     aboutSection && aboutTriggerObserver.observe(aboutSection);
+    onCleanup(() => window?.removeEventListener('resize', calcThreshold));
   });
-
-  const [t] = useI18n();
-  const { mostRecentMedia, topSongs } = useSpotify();
 
   return (
     <>

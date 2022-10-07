@@ -101,7 +101,7 @@ export const AppContextProvider: ParentComponent = (props) => {
       }
 
       if (a.hash) {
-        a.pathname === prevPathname ? window.history.replaceState(null, '', a.href) : window.history.pushState(null, '', a.href);
+        window.history.pushState(null, '', a.href);
       }
 
       e.preventDefault();
