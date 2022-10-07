@@ -22,14 +22,14 @@
       "title": "Reinforcement Learning",
       "subtitle": "Computational models simulating the dopamine system circurity in the brain",
       "description": "earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !",
-      "thumbnails": ["/brain-1x.png", "/brain-2x.png", "/brain-3x.png", "/brain-4x.png"],
+      "thumbnails": ["/brain-1x.webp", "/brain-2x.webp", "/brain-3x.webp", "/brain-4x.webp"],
       "alt": ""
     },
     {
       "title": "Stendhal",
       "subtitle": "An Android keyboard and associated full stack website for feedback",
       "description": "earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !",
-      "thumbnails": ["/game-cover.jpg"],
+      "thumbnails": ["/stendhal.webp"],
       "alt": ""
     },
     {

@@ -22,14 +22,14 @@
       "title": "Reinforcement Learning",
       "subtitle": "Computational models simulating the dopamine system circurity in the brain",
       "description": "earum tempora quam, inventore blanditiis natus, delectus mollitia enim!",
-      "thumbnails": ["/brain-1x.png", "/brain-2x.png", "/brain-3x.png", "/brain-4x.png"],
+      "thumbnails": ["/brain-1x.webp", "/brain-2x.webp", "/brain-3x.webp", "/brain-4x.webp"],
       "alt": ""
     },
     {
       "title": "Stendhal",
       "subtitle": "Debugging and adding to features to an open source MMORPG with 10,000 lines of code",
       "description": "earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !",
-      "thumbnails": ["/stendhal.jpg"],
+      "thumbnails": ["/stendhal.webp"],
       "alt": ""
     },
     {
