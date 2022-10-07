@@ -8,7 +8,7 @@ export interface ProjectCardProps {
   title: string;
   subtitle: string;
   description: string;
-  thumbnail: string;
+  thumbnails: string[];
   alt: string;
   languages?: string[];
 }
@@ -86,7 +86,13 @@ export const ProjectCard: VoidComponent<ProjectCardProps> = (props) => {
       attr-index={props.index}
     >
       <div class={styles.front}>
-        <img class={styles.thumbnail} src={props.thumbnail} alt={props.alt || ''} loading="lazy" />
+        <img
+          class={styles.thumbnail}
+          src={props.thumbnails[0]}
+          srcset={props.thumbnails.map((url, index) => `${url} ${index + 1}x`).join()}
+          alt={props.alt || ''}
+          loading="lazy"
+        />
         <h3 class={styles.frontTitle}>{props.title}</h3>
         <strong class={styles.subtitle}>{props.subtitle}</strong>
       </div>
