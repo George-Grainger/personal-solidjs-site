@@ -10,6 +10,7 @@ export interface ProjectCardProps {
   description: string;
   thumbnails: string[];
   alt: string;
+  link: string;
   languages?: string[];
 }
 
@@ -108,7 +109,7 @@ export const ProjectCard: VoidComponent<ProjectCardProps> = (props) => {
           <CPP />
           <strong>C++</strong>
         </div>
-        <TransitionButton href="/about" class={styles.btn}>
+        <TransitionButton href={props.link} class={styles.btn}>
           More info
         </TransitionButton>
       </div>

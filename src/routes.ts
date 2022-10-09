@@ -1,5 +1,6 @@
-import { RouteDefinition } from '@solidjs/router';
+import { Navigate, RouteDefinition } from '@solidjs/router';
 import { Component, lazy } from 'solid-js';
+import { ProjectData } from './pages/Project.data';
 
 const lazyWithPreload = (factory: () => Promise<{ default: Component<any> }>) => {
   const Component = lazy(factory);
@@ -14,11 +15,21 @@ export const routes: RouteDefinition[] = [
   },
   {
     path: '/projects',
-    component: lazyWithPreload(() => import('./pages/Projects')),
+    component: () => Navigate({ href: '/#projects' }),
   },
   {
-    path: '/about-me',
-    component: lazyWithPreload(() => import('./pages/About')),
+    path: ['/about', 'about-me'],
+    component: () => Navigate({ href: '/#about-me' }),
+  },
+  {
+    path: '/project/:id',
+    component: () => Navigate({ href: '/projects/:id' }),
+    data: ProjectData,
+  },
+  {
+    path: '/projects/:id',
+    component: lazyWithPreload(() => import('./pages/Project')),
+    data: ProjectData,
   },
   {
     path: '/*all',

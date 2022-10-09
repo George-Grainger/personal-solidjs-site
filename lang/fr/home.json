@@ -9,42 +9,48 @@
       "subtitle": "An Android keyboard and associated full stack website for feedback",
       "description": "earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !",
       "thumbnails": ["/symput.svg"],
-      "alt": "Logo Symput"
+      "alt": "Logo Symput",
+      "link": "/projects/symput"
     },
     {
       "title": "Personal Website",
       "subtitle": "georgegrainger.com (this site) - my portfolio website to try and show off!!",
       "description": "earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !",
       "thumbnails": ["/game-cover.jpg"],
-      "alt": ""
+      "alt": "",
+      "link": "/projects/personal-website"
     },
     {
       "title": "Reinforcement Learning",
       "subtitle": "Computational models simulating the dopamine system circurity in the brain",
       "description": "earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !",
       "thumbnails": ["/brain-1x.webp", "/brain-2x.webp", "/brain-3x.webp", "/brain-4x.webp"],
-      "alt": ""
+      "alt": "",
+      "link": "/projects/reinforcement-learning"
     },
     {
       "title": "Stendhal",
       "subtitle": "An Android keyboard and associated full stack website for feedback",
       "description": "earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !",
       "thumbnails": ["/stendhal.webp"],
-      "alt": ""
+      "alt": "",
+      "link": "/projects/stendhal"
     },
     {
       "title": "NHS Heart and Lung Webite",
       "subtitle": "georgegrainger.com (this site) - my portfolio website to try and show off!!",
       "description": "earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !",
       "thumbnails": ["/game-cover.jpg"],
-      "alt": ""
+      "alt": "",
+      "link": "/projects/nhs-heart-and-lung"
     },
     {
       "title": "IoT Vinyl Playing",
       "subtitle": "Computational models simulating the dopamine system circurity in the brain",
       "description": "earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !",
       "thumbnails": ["/game-cover.jpg"],
-      "alt": ""
+      "alt": "",
+      "link": "/projects/iot-viynl-playing"
     }
   ],
   "about": "Sur moi",

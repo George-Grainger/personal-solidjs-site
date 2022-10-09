@@ -9,42 +9,48 @@
       "subtitle": "An Android keyboard and associated full stack website for feedback",
       "description": "earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !",
       "thumbnails": ["/symput.svg"],
-      "alt": "Symput logo"
+      "alt": "",
+      "link": "/projects/symput"
     },
     {
       "title": "Personal Website",
       "subtitle": "georgegrainger.com (this site) - my portfolio website to try and show off!!",
       "description": "earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !",
       "thumbnails": ["/personal-website.svg"],
-      "alt": ""
+      "alt": "",
+      "link": "/projects/personal-website"
     },
     {
       "title": "Reinforcement Learning",
       "subtitle": "Computational models simulating the dopamine system circurity in the brain",
       "description": "earum tempora quam, inventore blanditiis natus, delectus mollitia enim!",
       "thumbnails": ["/brain-1x.webp", "/brain-2x.webp", "/brain-3x.webp", "/brain-4x.webp"],
-      "alt": ""
+      "alt": "",
+      "link": "/projects/reinforcement-learning"
     },
     {
       "title": "Stendhal",
       "subtitle": "Debugging and adding to features to an open source MMORPG with 10,000 lines of code",
       "description": "earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !",
       "thumbnails": ["/stendhal.webp"],
-      "alt": ""
+      "alt": "",
+      "link": "/projects/stendhal"
     },
     {
       "title": "NHS Heart and Lung Webite",
       "subtitle": "Created a resource for Newastle NHS Foundation trust transplant patients",
       "description": "earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !",
       "thumbnails": ["/game-cover.jpg"],
-      "alt": ""
+      "alt": "",
+      "link": "/projects/nhs-heart-and-lung"
     },
     {
       "title": "IoT Vinyl Playing",
       "subtitle": "Embedded chips into vinyls so Alexa plays song when phone held nearby",
       "description": "earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae",
       "thumbnails": ["/iot-vinyl.svg"],
-      "alt": ""
+      "alt": "",
+      "link": "/projects/iot-viynl-playing"
     }
   ],
   "about": "About me",
@@ -52,13 +58,13 @@
   "academic-paragraphs": [
     "I'm in my third year studying for my Computer Science MEng(Hons) at The University of Manchester.",
     "In first year I won the Netcraft Prize for top 10 students with an average of 90%. In second year I continued to do well and was in the top 5% of students (of 400) with an average of 89%. I also achieved the top grade in the System Architecture unit with an average of 92%.",
-    "I enjoy a range of course units, particularly those based around AI, Graphics and Hardware. I'm excited to see how these play into my third-year project which is simulating the dopamine system and addiction through reinforcement learning - <a href=\"/third-year-project\">read more</a>."
+    "I enjoy a range of course units, particularly those based around AI, Graphics and Hardware. I'm excited to see how these play into my third-year project which is simulating the dopamine system and addiction through reinforcement learning - <a href=\"projects/reinforcement-learning\">read more</a>."
   ],
   "experience-title": "Experience",
   "experience-p": "I spent a year working as a junior developer at <a href=\"https://www.enigma-interactive.co.uk\" target=\"_blank\" rel=\"noopener noreferrer\">Enigma Interactive</a>. During this time I had three main projects:",
   "enigma-roles": [
     "Contributing to the 'core team', this involved programming in Java and building the base framework upon which other sites were developed.",
-    "Developing a <a href=\"https://transplant-resource.newcastle-hospitals.nhs.uk\" target=\"_blank\" rel=\"noopener noreferrer\">heart and lung transplant resource</a> for Newcastle NHS foundation trust - <a href=\"/nhs-site\">read more</a>.",
+    "Developing a <a href=\"https://transplant-resource.newcastle-hospitals.nhs.uk\" target=\"_blank\" rel=\"noopener noreferrer\">heart and lung transplant resource</a> for Newcastle NHS foundation trust - <a href=\"projects/nhs-heart-and-lung\">read more</a>.",
     "Producing an educational game for Western Power, which taught children the potential dangers of power lines, and how to avoid them."
   ],
   "interests-title": "Interests",
