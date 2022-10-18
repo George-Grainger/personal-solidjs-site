@@ -1,5 +1,5 @@
 import { useI18n } from '@solid-primitives/i18n';
-import { Accessor, Component, createEffect, createSignal, For, Index, on, onCleanup, onMount, Suspense } from 'solid-js';
+import { Accessor, Component, createRenderEffect, createSignal, For, Index, on, onCleanup, onMount, Suspense } from 'solid-js';
 import { TransitionButton } from '../components/Button';
 import { ProjectCard, ProjectCardProps, LastPlayedMediaCard, TopTrackCard } from '../components/Card';
 import { HeroScene } from '../components/svg';
@@ -30,10 +30,11 @@ const Home: Component<{}> = () => {
     const aboutSection = document.getElementById('about-section');
     const calcThreshold = () => {
       const mult = matchMedia('(min-width: 40rem)').matches ? 0.75 : 0.5;
+
       setThreshold((mult * window?.innerHeight) / aboutSection!.clientHeight);
     };
 
-    createEffect(on(locale, calcThreshold));
+    createRenderEffect(on(locale, calcThreshold));
     // Timeout prevents repeated calls on initial render
     setTimeout(() => window?.addEventListener('resize', calcThreshold));
 

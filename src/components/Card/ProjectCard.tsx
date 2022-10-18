@@ -1,7 +1,24 @@
-import { onCleanup, onMount, VoidComponent } from 'solid-js';
+import { For, Match, onCleanup, onMount, Show, Switch, VoidComponent } from 'solid-js';
 import { TransitionButton } from '../Button';
 import styles from './Card.module.css';
-import { Assembly, CPP, Firebase, Java, JavaScript, Python, NextJS, TailwindCSS } from './Logos';
+import {
+  Assembly,
+  CPP,
+  Firebase,
+  Java,
+  Python,
+  NextJS,
+  TailwindCSS,
+  SolidJS,
+  HeartLogo,
+  PyTorchLogo,
+  JUnitLogo,
+  OpenSourceLogo,
+  WordPressLogo,
+  W3CLogo,
+  ResearchLogo,
+  IoTLogo,
+} from './Logos';
 
 export interface ProjectCardProps {
   index: string | number;
@@ -11,7 +28,7 @@ export interface ProjectCardProps {
   thumbnails: string[];
   alt: string;
   link: string;
-  languages?: string[];
+  technologies: string[];
 }
 
 export const ProjectCard: VoidComponent<ProjectCardProps> = (props) => {
@@ -95,19 +112,99 @@ export const ProjectCard: VoidComponent<ProjectCardProps> = (props) => {
           loading="lazy"
         />
         <h3 class={styles.frontTitle}>{props.title}</h3>
+
         <strong class={styles.subtitle}>{props.subtitle}</strong>
       </div>
 
       <div class={styles.back}>
         <h3 class={styles.backTitle}>{props.title}</h3>
         <p class={styles.description}>{props.description}</p>
-        <div class={styles.languages}>
-          <Python />
-          <strong>Python</strong>
-          <JavaScript />
-          <strong>JavaScript</strong>
-          <CPP />
-          <strong>C++</strong>
+        <div class={styles.languages} style={{ '--columns': props.technologies?.length }}>
+          <For each={props.technologies}>
+            {(technology: string) => (
+              <>
+                <Switch>
+                  <Match when={technology === 'NextJS'}>
+                    <a href="https://nextjs.org/" target="_blank" rel="noopener noreferrer">
+                      <NextJS />
+                    </a>
+                  </Match>
+                  <Match when={technology === 'TailwindCSS'}>
+                    <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer">
+                      <TailwindCSS />
+                    </a>
+                  </Match>
+                  <Match when={technology === 'Firebase'}>
+                    <a href="https://firebase.google.com/" target="_blank" rel="noopener noreferrer">
+                      <Firebase />
+                    </a>
+                  </Match>
+                  <Match when={technology === 'SolidJS'}>
+                    <a href="https://www.solidjs.com/" target="_blank" rel="noopener noreferrer">
+                      <SolidJS />
+                    </a>
+                  </Match>
+                  <Match when={technology === 'Love'}>
+                    <HeartLogo />
+                  </Match>
+                  <Match when={technology === 'Python'}>
+                    <a href="https://www.python.org/" target="_blank" rel="noopener noreferrer">
+                      <Python />
+                    </a>
+                  </Match>
+                  <Match when={technology === 'Research'}>
+                    <ResearchLogo />
+                  </Match>
+                  <Match when={technology === 'PyTorch'}>
+                    <a href="https://pytorch.org/" target="_blank" rel="noopener noreferrer">
+                      <PyTorchLogo />
+                    </a>
+                  </Match>
+                  <Match when={technology === 'Java'}>
+                    <a href="" target="_blank" rel="noopener noreferrer">
+                      <Java />
+                    </a>
+                  </Match>
+                  <Match when={technology === 'JUnit'}>
+                    <a href="https://www.java.com/" target="_blank" rel="noopener noreferrer">
+                      <JUnitLogo />
+                    </a>
+                  </Match>
+                  <Match when={technology === 'Open Source'}>
+                    <a href="https://opensource.org/" target="_blank" rel="noopener noreferrer">
+                      <OpenSourceLogo />
+                    </a>
+                  </Match>
+                  <Match when={technology === 'WordPress'}>
+                    <a href="https://wordpress.org/" target="_blank" rel="noopener noreferrer">
+                      <WordPressLogo />
+                    </a>
+                  </Match>
+                  <Match when={technology === 'Accessibility'}>
+                    <a href="https://www.w3.org/" target="_blank" rel="noopener noreferrer">
+                      <W3CLogo />
+                    </a>
+                  </Match>
+                  <Match when={technology === 'Assembly'}>
+                    <a href="https://www.assemblyscript.org/" target="_blank" rel="noopener noreferrer">
+                      <Assembly />
+                    </a>
+                  </Match>
+                  <Match when={technology === 'IoT'}>
+                    <a href="https://en.wikipedia.org/wiki/Internet_of_things" target="_blank" rel="noopener noreferrer">
+                      <IoTLogo />
+                    </a>
+                  </Match>
+                  <Match when={technology === 'C++'}>
+                    <a href="https://en.wikipedia.org/wiki/C%2B%2B" target="_blank" rel="noopener noreferrer">
+                      <CPP />
+                    </a>
+                  </Match>
+                </Switch>
+                <strong>{technology}</strong>
+              </>
+            )}
+          </For>
         </div>
         <TransitionButton href={props.link} class={styles.btn}>
           More info

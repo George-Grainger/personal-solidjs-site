@@ -133,61 +133,65 @@ h2.moveUp {
 
 .languages > strong {
   display: block;
-  text-transform: uppercase;
+  font-variant-caps: small-caps;
   color: var(--hover);
   font-weight: 600;
   font-size: 0.6em;
 }
 
 .languages {
-  columns: 3;
+  columns: var(--columns, 3);
   column-rule: 1px solid var(--text);
-  margin-inline: auto;
 }
 
 .icon {
   --a-duration: calc(4 * var(--duration));
   width: var(--size, 0.75em);
   overflow: visible;
-  cursor: pointer;
-  font-size: 2em;
+  font-size: 3em;
 }
 
 .icon path {
   fill-opacity: 0;
   transform-origin: center;
-  stroke-width: 0.15em;
   transition: transform var(--duration) var(--transition);
+}
+
+.icon path:not([stroke-width]) {
+  stroke-width: 0.15em;
 }
 
 :global(.reduce-motion) .icon path {
   fill-opacity: 1;
 }
 
-.card:hover .icon path {
-  stroke-dasharray: 0 1600;
+:global(.no-preference) .card:hover .icon path {
+  stroke-dasharray: 0 var(--dash-array, 1600);
   animation: borderMove var(--a-duration) var(--a-delay, 0ms) linear forwards,
     fillIcon var(--a-duration) calc(1.5 * var(--a-duration) + var(--a-delay, 0ms)) linear forwards;
 }
 
-.icon:hover path {
+:where(a) .icon:hover path {
   transform: scale(1.2);
+  cursor: pointer;
 }
 
-.icon:nth-of-type(2) path {
+.languages :nth-child(3) .icon path,
+.languages .icon:nth-child(3) path {
   --a-delay: calc(0.5 * var(--a-duration));
 }
 
-.icon:nth-of-type(3) path {
+.languages :nth-child(5) path,
+.languages .icon:nth-child(5) path {
   --a-delay: var(--a-duration);
 }
 
 @keyframes borderMove {
   0% {
-    stroke-dasharray: 0 1600;
+    stroke-dasharray: 0 var(--dash-array, 1600);
   }
   100% {
-    stroke-dasharray: 1600 1600;
+    stroke-dasharray: var(--dash-array, 1600) var(--dash-array, 1600);
   }
 }
 
