@@ -1,10 +1,5 @@
 ---
-title: Awesome Title
-description: Describe this awesome content
-tags:
-  - 'great'
-  - 'awesome'
-  - 'rad'
+in-progress: true
 ---
 
 # Personal website

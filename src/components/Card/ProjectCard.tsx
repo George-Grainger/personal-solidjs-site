@@ -161,12 +161,12 @@ export const ProjectCard: VoidComponent<ProjectCardProps> = (props) => {
                     </a>
                   </Match>
                   <Match when={technology === 'Java'}>
-                    <a href="" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.java.com/" target="_blank" rel="noopener noreferrer">
                       <Java />
                     </a>
                   </Match>
                   <Match when={technology === 'JUnit'}>
-                    <a href="https://www.java.com/" target="_blank" rel="noopener noreferrer">
+                    <a href="https://junit.org/junit5/" target="_blank" rel="noopener noreferrer">
                       <JUnitLogo />
                     </a>
                   </Match>

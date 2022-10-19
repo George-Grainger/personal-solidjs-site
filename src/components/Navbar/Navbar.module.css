@@ -91,10 +91,8 @@ nav {
 .toggle {
   --is-light: 1;
   --transition: cubic-bezier(0.22, 0.61, 0.36, 1);
-
   fill: hsl(212, 97%, 68%);
   height: 2em;
-  cursor: pointer;
 }
 
 :global(.reduce-motion) .toggle {

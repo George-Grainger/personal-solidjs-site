@@ -173,7 +173,6 @@ h2.moveUp {
 
 :where(a) .icon:hover path {
   transform: scale(1.2);
-  cursor: pointer;
 }
 
 .languages :nth-child(3) .icon path,
@@ -224,40 +223,11 @@ h2.moveUp {
   font-size: 0.5em;
   color: var(--white);
   overflow: hidden;
+  cursor: pointer;
 }
 
-.trackPlaceholder {
-  composes: spotifyCard;
-  display: flex;
-  padding: 0.5em;
-}
-
-.trackPlaceholder svg {
-  fill: #dadde7;
-  animation: fading 1800ms ease calc(var(--a-delay, 0ms)) infinite, spin 7200ms linear var(--a-delay, 0ms) infinite;
-}
-
-@keyframes fading {
-  0% {
-    opacity: 1;
-  }
-
-  40% {
-    opacity: 0.5;
-  }
-
-  80% {
-    opacity: 1;
-  }
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0);
-  }
-  100% {
-    transform: rotate(1turn);
-  }
+.topTrackCard:focus-within {
+  cursor: default;
 }
 
 .lastPlayedCard {
@@ -311,7 +281,6 @@ h2.moveUp {
   stroke: currentColor;
   fill: currentColor;
   filter: drop-shadow(0 0.05em 0.125em var(--black));
-  cursor: pointer;
   outline: unset;
   opacity: 0;
 }
@@ -452,7 +421,7 @@ h2.moveUp {
   background-size: 0% 100%;
   background-image: linear-gradient(var(--progress), var(--progress));
   background-repeat: no-repeat;
-  margin-block: 0.1em 0;
+  margin: 0 0.25em;
   width: 100%;
 }
 

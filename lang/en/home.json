@@ -55,7 +55,7 @@
       "description": "earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae",
       "thumbnails": ["/iot-vinyl.svg"],
       "alt": "",
-      "link": "/projects/iot-viynl-playing",
+      "link": "/projects/iot-vinyl-playing",
       "technologies": ["Assembly", "IoT", "C++"]
     }
   ],

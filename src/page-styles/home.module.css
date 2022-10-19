@@ -118,15 +118,6 @@
   line-height: 1;
 }
 
-.aboutContent :where(ol, ul) {
-  padding-left: 1.5ch;
-  margin-top: calc(var(--flow-spacer, 1em) * 0.66);
-}
-
-.aboutContent ::marker {
-  font-weight: 600;
-}
-
 .aboutContent li {
   margin-top: calc(var(--flow-spacer, 1em) * 0.33);
 }

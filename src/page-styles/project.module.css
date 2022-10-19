@@ -1,0 +1,38 @@
+.projectArticle {
+  width: min(63.25rem, 90vw);
+}
+
+.projectArticle img {
+  margin: auto;
+}
+
+.inProgress {
+  display: flex;
+  align-items: center;
+  gap: 1ch;
+}
+
+.inProgress::before {
+  content: url('/in-progress.svg');
+  width: 2.5em;
+}
+
+h1 + p:not(.inProgress),
+h1 + .inProgress + p {
+  margin-top: 1.5em;
+}
+
+.warning {
+  text-decoration: underline;
+}
+
+@media only screen and (min-width: 52.5rem) {
+  h1 + .inProgress {
+    margin: -2.5em auto auto;
+    justify-content: flex-end;
+  }
+
+  .projectArticle h1:first-child {
+    width: 75%;
+  }
+}

@@ -8,7 +8,7 @@ export interface ProjectData {
 }
 
 interface ProjectFile {
-  attributes: string;
+  attributes: { [key: string]: any };
   html: string;
 }
 

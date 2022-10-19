@@ -1,19 +1,39 @@
 import { useRouteData } from '@solidjs/router';
-import { Component, Match, Show, Switch } from 'solid-js';
+import { Component, Match, onMount, Show, Switch } from 'solid-js';
 import { ProjectData } from './Project.data';
+import styles from '../page-styles/project.module.css';
+import html from 'solid-js/html';
 
-const Projects: Component<{}> = (props) => {
+const Projects: Component<{}> = () => {
   const data = useRouteData<ProjectData>();
 
+  const handleMount = (content: HTMLElement) => {
+    if (!content.firstChild!.nextSibling) {
+      return;
+    }
+
+    if (data.fallback) {
+      content.insertBefore(
+        html`<p><strong class="${styles.warning}">Note:</strong> Unfortunately that project isn't available in your language</p>`,
+        content.firstChild!.nextSibling,
+      );
+    }
+
+    if (data.project?.attributes?.['in-progress']) {
+      content.insertBefore(html`<span class="${styles.inProgress}">In Progress</span>`, content.firstChild!.nextSibling);
+    }
+  };
+
   return (
-    <section>
+    <section class={styles.projectInfoSection}>
       <Switch fallback={'Failed to load markdown...'}>
         <Match when={data.loading}>Loading project...</Match>
         <Match when={data.project}>
-          <Show when={data.fallback}>
-            <div>Unfortunately that project isn't available is not currently available in your language.</div>
-          </Show>
-          <div class="flow" innerHTML={data.project?.html} />
+          <article
+            ref={(content) => onMount(() => handleMount(content))}
+            class={`${styles.projectArticle} flow`}
+            innerHTML={data.project?.html}
+          />
         </Match>
       </Switch>
     </section>

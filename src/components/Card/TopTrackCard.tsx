@@ -3,7 +3,6 @@ import { TopTrack } from '../../hooks/useSpotify';
 import { Audio } from './Audio';
 import styles from './Card.module.css';
 import { SpotifyLogo } from './Logos';
-import { TrackPlaceholder } from './TrackPlaceholder';
 
 const [autoPlay, setAutoPlay] = createSignal(true);
 

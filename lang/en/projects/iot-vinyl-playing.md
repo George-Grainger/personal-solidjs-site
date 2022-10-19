@@ -1,13 +1,8 @@
 ---
-title: Awesome Title
-description: Describe this awesome content
-tags:
-  - 'great'
-  - 'awesome'
-  - 'rad'
+in-progress: true
 ---
 
-# IOT
+# IOT Viynl Playing
 
 Vite is an opinionated web dev build tool that serves your code via native ES Module imports during dev and bundles it with Rollup for production.
 
