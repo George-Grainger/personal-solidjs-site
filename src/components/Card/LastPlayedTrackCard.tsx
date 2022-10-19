@@ -1,5 +1,5 @@
 import { useI18n } from '@solid-primitives/i18n';
-import { Show, VoidComponent } from 'solid-js';
+import { Accessor, createEffect, createSignal, Show, VoidComponent } from 'solid-js';
 import { LastPlayedMedia, useSpotify } from '../../hooks/useSpotify';
 import { Audio } from './Audio';
 import styles from './Card.module.css';
@@ -69,6 +69,37 @@ export const LastPlayedMediaCard: VoidComponent<LastPlayedMedia> = (props) => {
             .replaceAll(' ', '-')}
         />
       </Show>
+    </div>
+  );
+};
+
+export const LastPlayedMediaCardLoading: VoidComponent<{}> = () => {
+  const [t] = useI18n();
+
+  return (
+    <div class={styles.lastPlayedCard}>
+      <strong class={styles.heading}>{t('home.latest-song', {}, 'Latest song played')}</strong>
+      <div class={styles.loadingSpotify}></div>
+      <div class={styles.loadingImage}></div>
+      <div class={styles.details}>
+        <div class={styles.loadingBlock}></div>
+        <div style={{ '--width': '50%' }} class={styles.loadingBlock}></div>
+        <div class={styles.loadingNowPlaying}>
+          <div class={styles.loadingBlock}></div>
+          <div class={styles.loadingBlock}></div>
+          <div class={styles.loadingBlock}></div>
+          <div class={styles.loadingBlock}></div>
+          <div class={styles.loadingBlock}></div>
+          <div class={styles.loadingBlock}></div>
+        </div>
+      </div>
+      <div class={styles.loadingAudio}>
+        <div class={styles.loadingBlock}></div>
+        <div class={styles.loadingBlock}></div>
+        <div class={styles.loadingBlock}></div>
+        <div class={styles.loadingBlock}></div>
+        <div class={styles.loadingBlock}></div>
+      </div>
     </div>
   );
 };

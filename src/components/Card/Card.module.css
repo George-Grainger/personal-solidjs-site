@@ -241,6 +241,118 @@ h2.moveUp {
   font-size: clamp(1em, 3.5vw, 1.2em);
 }
 
+.loadingBlock {
+  --bg-from: var(--space-rock-grey);
+  --bg-to: hsl(226, 21%, 93%);
+  position: relative;
+  overflow: hidden;
+  height: var(--height, 1.25em);
+  width: var(--width, inherit);
+  opacity: 1;
+  background-color: var(--bg-from);
+  background: linear-gradient(90deg, var(--bg-from) 0%, var(--bg-to) 7%, var(--bg-to) 13%, var(--bg-from) 25%);
+  background-size: 900%;
+  background-position: 100% 0%;
+  animation: loading-pulse 1.8s ease-in-out infinite;
+}
+
+:global(.dark) .loadingBlock {
+  --bg-from: hsl(232, 23%, 20%);
+  --bg-to: hsl(232, 23%, 16%);
+}
+
+@keyframes loading-pulse {
+  0% {
+    background-position: 100% 0%;
+  }
+  99.99% {
+    background-position: -30% 0%;
+  }
+  100% {
+    background-position: 100% 0%;
+  }
+}
+
+.loadingBlock + .loadingBlock,
+.loadingBlock + .loadingNowPlaying .loadingBlock {
+  margin-top: var(--space, 0.25em);
+}
+
+.loadingTitle {
+  composes: loadingBlock;
+  grid-column: span 2;
+  --width: 60%;
+  --height: 1.5em;
+}
+
+.loadingSpotify {
+  composes: loadingBlock;
+  position: absolute;
+  inset: 1em 1.25em auto auto;
+  --width: 1.25em;
+  border-radius: 999vmax;
+}
+
+.loadingImage {
+  composes: loadingBlock;
+  aspect-ratio: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--br);
+  --space: 0;
+}
+
+.loadingWrapper {
+  display: grid;
+  font-size: 0.67em;
+  gap: 1ch;
+}
+
+.loadingNowPlaying {
+  composes: loadingWrapper;
+  grid-template-columns: 3ch 1fr 3ch;
+  --height: 0.75em;
+}
+
+.loadingNowPlaying :nth-child(3) {
+  border-radius: var(--br);
+}
+
+.loadingNowPlaying :first-child,
+.loadingNowPlaying :nth-last-child(-n + 2) {
+  grid-column: span 3;
+  --space: 1em;
+}
+
+.loadingNowPlaying :last-child {
+  --space: default;
+  --width: 75%;
+}
+
+.loadingAudio {
+  composes: loadingWrapper;
+  grid-column: span 2;
+  grid-template-columns: 6.67% 3ch 1fr 3ch 6.67%;
+  align-items: center;
+  --space: 0;
+  margin-top: 0.5em;
+}
+
+.loadingAudio :first-child {
+  border-radius: 999vmax;
+  aspect-ratio: 1;
+}
+
+.loadingAudio :nth-child(3) {
+  --height: 0.67em;
+  border-radius: var(--br);
+}
+
+.loadingAudio :first-child,
+.loadingAudio :last-child {
+  --height: 1.852em;
+}
+
 :global(.light) .lastPlayedCard {
   --progress: var(--spotify-green);
 }

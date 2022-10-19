@@ -1,7 +1,7 @@
 import { useI18n } from '@solid-primitives/i18n';
 import { Accessor, Component, createRenderEffect, createSignal, For, Index, on, onCleanup, onMount, Suspense } from 'solid-js';
 import { TransitionButton } from '../components/Button';
-import { ProjectCard, ProjectCardProps, LastPlayedMediaCard, TopTrackCard } from '../components/Card';
+import { ProjectCard, ProjectCardProps, LastPlayedMediaCard, TopTrackCard, LastPlayedMediaCardLoading } from '../components/Card';
 import { HeroScene } from '../components/svg';
 import { AsteroidGroup1 } from '../components/svg/Asteroids';
 import { FullPageCloudGroup1, FullPageCloudGroup2 } from '../components/svg/Clouds';
@@ -126,7 +126,7 @@ const Home: Component<{}> = () => {
               </Index>
               {/* </Suspense> */}
             </ol>
-            <Suspense fallback={<p>Loading...</p>}>
+            <Suspense fallback={<LastPlayedMediaCardLoading />}>
               <LastPlayedMediaCard {...mostRecentMedia()!} />
             </Suspense>
           </div>
