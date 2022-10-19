@@ -25,6 +25,8 @@ const Home: Component<{}> = () => {
   });
 
   onMount(() => {
+    document.querySelector('main')?.classList.add('homepage');
+
     const [threshold, setThreshold] = createSignal(matchMedia('(min-width: 40rem)').matches ? 0.33 : 0.15);
 
     const aboutSection = document.getElementById('about-section');
@@ -57,7 +59,10 @@ const Home: Component<{}> = () => {
 
     document.querySelectorAll('section, footer').forEach((section) => animationObserver.observe(section));
     aboutSection && aboutTriggerObserver.observe(aboutSection);
-    onCleanup(() => window?.removeEventListener('resize', calcThreshold));
+    onCleanup(() => {
+      document.querySelector('main')?.classList.remove('homepage');
+      window?.removeEventListener('resize', calcThreshold);
+    });
   });
 
   return (
@@ -110,9 +115,10 @@ const Home: Component<{}> = () => {
               {/* <Suspense fallback={<p>Loading...</p>}> */}
               <Index each={topSongs()}>
                 {(track, i) => {
-                  const ORIGINS = ['2%', '50%', '98%'];
+                  const ORIGINS_X = ['3.5%', '50%', '96.5%'];
+                  const ORIGINS_Y = ['1.75%', '50%', '98.25%'];
                   return (
-                    <li style={{ 'transform-origin': `${ORIGINS[i % 3]} ${ORIGINS[Math.floor(i / 3)]}`, '--a-delay': `${-i * 900}ms` }}>
+                    <li style={{ 'transform-origin': `${ORIGINS_X[i % 3]} ${ORIGINS_Y[Math.floor(i / 3)]}`, '--a-delay': `${-i * 900}ms` }}>
                       <TopTrackCard {...track()} />
                     </li>
                   );

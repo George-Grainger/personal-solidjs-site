@@ -152,7 +152,7 @@
 
 .spotifyList > li:focus-within {
   transition-duration: var(--duration), 0ms;
-  transform: scale(318%);
+  transform: scale(325%);
   z-index: 1;
 }
 

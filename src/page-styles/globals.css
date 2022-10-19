@@ -521,8 +521,8 @@ button,
 }
 
 .no-animate,
-section:not(.visible),
-footer:not(.visible) {
+.homepage section:not(.visible),
+.homepage footer:not(.visible) {
   --duration: 0;
 }
 
@@ -531,8 +531,8 @@ Used primarily to prevent animations on first page load
 Enabled for 1ms initially, then removed in App.tsx
 */
 .no-animate,
-section:not(.visible),
-footer:not(.visible),
+.homepage section:not(.visible),
+.homepage footer:not(.visible),
 .reduce-motion * {
   animation-play-state: paused !important;
   transition-delay: 0ms !important;

@@ -1,0 +1,27 @@
+.section404 {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5em;
+  margin-top: 1.5em;
+  text-align: center;
+}
+
+.svg404Text {
+  width: min(50rem, 80vw);
+}
+
+:global(.light) .asteroids {
+  display: none;
+}
+
+:global(.dark) .clouds {
+  display: none;
+}
+
+.backLink {
+  text-decoration: underline;
+}
+
+.homeLink {
+  font-size: 1.1em;
+}
