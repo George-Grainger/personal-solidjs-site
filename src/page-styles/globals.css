@@ -103,18 +103,18 @@ header {
 
 header::before,
 header::after {
-  content: url('/cloud.svg');
+  content: url('/images/cloud.svg');
   position: fixed;
   transition: transform calc(2 * var(--duration)) var(--transition);
   will-change: transform;
 }
 
 .dark header::before {
-  content: url('/asteroid1.svg');
+  content: url('/images/asteroid1.svg');
 }
 
 .dark header::after {
-  content: url('/asteroid2.svg');
+  content: url('/images/asteroid2.svg');
 }
 
 .reduce-motion header:not(.no-delay)::before,

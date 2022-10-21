@@ -32,6 +32,18 @@ export const routes: RouteDefinition[] = [
     data: ProjectData,
   },
   {
+    path: '/languages',
+    component: lazyWithPreload(() => import('./pages/404')),
+  },
+  {
+    path: '/theme',
+    component: lazyWithPreload(() => import('./pages/404')),
+  },
+  {
+    path: '/accessibility',
+    component: lazyWithPreload(() => import('./pages/404')),
+  },
+  {
     path: '/*all',
     component: lazyWithPreload(() => import('./pages/404')),
   },
