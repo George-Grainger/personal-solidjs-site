@@ -1,5 +1,5 @@
 import styles from './Select.module.css';
-import { createSignal, children, onMount, Switch, Match, batch, ParentComponent } from 'solid-js';
+import { createSignal, children, onMount, Switch, Match, batch, ParentComponent, createEffect } from 'solid-js';
 import { useI18n } from '@solid-primitives/i18n';
 
 interface SelectProps {
@@ -40,6 +40,14 @@ export const Select: ParentComponent<SelectProps> = (props) => {
     return matches;
   };
 
+  const c = children(() => props.children);
+
+  createEffect(() =>
+    (c() as HTMLElement[])
+      .filter((element) => element.tagName === 'LABEL')
+      .forEach((element) => (element.tabIndex = optionsVisible() ? 1 : -1)),
+  );
+
   return (
     <div
       class={`${props.class || ''} ${styles.wrapper}`}
@@ -55,9 +63,9 @@ export const Select: ParentComponent<SelectProps> = (props) => {
         <span class="sr-only">{t('global.select.current', {}, 'Currently selected:')}</span>
         <Switch fallback={'Choose an option'}>{getCheckedMatches()}</Switch>
       </button>
-      <fieldset class={styles.select} aria-visible={optionsVisible()} onClick={() => setOptionsVisible(false)} onChange={handleChange}>
+      <fieldset class={styles.select} aria-hidden={!optionsVisible()} onClick={() => setOptionsVisible(false)} onChange={handleChange}>
         <legend class="sr-only">{props.legend}</legend>
-        {props.children}
+        {c()}
       </fieldset>
     </div>
   );

@@ -131,7 +131,7 @@ h2.moveUp {
   width: 110%;
 }
 
-.languages > strong {
+.languages strong {
   display: block;
   font-variant-caps: small-caps;
   color: var(--hover);

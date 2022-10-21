@@ -28,8 +28,66 @@ export interface ProjectCardProps {
   thumbnails: string[];
   alt: string;
   link: string;
-  technologies: string[];
+  technologies: { name: string; href: string }[];
 }
+
+const Options: VoidComponent<{ name: string }> = (technology) => {
+  return (
+    <>
+      <Switch>
+        <Match when={technology.name === 'NextJS'}>
+          <NextJS />
+        </Match>
+        <Match when={technology.name === 'TailwindCSS'}>
+          <TailwindCSS />
+        </Match>
+        <Match when={technology.name === 'Firebase'}>
+          <Firebase />
+        </Match>
+        <Match when={technology.name === 'SolidJS'}>
+          <SolidJS />
+        </Match>
+        <Match when={technology.name === 'Love'}>
+          <HeartLogo />
+        </Match>
+        <Match when={technology.name === 'Python'}>
+          <Python />
+        </Match>
+        <Match when={technology.name === 'Research'}>
+          <ResearchLogo />
+        </Match>
+        <Match when={technology.name === 'PyTorch'}>
+          <PyTorchLogo />
+        </Match>
+        <Match when={technology.name === 'Java'}>
+          <Java />
+        </Match>
+        <Match when={technology.name === 'JUnit'}>
+          <JUnitLogo />
+        </Match>
+        <Match when={technology.name === 'Open Source'}>
+          <OpenSourceLogo />
+        </Match>
+        <Match when={technology.name === 'WordPress'}>
+          <WordPressLogo />
+        </Match>
+        <Match when={technology.name === 'Accessibility'}>
+          <W3CLogo />
+        </Match>
+        <Match when={technology.name === 'Assembly'}>
+          <Assembly />
+        </Match>
+        <Match when={technology.name === 'IoT'}>
+          <IoTLogo />
+        </Match>
+        <Match when={technology.name === 'C++'}>
+          <CPP />
+        </Match>
+      </Switch>
+      <strong>{technology.name}</strong>
+    </>
+  );
+};
 
 export const ProjectCard: VoidComponent<ProjectCardProps> = (props) => {
   let card: HTMLElement | undefined;
@@ -105,6 +163,8 @@ export const ProjectCard: VoidComponent<ProjectCardProps> = (props) => {
     >
       <div class={styles.front}>
         <img
+          width="324"
+          height="390"
           class={styles.thumbnail}
           src={props.thumbnails[0]}
           srcset={props.thumbnails.map((url, index) => `${url} ${index + 1}x`).join()}
@@ -121,93 +181,17 @@ export const ProjectCard: VoidComponent<ProjectCardProps> = (props) => {
         <p class={styles.description}>{props.description}</p>
         <div class={styles.languages} style={{ '--columns': props.technologies?.length }}>
           <For each={props.technologies}>
-            {(technology: string) => (
-              <>
-                <Switch>
-                  <Match when={technology === 'NextJS'}>
-                    <a href="https://nextjs.org/" target="_blank" rel="noopener noreferrer">
-                      <NextJS />
-                    </a>
-                  </Match>
-                  <Match when={technology === 'TailwindCSS'}>
-                    <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer">
-                      <TailwindCSS />
-                    </a>
-                  </Match>
-                  <Match when={technology === 'Firebase'}>
-                    <a href="https://firebase.google.com/" target="_blank" rel="noopener noreferrer">
-                      <Firebase />
-                    </a>
-                  </Match>
-                  <Match when={technology === 'SolidJS'}>
-                    <a href="https://www.solidjs.com/" target="_blank" rel="noopener noreferrer">
-                      <SolidJS />
-                    </a>
-                  </Match>
-                  <Match when={technology === 'Love'}>
-                    <HeartLogo />
-                  </Match>
-                  <Match when={technology === 'Python'}>
-                    <a href="https://www.python.org/" target="_blank" rel="noopener noreferrer">
-                      <Python />
-                    </a>
-                  </Match>
-                  <Match when={technology === 'Research'}>
-                    <ResearchLogo />
-                  </Match>
-                  <Match when={technology === 'PyTorch'}>
-                    <a href="https://pytorch.org/" target="_blank" rel="noopener noreferrer">
-                      <PyTorchLogo />
-                    </a>
-                  </Match>
-                  <Match when={technology === 'Java'}>
-                    <a href="https://www.java.com/" target="_blank" rel="noopener noreferrer">
-                      <Java />
-                    </a>
-                  </Match>
-                  <Match when={technology === 'JUnit'}>
-                    <a href="https://junit.org/junit5/" target="_blank" rel="noopener noreferrer">
-                      <JUnitLogo />
-                    </a>
-                  </Match>
-                  <Match when={technology === 'Open Source'}>
-                    <a href="https://opensource.org/" target="_blank" rel="noopener noreferrer">
-                      <OpenSourceLogo />
-                    </a>
-                  </Match>
-                  <Match when={technology === 'WordPress'}>
-                    <a href="https://wordpress.org/" target="_blank" rel="noopener noreferrer">
-                      <WordPressLogo />
-                    </a>
-                  </Match>
-                  <Match when={technology === 'Accessibility'}>
-                    <a href="https://www.w3.org/" target="_blank" rel="noopener noreferrer">
-                      <W3CLogo />
-                    </a>
-                  </Match>
-                  <Match when={technology === 'Assembly'}>
-                    <a href="https://www.assemblyscript.org/" target="_blank" rel="noopener noreferrer">
-                      <Assembly />
-                    </a>
-                  </Match>
-                  <Match when={technology === 'IoT'}>
-                    <a href="https://en.wikipedia.org/wiki/Internet_of_things" target="_blank" rel="noopener noreferrer">
-                      <IoTLogo />
-                    </a>
-                  </Match>
-                  <Match when={technology === 'C++'}>
-                    <a href="https://en.wikipedia.org/wiki/C%2B%2B" target="_blank" rel="noopener noreferrer">
-                      <CPP />
-                    </a>
-                  </Match>
-                </Switch>
-                <strong>{technology}</strong>
-              </>
+            {(technology: { name: string; href?: string }) => (
+              <Show when={technology.href} fallback={<Options name={technology.name}></Options>}>
+                <a href={technology.href} target="_blank" rel="noopener noreferrer">
+                  <Options name={technology.name}></Options>
+                </a>
+              </Show>
             )}
           </For>
         </div>
         <TransitionButton href={props.link} class={styles.btn}>
-          More info
+          View Details
         </TransitionButton>
       </div>
     </article>

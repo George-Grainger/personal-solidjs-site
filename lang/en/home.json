@@ -11,7 +11,11 @@
       "thumbnails": ["/images/projects/symput.svg"],
       "alt": "",
       "link": "/projects/symput",
-      "technologies": ["NextJS", "TailwindCSS", "Firebase"]
+      "technologies": [
+        { "name": "NextJS", "href": "https://nextjs.org/" },
+        { "name": "TailwindCSS", "href": "https://tailwindcss.com/" },
+        { "name": "Firebase", "href": "https://firebase.google.com/" }
+      ]
     },
     {
       "title": "Personal Website",
@@ -20,7 +24,7 @@
       "thumbnails": ["/images/projects/personal-website.svg"],
       "alt": "",
       "link": "/projects/personal-website",
-      "technologies": ["SolidJS", "Love"]
+      "technologies": [{ "name": "SolidJS", "href": "https://www.solidjs.com/" }, { "name": "Love" }]
     },
     {
       "title": "Reinforcement Learning",
@@ -34,7 +38,11 @@
       ],
       "alt": "",
       "link": "/projects/reinforcement-learning",
-      "technologies": ["Python", "Research", "PyTorch"]
+      "technologies": [
+        { "name": "Python", "href": "https://www.python.org/" },
+        { "name": "Research" },
+        { "name": "PyTorch", "href": "https://pytorch.org/" }
+      ]
     },
     {
       "title": "Stendhal",
@@ -43,7 +51,11 @@
       "thumbnails": ["/images/projects/stendhal.webp"],
       "alt": "",
       "link": "/projects/stendhal",
-      "technologies": ["Java", "JUnit", "Open Source"]
+      "technologies": [
+        { "name": "Java", "href": "https://www.java.com/" },
+        { "name": "JUnit", "href": "https://junit.org/junit5/" },
+        { "name": "Open Source", "href": "https://opensource.org/" }
+      ]
     },
     {
       "title": "NHS Heart and Lung Website",
@@ -52,7 +64,10 @@
       "thumbnails": ["/images/projects/nhs-hl.svg"],
       "alt": "",
       "link": "/projects/nhs-heart-and-lung",
-      "technologies": ["WordPress", "Accessibility"]
+      "technologies": [
+        { "name": "WordPress", "href": "https://wordpress.org/" },
+        { "name": "Accessibility", "href": "https://www.w3.org/" }
+      ]
     },
     {
       "title": "IoT Vinyl Playing",
@@ -61,7 +76,11 @@
       "thumbnails": ["/images/projects/iot-vinyl.svg"],
       "alt": "",
       "link": "/projects/iot-vinyl-playing",
-      "technologies": ["Assembly", "IoT", "C++"]
+      "technologies": [
+        { "name": "Assembly", "href": "https://www.assemblyscript.org/" },
+        { "name": "IoT", "href": "https://en.wikipedia.org/wiki/Internet_of_things" },
+        { "name": "C++", "href": "https://en.wikipedia.org/wiki/C%2B%2B" }
+      ]
     }
   ],
   "about": "About me",

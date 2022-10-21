@@ -18,9 +18,11 @@ export const Footer: VoidSVG<{}> = () => {
         <ul role="list">
           <Index each={footer['preference-links']}>
             {(defaultLink, i) => (
-              <NavLink href={t(`global.footer.preference-links.${i}.path`, {}, defaultLink().path)}>
-                {t(`global.footer.preference-links.${i}.title`, {}, defaultLink().title)}
-              </NavLink>
+              <li>
+                <NavLink href={t(`global.footer.preference-links.${i}.path`, {}, defaultLink().path)}>
+                  {t(`global.footer.preference-links.${i}.title`, {}, defaultLink().title)}
+                </NavLink>
+              </li>
             )}
           </Index>
         </ul>

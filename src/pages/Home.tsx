@@ -111,7 +111,7 @@ const Home: Component<{}> = () => {
           <div class={styles.spotify}>
             <h3>Spotify</h3>
             <p>{t('home.spotify-tagline', {}, 'Information on my favourite songs and recent listening')}</p>
-            <ol class={styles.spotifyList}>
+            <ol class={styles.spotifyList} role="list">
               {/* <Suspense fallback={<p>Loading...</p>}> */}
               <Index each={topSongs()}>
                 {(track, i) => {

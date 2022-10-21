@@ -11,13 +11,7 @@ interface SelectOptionProps {
 export const SelectOption: ParentComponent<SelectOptionProps> = ({ id, name, value, checked, children }) => {
   return (
     <>
-      <label
-        tabIndex={0}
-        role="button"
-        class={styles.label}
-        for={id}
-        onKeyDown={(e) => e.key === ' ' && (e.target as HTMLLabelElement).click()}
-      >
+      <label role="button" class={styles.label} for={id} onKeyDown={(e) => e.key === ' ' && (e.target as HTMLLabelElement).click()}>
         {children}
       </label>
       <input class="sr-only" type="radio" id={id} name={name} value={value} checked={checked} />
