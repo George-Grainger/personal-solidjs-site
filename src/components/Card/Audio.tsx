@@ -92,6 +92,10 @@ export const Audio: VoidComponent<AudioProps> = (props) => {
   if (parentRef) {
     createEffect(() => {
       const unPause = () => {
+        if (!parentRef.parentElement?.classList.contains('enlarged')) {
+          return;
+        }
+
         setPaused(false);
         if (animationFrameId) {
           fadeVolumeOut.isRunning = false;
@@ -138,6 +142,8 @@ export const Audio: VoidComponent<AudioProps> = (props) => {
     if (audio) audio.currentTime = newTime / 100;
   };
 
+  const toggleMute = () => setMuted(!muted());
+
   return (
     <>
       <audio
@@ -158,7 +164,11 @@ export const Audio: VoidComponent<AudioProps> = (props) => {
         {...others}
       />
       <div class={styles.controls}>
-        <button aria-label={paused() ? 'Play audio' : 'Pause audio'} onClick={handleTogglePause}>
+        <button
+          aria-label={paused() ? 'Play audio' : 'Pause audio'}
+          onClick={handleTogglePause}
+          onKeyDown={(e) => e.key === ' ' && handleTogglePause(e)}
+        >
           <Show when={paused()} fallback={<PauseIcon />}>
             <PlayIcon />
           </Show>
@@ -183,7 +193,7 @@ export const Audio: VoidComponent<AudioProps> = (props) => {
           />
           <span>{new Date().millisToISOTime(totalTime())}</span>
         </div>
-        <button aria-label={paused() ? 'Mute audio' : 'Unmute audio'} onClick={() => setMuted(!muted())}>
+        <button aria-label={paused() ? 'Mute audio' : 'Unmute audio'} onClick={toggleMute} onKeyDown={(e) => e.key === ' ' && toggleMute}>
           <Show when={muted()} fallback={<SoundIcon />}>
             <MuteIcon />
           </Show>

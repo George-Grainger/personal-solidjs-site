@@ -13,7 +13,7 @@
 }
 
 .inProgress::before {
-  content: url('/in-progress.svg');
+  content: url('/images/projects/in-progress.svg');
   width: 2.5em;
 }
 

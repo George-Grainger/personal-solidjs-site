@@ -150,7 +150,7 @@
   transition: transform var(--duration) var(--transition), z-index var(--duration) linear;
 }
 
-.spotifyList > li:focus-within {
+.spotifyList > li:global(.enlarged):focus-within {
   transition-duration: var(--duration), 0ms;
   transform: scale(325%);
   z-index: 1;

@@ -188,7 +188,6 @@ h2.moveUp {
     fillIcon var(--a-duration) calc(1.25 * var(--a-duration) + var(--a-delay, 0ms)) linear forwards;
 }
 
-a:focus-visible .icon path,
 a .icon:hover path {
   transform: scale(1.2);
 }
@@ -242,8 +241,7 @@ a .icon:hover path {
   cursor: pointer;
 }
 
-.topTrackCard:focus-visible,
-.topTrackCard :focus-visible {
+li:global(.enlarged) .topTrackCard :focus-visible {
   outline-width: 0.1rem;
 }
 
@@ -378,7 +376,7 @@ a .icon:hover path {
   --progress: var(--spotify-green);
 }
 
-.topTrackCard:focus-within .topTrackdetails {
+li:global(.enlarged) .topTrackCard:focus-within .topTrackdetails {
   transform: translateY(0);
 }
 
@@ -387,9 +385,13 @@ a .icon:hover path {
 }
 
 .spotifyLink:focus-visible svg {
-  outline: 0.1rem solid var(--purple);
-  outline-offset: 0.1rem;
+  outline: 0.2rem solid var(--purple);
+  outline-offset: 0.2rem;
   border-radius: 100vmax;
+}
+
+:global(.enlarged) .spotifyLink:focus-visible svg {
+  outline-width: 0.1rem;
 }
 
 .topTrackCard .spotifyLink {
@@ -417,7 +419,7 @@ a .icon:hover path {
   opacity: 0;
 }
 
-.topTrackCard:focus-within .closeButton {
+li:global(.enlarged) .topTrackCard:focus-within .closeButton {
   opacity: 1;
 }
 

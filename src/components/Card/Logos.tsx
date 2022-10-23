@@ -6,6 +6,7 @@ import styles from './Card.module.css';
 export const NextJS: VoidComponent<{}> = () => {
   return (
     <svg class={styles.icon} viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <title>NextJS Logo</title>
       <path
         d="M231.8 324.8h-5.5l51.6-71 .9-1.1-.9-1.2-48-67h5.4l44.8 62.6 1.6 2.3 1.7-2.2 46.4-63.4 23.2-29.6-67 97.3-.9 1.2.9 1.1 51.2 71h-5.7L283.4 258l-1.6-2.2-1.7 2.2-48.3 66.7ZM129.7 321h86.7v3.7h-93.6V184.6h92.6v3.6h-87.7V250H210v3.7h-82.4V321h2Zm265.7-132.9H347v-3.6h106v3.6h-50.6v136.6h-4.9V188.2h-2ZM7.3 193.5l-.4 131.3H2V184.6h8l111 166-18.8-25L11 192.3 7.3 187v6.5Zm490.4 107c-2.7-.7-4.3-1.6-5.3-2.6-.9-1-1.4-2.2-1.4-4.1 0-2.2.9-4 2.4-5.2 1.5-1.2 3.9-2 7-2 4.4 0 7.5 2 8.7 4.9h-.8c-1.2-3-4.4-4.7-8-4.7-2.3 0-4.3.6-5.8 1.7a6 6 0 0 0-2.6 5c0 1.7.7 3.1 2 4.2a13.3 13.3 0 0 0 5.2 2.1l3.4.9c3 .7 5 1.6 6 2.7 1 1 1.5 2.2 1.5 4a7 7 0 0 1-2.5 5.6 11.8 11.8 0 0 1-7.5 2.2c-3 0-5.5-.8-7.1-2-1-.9-1.9-2-2.3-3.1h.8c1.4 3.2 5 4.8 9 4.8 2.3 0 4.4-.6 6-1.7 1.6-1.2 2.7-3 2.7-5 0-1.9-.7-3.4-2.2-4.6-1.3-1-3-1.7-5.2-2.2l-4-1ZM454 314.7c-.7 0-1.2-.5-1.2-1.2 0-.8.5-1.2 1.2-1.2s1.1.4 1.1 1.2c0 .7-.4 1.2-1.1 1.2Zm25-7.5v-20h.8v20c0 2.8-.8 4.7-2 5.9-1.2 1.2-3 2-5.6 2-2.4 0-4.3-.8-5.5-2a6 6 0 0 1-1.8-2.9h.8a6 6 0 0 0 1.7 2.6c1.3 1.2 3 1.7 4.7 1.7 2 0 3.8-.6 5-2a7.7 7.7 0 0 0 1.8-5.3Z"
         fill="var(--text)"
@@ -19,6 +20,7 @@ export const NextJS: VoidComponent<{}> = () => {
 export const TailwindCSS: VoidComponent<{}> = () => {
   return (
     <svg class={styles.icon} viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <title>TailwindCSS Logo</title>
       <path
         d="M508 162c-9 29-23 51-42 66-21 17-48 26-82 26-31 0-54-8-72-18s-32-24-44-37c-16-15-30-30-50-35-17-4-34-3-49 3-13 6-25 15-37 29 9-30 23-52 42-67 21-17 48-25 82-25 31 0 54 7 72 18 18 10 32 24 44 36v1c16 15 30 30 50 35 17 4 34 3 49-4 13-5 25-15 37-28ZM380 316c-9 29-23 51-42 66-21 17-48 25-82 25-31 0-54-7-72-17-18-11-32-24-44-37-16-16-30-30-50-35-17-5-34-4-49 3-13 6-25 15-37 28 9-29 23-51 42-66 21-17 48-25 82-25 31 0 54 7 72 17 18 11 32 24 44 37 16 16 30 30 50 35 17 5 34 3 49-3 13-6 25-15 37-28Z"
         fill="#07B6D5"
@@ -32,6 +34,7 @@ export const TailwindCSS: VoidComponent<{}> = () => {
 export const Firebase: VoidComponent<{}> = () => {
   return (
     <svg class={styles.icon} viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <title>Firebase Logo</title>
       <path d="M218 130 73 404l62-394c1-9 14-11 19-3l64 121v2Z" fill="#FFC24A" stroke="#FFC24A" stroke-width="8" />
       <path d="m313 170-45 46-46-85v-3l25-49c4-7 15-7 18 0l48 91Z" fill="#F4BD62" stroke="#F4BD62" stroke-width="8" />
       <path d="m75 408 145-276 44 85-2 5L75 408Z" fill="#F6820C" stroke="#F6820C" stroke-width="8" />
@@ -58,6 +61,7 @@ export const Firebase: VoidComponent<{}> = () => {
 export const SolidJS: VoidComponent<{}> = () => {
   return (
     <svg class={styles.icon} viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <title>SolidJS Logo</title>
       <g stroke-width="8">
         <path
           d="m110 146.2 45-77.5 6.2-9.4c8.9-11.7 24-20.9 42.6-27l-1.2-3.8 1.2 3.8 9.4-3.2c64-13.9 137.8 9.4 196.2 36.7a689.6 689.6 0 0 1 97.3 55.8l-54.1 89.7-144-28-.8-.2-.9.2c-40.3 9.2-83.9 0-118.2-21.7l-.6-.4-.7-.2-77.5-14.8Z"
@@ -121,6 +125,7 @@ export const SolidJS: VoidComponent<{}> = () => {
 export const HeartLogo: VoidSVG = () => {
   return (
     <svg class={styles.icon} viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <title>Loveheart Icon</title>
       <path
         d="m248 155 16 .1a120.5 120.5 0 0 1 240 16c0 32.6-19.7 66.9-45.4 97.9a635.4 635.4 0 0 1-75 73.4 3581.6 3581.6 0 0 0-80.2 72.3 12016 12016 0 0 0-47.4 43.9 11397 11397 0 0 0-47.4-44 3584 3584 0 0 0-80.2-72.2 635.4 635.4 0 0 1-75-73.4C27.7 238 8 203.7 8 171a120.5 120.5 0 0 1 240-16Z"
         fill="#FF1D25"
@@ -138,6 +143,7 @@ export const HeartLogo: VoidSVG = () => {
 export const Python: VoidComponent<{}> = () => {
   return (
     <svg class={styles.icon} viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <title>Python Logo</title>
       <g stroke-width="8">
         <path
           d="M171 237c-33 0-59 26-59 59v66H75c-39 0-71-32-71-71v-70c0-39 32-71 71-71h181a19 19 0 1 0 0-38H150V75c0-39 32-71 71-71h70c39 0 71 32 71 71v141c0 12-9 21-21 21H171Zm31-176a19 19 0 1 0 38 0 19 19 0 0 0-38 0Z"
@@ -157,6 +163,7 @@ export const Python: VoidComponent<{}> = () => {
 export const ResearchLogo: VoidSVG = () => {
   return (
     <svg class={styles.icon} viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <title>Book icon</title>
       <path d="M508 256a252 252 0 1 1-504 0 252 252 0 0 1 504 0Z" fill="#4ABC96" stroke="#4ABC96" stroke-width="8" />
       <path
         d="M255 124v-4h107l3 1 1 3v358l-14 6V133h-11v-13h-4l-82 4Zm-185 9-33-2 7-11h135v9l-109 4Z"
@@ -204,6 +211,7 @@ export const ResearchLogo: VoidSVG = () => {
 export const PyTorchLogo: VoidSVG = () => {
   return (
     <svg class={styles.icon} style={{ '--dash-array': '2200' }} viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <title>PyTorch Logo</title>
       <path
         d="M373 414c62-62 63-161-1-225l36-32c76 79 76 212-2 289a210 210 0 0 1-298-297L253 9v65l-13 13-99 99a165 165 0 0 0 0 228 165 165 0 0 0 232 0Z"
         fill="#EE4C2C"
@@ -218,6 +226,7 @@ export const PyTorchLogo: VoidSVG = () => {
 export const Java: VoidComponent<{}> = () => {
   return (
     <svg class={styles.icon} viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <title>Java Logo</title>
       <path
         d="M335 420c-49 21-105 21-139 12-9-2-16-5-21-8-6-3-9-6-10-9v-5l4-5a50 50 0 0 1 17-8c-2 2-3 3-3 5v3l3 3 16 4a293 293 0 0 0 107-5 104 104 0 0 0 7 5l19 8Zm9-54c-60 17-123 18-161 10-9-1-17-4-23-6-6-3-9-6-10-9s0-6 4-10l20-10-1 1-4 6v4l3 3c2 3 7 4 16 5a414 414 0 0 0 138-5 58 58 0 0 0 18 11Z"
         fill="#5382A1"
@@ -255,6 +264,7 @@ export const Java: VoidComponent<{}> = () => {
 export const JUnitLogo: VoidSVG = () => {
   return (
     <svg class={styles.icon} style={{ '--dash-array': '1750' }} viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <title>JUnit Logo</title>
       <path
         d="m137 479 6 3v-71c55 25 131 32 181-7 21-15 35-37 40-63 3-17 3-39 0-53-1-9-5-18-9-27a99 99 0 0 0-74-49c-26-5-50-2-75 2h-1l1-18a8435 8435 0 0 1 6-66 1672 1672 0 0 1 130 0l1-25V80l-1-61a253 253 0 1 1-205 460Zm6-114 1-3h-1v3Zm25-106 2 1-2-1Z"
         fill="#24A464"
@@ -278,6 +288,7 @@ export const JUnitLogo: VoidSVG = () => {
 export const OpenSourceLogo: VoidSVG = () => {
   return (
     <svg class={styles.icon} style={{ '--dash-array': '2200' }} viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <title>Open Source Initiative Logo</title>
       <path
         d="M296 354c16-7 29-17 39-30 10-16 15-35 15-59a94 94 0 0 0-93-93c-54 0-96 43-95 93 0 45 20 77 54 91l-55 136A243 243 0 0 1 8 265 246 246 0 0 1 255 18a248 248 0 0 1 249 247c0 114-76 204-153 227l-55-138Z"
         fill="#3EA639"
@@ -291,6 +302,7 @@ export const OpenSourceLogo: VoidSVG = () => {
 export const WordPressLogo: VoidSVG = () => {
   return (
     <svg class={styles.icon} style={{ '--dash-array': '1800' }} viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <title>WordPress Logo</title>
       <path
         d="M256 512a256 256 0 1 0 0-512 256 256 0 0 0 0 512ZM36 256a220 220 0 0 0 124 197L55 166c-12 28-19 58-19 90Zm368-11v-1 1Zm0-1a116 116 0 0 0-20-63c-11-17-20-31-20-48 0-20 15-39 37-39h3a219 219 0 0 0-331 41h13l59-2c12-1 13 16 1 18l-25 2 80 238 48-145-34-94c-12 0-23-2-23-2-12 0-10-19 1-18 0 0 37 3 58 3 23 0 59-3 59-3 11-1 13 17 1 18 0 0-12 2-25 2l79 236 22-73 1-4c9-28 15-49 16-67Zm-144 31-66 191c44 13 91 12 134-4l-1-3-67-184Zm188-125c4 35-2 69-15 101l-67 194a219 219 0 0 0 82-295Z"
         fill="#fff"
@@ -308,6 +320,7 @@ export const WordPressLogo: VoidSVG = () => {
 export const W3CLogo: VoidSVG = () => {
   return (
     <svg class={styles.icon} style={{ '--dash-array': '2500' }} viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <title>W3C Logo</title>
       <path fill="#fff" d="M0 121h512v272H0z" />
       <path
         d="m145 132 46 153 44-153h123v15l-46 79c16 5 28 15 37 29 8 13 12 29 12 48 0 23-6 42-18 57a57 57 0 0 1-47 24c-15 0-28-5-38-14a82 82 0 0 1-24-38l26-10c3 9 7 16 14 23 6 5 14 8 22 8s15-5 22-15c6-11 9-23 9-36 0-14-3-26-10-34-8-10-19-16-35-16h-12v-14l43-75h-53l-3 5-63 216h-3l-47-157-47 157h-3L19 132h33l45 153 31-103-16-50h33Z"
@@ -326,6 +339,7 @@ export const W3CLogo: VoidSVG = () => {
 export const Assembly: VoidComponent<{}> = () => {
   return (
     <svg class={styles.icon} style={{ '--dash-array': '2100' }} viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <title>Assembly Langauge Logo</title>
       <path d="M0 0v512h512V0H315a59 59 0 0 1-82 56 59 59 0 0 1-36-56H0Z" fill="#007ACC" stroke="#007ACC" stroke-width="8" />
       <path
         d="M201 234h4l105 232h-50l-11-26h-93l-11 26h-45l101-232Zm31 166-16-39a332 332 0 0 1-14-42 474 474 0 0 1-13 42l-17 39h60Zm159 69a113 113 0 0 1-54-14c-8-4-14-9-19-15l-13-19 38-23c6 9 12 16 19 21s16 8 28 8c10 0 18-2 23-6a22 22 0 0 0 0-36l-25-13-12-5c-9-3-16-7-23-12-7-4-13-9-18-14-5-6-9-12-12-20a72 72 0 0 1 1-50c3-7 8-14 14-20a67 67 0 0 1 50-17c15 0 28 2 39 8s21 16 29 29l-37 24c-4-7-9-12-13-16-5-3-11-4-18-4s-12 2-16 5c-4 4-6 9-6 15 0 7 2 13 6 17l23 12 12 5 26 13c8 5 15 10 20 16 5 5 9 12 12 19 3 8 4 16 4 26 0 11-2 20-6 28-4 9-9 15-16 21s-15 10-25 13c-9 3-20 4-31 4Z"
@@ -338,6 +352,7 @@ export const Assembly: VoidComponent<{}> = () => {
 export const IoTLogo: VoidSVG = () => {
   return (
     <svg class={styles.icon} viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <title>IoT Logo</title>
       <path
         d="M113 57 86 74l17 24 8-6a195 195 0 0 1 222 6l16-24-9-7c-67-43-156-49-227-10Z"
         fill="#E85D04"
@@ -375,6 +390,7 @@ export const IoTLogo: VoidSVG = () => {
 export const CPP: VoidComponent<{}> = () => {
   return (
     <svg class={styles.icon} viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <title>C++ Logo</title>
       <path
         d="M484 151c0-9-2-16-8-23-3-7-8-12-16-16L279 7c-16-9-32-9-48 0L50 112c-14 9-22 21-22 39v210c0 9 2 16 6 23l16 16 181 103c16 11 32 11 48 2l181-105 18-16c4-7 6-14 6-23V151Z"
         fill="#5C8DBC"
