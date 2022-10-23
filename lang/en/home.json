@@ -7,7 +7,7 @@
     {
       "title": "Symput",
       "subtitle": "An Android keyboard and associated full stack website for feedback",
-      "description": "earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !",
+      "description": "Created a full stack website, symput.com allowing users of our first-year group project android keyboard to provide feedback. The site includes a CMS, user profiles, serverless functions and more!",
       "thumbnails": ["/images/projects/symput.svg"],
       "alt": "",
       "link": "/projects/symput",
@@ -19,8 +19,8 @@
     },
     {
       "title": "Personal Website",
-      "subtitle": "georgegrainger.com (this site) - my portfolio website to try and show off!!",
-      "description": "earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !",
+      "subtitle": "georgegrainger.com (this site) - my portfolio website to try and show off!",
+      "description": "Designed and implemented this website. This site contains nice animations, particularly when switching between dark and light modes. It also includes page transitions and use of the Spotify API.",
       "thumbnails": ["/images/projects/personal-website.svg"],
       "alt": "",
       "link": "/projects/personal-website",
@@ -28,8 +28,8 @@
     },
     {
       "title": "Reinforcement Learning",
-      "subtitle": "Computational models simulating the dopamine system circurity in the brain",
-      "description": "earum tempora quam, inventore blanditiis natus, delectus mollitia enim!",
+      "subtitle": "Computational models simulating the dopamine system circuirty in the brain",
+      "description": "My third-year project in which I hope to create simulations of the dopamine system, specifically relating to addiction through reinforcement learning models.",
       "thumbnails": [
         "/images/projects/brain-1x.webp",
         "/images/projects/brain-2x.webp",
@@ -46,8 +46,8 @@
     },
     {
       "title": "Stendhal",
-      "subtitle": "Debugging and adding to features to an open source MMORPG with 10,000 lines of code",
-      "description": "earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !",
+      "subtitle": "Debugging and adding features to an open source MMORPG with 10,000 lines of code",
+      "description": "Brownfield development on a large scale, open source Java codebase. Improved my ability to navigate, and understand others' code while realising some of the advantages of test-driven development.",
       "thumbnails": ["/images/projects/stendhal.webp"],
       "alt": "",
       "link": "/projects/stendhal",
@@ -59,8 +59,8 @@
     },
     {
       "title": "NHS Heart and Lung Website",
-      "subtitle": "Created a resource for Newastle NHS Foundation trust transplant patients",
-      "description": "earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur provident blanditiis natus, delectus mollitia enim voluptatibus repudiandae, sequi consequatur !",
+      "subtitle": "Created a resource for Newcastle NHS Foundation trust transplant patients",
+      "description": "Created an information and learning system for heart and lung patients, hopefully easing the process of understanding changes they'll need to make after the operation. The site had to be universally useable making accessibility and intuitiveness essential.",
       "thumbnails": ["/images/projects/nhs-hl.svg"],
       "alt": "",
       "link": "/projects/nhs-heart-and-lung",
@@ -71,8 +71,8 @@
     },
     {
       "title": "IoT Vinyl Playing",
-      "subtitle": "Embedded chips into vinyls so Alexa plays song when phone held nearby",
-      "description": "earum tempora quam, inventore blanditiis natus, delectus mollitia enim voluptatibus repudiandae",
+      "subtitle": "Embedded chips into vinyls so Alexa plays a song when a phone is held nearby",
+      "description": "Designing a system so wthat when I hold my phone up to a vinyl found in my room, it will start playing a song from that album from my Alexa.",
       "thumbnails": ["/images/projects/iot-vinyl.svg"],
       "alt": "",
       "link": "/projects/iot-vinyl-playing",
