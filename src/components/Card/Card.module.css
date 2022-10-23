@@ -42,11 +42,13 @@
   transition: transform var(--duration) var(--transition);
 }
 
+.card:focus-within::before,
 .card:hover::before {
   transform: scale(1.2, 1);
 }
 
-.card:hover::after {
+.card:hover::after,
+.card:focus-within::after {
   transform: translateX(100%);
 }
 
@@ -76,6 +78,7 @@ h2.moveUp {
   margin-bottom: auto;
 }
 
+.card:focus-within .front,
 .card:hover .front {
   transform: translateY(-33%) scale(0.6);
 }
@@ -98,7 +101,9 @@ h2.moveUp {
   color: var(--hover);
 }
 
+.card:focus-within .frontTitle,
 .card:hover .frontTitle,
+.card:focus-within .subtitle,
 .card:hover .subtitle {
   opacity: 0;
 }
@@ -109,13 +114,14 @@ h2.moveUp {
   place-items: center;
   text-align: center;
   gap: 1em;
-  margin-top: 55%;
+  margin-top: 60%;
   opacity: 0;
   padding-bottom: 1em;
   pointer-events: none;
   transform: translateY(15%);
 }
 
+.card:focus-within .back,
 .card:hover .back {
   opacity: 1;
   transform: translateY(0);
@@ -144,6 +150,16 @@ h2.moveUp {
   column-rule: 1px solid var(--text);
 }
 
+.languages a:focus-visible {
+  outline: none;
+}
+
+.languages a:focus-visible strong {
+  outline: 0.2em solid var(--purple);
+  outline-offset: 0.2em;
+  border-radius: var(--br);
+}
+
 .icon {
   --a-duration: calc(4 * var(--duration));
   width: var(--size, 0.75em);
@@ -165,24 +181,24 @@ h2.moveUp {
   fill-opacity: 1;
 }
 
+:global(.no-preference) .card:focus-within .icon path,
 :global(.no-preference) .card:hover .icon path {
   stroke-dasharray: 0 var(--dash-array, 1600);
   animation: borderMove var(--a-duration) var(--a-delay, 0ms) linear forwards,
-    fillIcon var(--a-duration) calc(1.5 * var(--a-duration) + var(--a-delay, 0ms)) linear forwards;
+    fillIcon var(--a-duration) calc(1.25 * var(--a-duration) + var(--a-delay, 0ms)) linear forwards;
 }
 
-:where(a) .icon:hover path {
+a:focus-visible .icon path,
+a .icon:hover path {
   transform: scale(1.2);
 }
 
-.languages :nth-child(3) .icon path,
-.languages .icon:nth-child(3) path {
-  --a-delay: calc(0.5 * var(--a-duration));
+.languages :nth-child(2) .icon path {
+  --a-delay: calc(0.33 * var(--a-duration));
 }
 
-.languages :nth-child(5) path,
-.languages .icon:nth-child(5) path {
-  --a-delay: var(--a-duration);
+.languages :nth-child(3) path {
+  --a-delay: calc(0.66 * var(--a-duration));
 }
 
 @keyframes borderMove {
@@ -224,6 +240,11 @@ h2.moveUp {
   color: var(--white);
   overflow: hidden;
   cursor: pointer;
+}
+
+.topTrackCard:focus-visible,
+.topTrackCard :focus-visible {
+  outline-width: 0.1rem;
 }
 
 .topTrackCard:focus-within {
@@ -366,8 +387,8 @@ h2.moveUp {
 }
 
 .spotifyLink:focus-visible svg {
-  outline: 0.25rem solid var(--purple);
-  outline-offset: 0.125rem;
+  outline: 0.1rem solid var(--purple);
+  outline-offset: 0.1rem;
   border-radius: 100vmax;
 }
 
@@ -393,7 +414,6 @@ h2.moveUp {
   stroke: currentColor;
   fill: currentColor;
   filter: drop-shadow(0 0.05em 0.125em var(--black));
-  outline: unset;
   opacity: 0;
 }
 
@@ -470,6 +490,11 @@ h2.moveUp {
 .lastPlayedCard .controls {
   font-size: 1.3em;
 }
+
+.controls button {
+  border-radius: 100vmax;
+}
+
 .currentlyPlaying {
   margin-top: 1em;
 }

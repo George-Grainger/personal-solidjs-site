@@ -144,7 +144,7 @@ export const ProjectCard: VoidComponent<ProjectCardProps> = (props) => {
     });
   };
 
-  const handleMouseLeave = (e: MouseEvent) => {
+  const handleMouseLeave = (e: Event) => {
     const moved = card?.parentElement?.parentElement?.querySelectorAll(`.${styles.moveUp}, .${styles.moveDown}`);
     moved?.forEach((el) => el.classList.remove(styles.moveUp, styles.moveDown));
     if (!Array.from(moved || []).some((el) => el.matches(':hover'))) {
@@ -158,6 +158,8 @@ export const ProjectCard: VoidComponent<ProjectCardProps> = (props) => {
       id={`project-title-${props.index}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onFocusIn={handleMouseEnter}
+      onFocusOut={handleMouseLeave}
       class={styles.card}
       attr-index={props.index}
     >
@@ -165,7 +167,6 @@ export const ProjectCard: VoidComponent<ProjectCardProps> = (props) => {
         <img
           width="324"
           height="390"
-          class={styles.thumbnail}
           src={props.thumbnails[0]}
           srcset={props.thumbnails.map((url, index) => `${url} ${index + 1}x`).join()}
           alt={props.alt || ''}
@@ -182,7 +183,14 @@ export const ProjectCard: VoidComponent<ProjectCardProps> = (props) => {
         <div class={styles.languages} style={{ '--columns': props.technologies?.length }}>
           <For each={props.technologies}>
             {(technology: { name: string; href?: string }) => (
-              <Show when={technology.href} fallback={<Options name={technology.name}></Options>}>
+              <Show
+                when={technology.href}
+                fallback={
+                  <span>
+                    <Options name={technology.name}></Options>
+                  </span>
+                }
+              >
                 <a href={technology.href} target="_blank" rel="noopener noreferrer">
                   <Options name={technology.name}></Options>
                 </a>
