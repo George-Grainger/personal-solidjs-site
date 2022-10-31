@@ -24,10 +24,10 @@ const WhenNotPlaying: VoidComponent<{ playedAt: string }> = ({ playedAt }) => {
   );
 };
 
-const WhenPlaying: VoidComponent<{ duration: number }> = ({ duration }) => {
+const WhenPlaying: VoidComponent<{ duration: () => number }> = ({ duration }) => {
   const [t] = useI18n();
   const { playerProgress } = useSpotify();
-  const getPercentage = () => 100 * (playerProgress() / duration);
+  const getPercentage = () => 100 * (playerProgress() / duration());
 
   return (
     <>
@@ -35,7 +35,7 @@ const WhenPlaying: VoidComponent<{ duration: number }> = ({ duration }) => {
       <div class={styles.progressArea}>
         <p>{new Date().millisToISOTime(playerProgress())}</p>
         <progress aria-label="Song progress" class={styles.progressBar} max={100} value={getPercentage()}></progress>
-        <p>{new Date().millisToISOTime(duration)}</p>
+        <p>{new Date().millisToISOTime(duration())}</p>
       </div>
       <p>{t('home.stick-around', {}, 'Stick around to see what I listen to next')}</p>
     </>
@@ -57,7 +57,8 @@ export const LastPlayedMediaCard: VoidComponent<LastPlayedMedia> = (props) => {
         <p class={styles.songTitle}>{props.title}</p>
         <strong class={styles.artist}>{props.creator}</strong>
         <Show when={props.isPlaying} fallback={props.playedAt && <WhenNotPlaying playedAt={props.playedAt} />}>
-          <WhenPlaying duration={props.duration} />
+          {/* Must pass as function to keep visible value up to date */}
+          <WhenPlaying duration={() => props.duration} />
         </Show>
       </div>
       <Show when={props.previewUrl}>

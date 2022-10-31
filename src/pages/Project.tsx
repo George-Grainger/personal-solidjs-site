@@ -1,5 +1,5 @@
 import { useRouteData } from '@solidjs/router';
-import { Component, Match, onMount, Show, Switch } from 'solid-js';
+import { Component, Match, onMount, Switch } from 'solid-js';
 import { ProjectData } from './Project.data';
 import styles from '../page-styles/project.module.css';
 import html from 'solid-js/html';
@@ -22,10 +22,12 @@ const Projects: Component<{}> = () => {
     if (data.project?.attributes?.['in-progress']) {
       content.insertBefore(html`<span class="${styles.inProgress}">In Progress</span>`, content.firstChild!.nextSibling);
     }
+
+    window.scrollTo(0, 0);
   };
 
   return (
-    <section class={styles.projectInfoSection}>
+    <section>
       <Switch fallback={'Failed to load markdown...'}>
         <Match when={data.loading}>Loading project...</Match>
         <Match when={data.project}>
