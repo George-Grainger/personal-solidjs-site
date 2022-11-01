@@ -77,7 +77,7 @@ export const AppContextProvider: ParentComponent = (props) => {
       header?.classList.add('cover');
 
       setTimeout(() => {
-        navigate(href, { scroll: true });
+        navigate(href);
       }, delayInS * 333);
 
       clearTimeout(prevTimeout);
@@ -100,8 +100,8 @@ export const AppContextProvider: ParentComponent = (props) => {
         return false;
       }
 
-      if (a.hash) {
-        window.history.pushState(null, '', a.href);
+      if (a.hash && a.pathname === prevPathname) {
+        window.history.pushState('', document.title, a.href);
       }
 
       e.preventDefault();

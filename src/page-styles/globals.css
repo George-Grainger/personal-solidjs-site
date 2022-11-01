@@ -488,6 +488,12 @@ button,
 
 /* Utilities */
 
+.fp-section {
+  margin-top: -5vh;
+  min-height: calc(100vh - 5.625rem);
+  min-width: 90vw;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

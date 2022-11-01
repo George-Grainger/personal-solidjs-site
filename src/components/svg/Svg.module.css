@@ -529,3 +529,11 @@ g.mountainGroup ~ .mountainGroup path:nth-child(3n + 1) {
     transform: rotate(-10deg);
   }
 }
+
+:global(.light) .asteroidLoading {
+  display: none;
+}
+
+:global(.dark) .cloudLoading {
+  display: none;
+}

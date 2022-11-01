@@ -3,6 +3,7 @@ import { Component, Match, onMount, Switch } from 'solid-js';
 import { ProjectData } from './Project.data';
 import styles from '../page-styles/project.module.css';
 import html from 'solid-js/html';
+import { Loading } from '../components/svg';
 
 const Projects: Component<{}> = () => {
   const data = useRouteData<ProjectData>();
@@ -23,13 +24,15 @@ const Projects: Component<{}> = () => {
       content.insertBefore(html`<span class="${styles.inProgress}">In Progress</span>`, content.firstChild!.nextSibling);
     }
 
-    window.scrollTo(0, 0);
+    content.scrollIntoView();
   };
 
   return (
-    <section>
+    <section classList={{ 'fp-section': data.loading }}>
       <Switch fallback={'Failed to load markdown...'}>
-        <Match when={data.loading}>Loading project...</Match>
+        <Match when={data.loading}>
+          <Loading />
+        </Match>
         <Match when={data.project}>
           <article
             ref={(content) => onMount(() => handleMount(content))}

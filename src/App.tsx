@@ -4,6 +4,7 @@ import { MetaProvider } from 'solid-meta';
 import { AppContextProvider } from './AppContext';
 import { Footer } from './components/Footer';
 import { Navbar } from './components/Navbar';
+import { Loading } from './components/svg';
 import { routes } from './routes';
 
 const App: VoidComponent<{}> = () => {
@@ -33,8 +34,8 @@ const App: VoidComponent<{}> = () => {
           <main classList={{ loading: useIsRouting()() }}>
             <Suspense
               fallback={
-                <section>
-                  <p>Loading</p>
+                <section class="fp-section">
+                  <Loading />
                 </section>
               }
             >
