@@ -24,7 +24,7 @@ let lastInterval: number | undefined;
 export const useSpotify = () => {
   const NOW_PLAYING_ENDPOINT = `https://api.spotify.com/v1/me/player/currently-playing`;
   const RECENTLY_PLAYED_ENDPOINT = `https://api.spotify.com/v1/me/player/recently-played?limit=1`;
-  const TOP_TRACKS_ENDPOINT = `https://api.spotify.com/v1/me/top/tracks?limit=9`;
+  const TOP_TRACKS_ENDPOINT = `https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=9`;
   const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
   const ONE_DAY = 86400000;
   const THIRTY_SECONDS = 30000;
