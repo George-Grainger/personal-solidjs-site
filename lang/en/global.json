@@ -1,0 +1,49 @@
+{
+  "name": "English",
+  "title": "George Grainger's Home",
+  "locale": "en-GB",
+  "nav": [
+    {
+      "title": "Home",
+      "path": "#hero"
+    },
+    {
+      "title": "Projects",
+      "path": "#projects"
+    },
+    {
+      "title": "About",
+      "path": "#about-me"
+    }
+  ],
+  "select": {
+    "current": "Currently selected:",
+    "view_options": "View options"
+  },
+  "404": {
+    "header": "We've lost our way - 404",
+    "body": "This page doesn't exist"
+  },
+  "footer": {
+    "preferences": "Preferences",
+    "preference-links": [
+      {
+        "title": "Languages",
+        "path": "/languages"
+      },
+      {
+        "title": "Theme",
+        "path": "/theme"
+      },
+      {
+        "title": "Accessibility",
+        "path": "/accessibility"
+      }
+    ],
+    "created-by": "Created by"
+  },
+  "dark_mode": "Toggle dark mode",
+  "light_mode": "Toggle light mode",
+  "reduce_animation": "Reduce animations",
+  "keep_animation": "Keep animations"
+}

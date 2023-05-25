@@ -1,0 +1,49 @@
+{
+  "name": "English",
+  "title": "La maison de George Grainger",
+  "locale": "fr-FR",
+  "nav": [
+    {
+      "title": "Accueil",
+      "path": "#hero"
+    },
+    {
+      "title": "Projets",
+      "path": "#projects"
+    },
+    {
+      "title": "Informations",
+      "path": "#about-me"
+    }
+  ],
+  "select": {
+    "current": "Actuellement sélectionné :",
+    "view_options": "Options d'affichage"
+  },
+  "404": {
+    "header": "Étaient perdus - 404",
+    "body": "Cette page n'existe pas"
+  },
+  "footer": {
+    "preferences": "Préférences",
+    "preference-links": [
+      {
+        "title": "Langues",
+        "path": "/languages"
+      },
+      {
+        "title": "Thème",
+        "path": "/theme"
+      },
+      {
+        "title": "Accessibilité",
+        "path": "/accessibility"
+      }
+    ],
+    "created-by": "Créé par"
+  },
+  "dark_mode": "Basculer en mode sombre",
+  "light_mode": "Basculer en mode lumière",
+  "reduce_animation": "Réduire l'animation",
+  "keep_animation": "Garder l'animation"
+}
