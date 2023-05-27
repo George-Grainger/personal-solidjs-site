@@ -39,8 +39,35 @@ img {
 
 // General styles
 :root {
+  --white: hsl(0, 0%, 98%);
+  --white-hover: hsl(0, 0%, 83%);
+  --black: hsl(231, 23%, 12%);
+  --black-hover: hsl(231, 23%, 27%);
   --sky-blue: hsl(212, 97%, 85%);
+  --yellow-1: hsl(52, 98%, 78%);
+  --yellow-2: hsl(52, 98%, 48%);
+  --blue: hsl(223, 100%, 33%);
+  --red: hsl(349, 100%, 43%);
+  --green: hsl(118, 44%, 43%);
+  --purple: hsl(259, 79%, 50%);
+  --clr-footer: hsl(117, 36%, 49%);
+
+  --card: var(--white);
   --background: var(--sky-blue);
+  --text: var(--black);
+  --hover: var(--black-hover);
+  --inverse: var(--white);
+  --inverse-hover: var(--white-hover);
+  --code-bg: var(--white);
+
+  --cloud-white: hsla(0, 0%, 98%, 0.9);
+  --space-rock-grey: hsl(226, 21%, 88%);
+  --shadow-black: hsla(231, 23%, 12%, 0.2);
+
+  --duration: calc(var(--mult, 1) * 300ms);
+  --transition: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  --br: 0.5rem;
 }
 
 body {
@@ -74,4 +101,16 @@ nav[aria-label='Main'] {
   a {
     text-decoration: none;
   }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }

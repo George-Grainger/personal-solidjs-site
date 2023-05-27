@@ -1,0 +1,108 @@
+.svg {
+  transition: background-color 300ms var(--transition), border-color 300ms var(--transition);
+  background-color: hsl(212, 97%, 68%);
+  border: 0.15em solid;
+  border-color: var(--white);
+  border-radius: 100vmax;
+  height: 2em;
+  position: relative;
+}
+
+.sun,
+.clouds {
+  transition: opacity 300ms var(--transition), translate 150ms var(--transition);
+}
+
+.moon_mask {
+  transition: translate 150ms var(--transition) var(--_delay, 0ms);
+}
+
+.stars,
+.dots {
+  --_distance: 3.125rem;
+  transition: opacity 150ms var(--transition), translate 150ms var(--transition) 50ms;
+}
+
+.stars {
+  translate: var(--_distance);
+}
+
+.dots {
+  translate: calc(-1 * var(--_distance));
+}
+
+.plane {
+  opacity: 0;
+}
+
+// To be light mode
+.svg:not(:hover) {
+  .plane {
+    animation: plane_move 2000ms 1 300ms;
+  }
+
+  .moon,
+  .stars,
+  .dots {
+    opacity: 0;
+  }
+
+  .moon_mask {
+    translate: 6rem;
+  }
+
+  .clouds * {
+    animation: clouds_in 500ms var(--transition);
+
+    &:last-child {
+      animation-delay: -125ms;
+    }
+  }
+}
+
+// To be dark mode
+.svg:hover {
+  background-color: hsl(223, 48%, 25%);
+  border-color: hsl(230, 23%, 56%);
+
+  .stars,
+  .dots {
+    translate: 0;
+  }
+
+  .sun {
+    translate: -10.5rem -0.75rem;
+    opacity: 0;
+  }
+
+  .moon_mask {
+    --_delay: 50ms;
+  }
+
+  .clouds {
+    translate: 2.5rem;
+    opacity: 0;
+  }
+}
+
+@keyframes plane_move {
+  0% {
+    opacity: 1;
+    translate: -25rem;
+  }
+  50% {
+    translate: 0rem;
+  }
+  80% {
+    opacity: 1;
+  }
+}
+
+@keyframes clouds_in {
+  from {
+    translate: 0 10rem;
+  }
+  to {
+    translate: 0;
+  }
+}

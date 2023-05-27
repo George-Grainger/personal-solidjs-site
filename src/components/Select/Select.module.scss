@@ -1,0 +1,101 @@
+.wrapper {
+  border-radius: var(--br);
+  --unit-x: var(--size-x, 0.375em);
+  --unit-y: var(--size-y, 0.375em);
+  position: relative;
+}
+
+.title,
+.select {
+  --drop-duration: 200ms;
+  line-height: 1;
+  width: var(--select-width, 100%);
+  color: currentColor;
+  border-radius: inherit;
+  border: 0.175rem solid currentColor;
+  background-color: var(--inverse);
+  display: flex;
+
+  svg {
+    height: var(--select-svg-height, 1.8em);
+    fill: currentColor;
+  }
+}
+
+.title {
+  padding: var(--unit-y) calc(4 * var(--unit-x)) var(--unit-y) var(--unit-x);
+  position: relative;
+  text-align: left;
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--inverse-hover);
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 50% 0.5em auto auto;
+    border-left: var(--unit-x) solid transparent;
+    border-right: var(--unit-x) solid transparent;
+    transition: opacity var(--drop-duration) var(--transition);
+  }
+
+  &::before {
+    transform: translateY(-120%);
+    border-bottom: var(--unit-x) solid currentColor;
+    opacity: 0.35;
+  }
+
+  &::after {
+    transform: translateY(20%);
+    border-top: var(--unit-x) solid currentColor;
+  }
+
+  &[aria-expanded='true'] {
+    ::before {
+      opacity: 1;
+    }
+
+    ::after {
+      opacity: 0.35;
+    }
+  }
+}
+
+.select {
+  flex-direction: column;
+  position: absolute;
+  top: 110%;
+  padding: 0;
+  z-index: -1;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-25%);
+  transition: opacity var(--drop-duration) var(--transition), transform var(--drop-duration) var(--transition);
+
+  input[type='radio'] {
+    visibility: hidden;
+  }
+
+  &[aria-hidden='false'] {
+    pointer-events: all;
+    transform: translateY(5%);
+    opacity: 1;
+  }
+}
+
+.label {
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--unit-x) var(--unit-y);
+  border-radius: inherit;
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--inverse-hover);
+  }
+}

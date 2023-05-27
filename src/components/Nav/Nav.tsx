@@ -1,4 +1,5 @@
 import { A } from '~/locales';
+import { DarkmodeToggle } from './DarkmodeToggle';
 
 export function Nav() {
   return (
@@ -14,9 +15,17 @@ export function Nav() {
           <li>
             <A href="/#home">About</A>
           </li>
-          <li>Dark Mode</li>
+          <li>
+            <DarkmodeToggle />
+          </li>
           <li>Animations</li>
-          <li>Lanuage</li>
+          <li>
+            <select onChange={() => console.log('here')}>
+              <option id="test" value="test">
+                Test
+              </option>
+            </select>
+          </li>
         </ul>
       </nav>
     </header>

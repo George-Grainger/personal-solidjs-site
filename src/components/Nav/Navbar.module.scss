@@ -1,0 +1,134 @@
+.cloud > path {
+  transition: transform var(--duration) var(--transition);
+}
+
+.toggle {
+  --is-light: 1;
+  --transition: cubic-bezier(0.22, 0.61, 0.36, 1);
+  fill: hsl(212, 97%, 68%);
+  height: 2em;
+}
+
+:global(.reduce-motion) .toggle {
+  --duration: 0;
+}
+
+.outline {
+  stroke: var(--white);
+  stroke-width: 0.625rem;
+  /* transition: fill var(--duration) var(--transition), stroke var(--duration) var(--transition); */
+}
+
+.stars {
+  composes: global(transition-opacity);
+}
+
+.stars * {
+  opacity: calc(1 - var(--is-light));
+  transition: opacity calc(0.4 * var(--duration)) var(--transition),
+    transform calc(0.4 * var(--duration)) var(--transition) calc(0.8 * var(--duration));
+  transform-origin: 50% 50%;
+}
+
+.sun {
+  composes: global(transition-transform-opacity);
+  opacity: var(--is-light);
+  fill: var(--yellow-2);
+}
+
+.moon {
+  composes: global(transition-opacity);
+  opacity: calc(1 - var(--is-light));
+}
+
+.cloud > path:first-child {
+  transition-delay: 100ms;
+}
+
+.plane {
+  stroke: var(--white);
+  animation: plane 2000ms 1 300ms;
+  opacity: 0;
+}
+
+.moonMask {
+  composes: global(transition-transform);
+  fill: hsl(230, 23%, 46%);
+}
+
+:global(.dark) .toggle {
+  --is-light: 0;
+  fill: hsl(223, 48%, 25%);
+}
+
+:global(.dark) .outline {
+  stroke: hsl(230, 23%, 56%);
+}
+
+:global(.dark) .stars * {
+  transition: transform var(--duration) var(--transition);
+}
+
+:global(.dark) .stars *:first-child {
+  transform: translateX(-2.5rem);
+}
+
+:global(.dark) .stars *:last-child {
+  transform: translateX(2.5rem);
+}
+
+:global(.dark) .sun {
+  transform: translate(-8.75rem, -1.25rem);
+}
+
+:global(.dark) .moon {
+  transform: translateX(-5.625rem);
+}
+
+:global(.dark) .cloud > path {
+  opacity: 1;
+  animation: cloudToDark var(--duration);
+  transform: translateY(6.25rem);
+}
+
+/* Prevent cloud flash on initial load */
+:global(.dark):global(.no-animate) .cloud > path {
+  opacity: 0;
+}
+
+:global(.reduce-motion) .plane,
+:global(.dark) .plane {
+  animation: unset;
+}
+
+:global(.reduce-motion) .stars *,
+:global(.reduce-motion) .cloud > path:first-child {
+  transition-delay: 0ms;
+}
+
+:global(.dark) .moonMask {
+  transform: translateX(-8.75rem);
+}
+
+@keyframes plane {
+  0% {
+    opacity: 1;
+    transform: translateX(-25rem);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  80% {
+    opacity: 1;
+  }
+}
+
+@keyframes cloudToDark {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(2.5rem);
+  }
+}
