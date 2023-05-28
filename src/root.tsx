@@ -1,8 +1,7 @@
-// @refresh reload
 import { useI18n } from '@solid-primitives/i18n';
 import { Suspense, createRenderEffect, mergeProps } from 'solid-js';
 import { Body, ErrorBoundary, FileRoutes, Head, Html, Meta, Outlet, Route, Routes, Scripts, Title, useParams } from 'solid-start';
-import { LOCALES, Locale, LocaleSwitchProvider as LocaleProvider, LocaleSwitcher, NavigateToLocalizedRoute, useI18nRoute } from '~/locales';
+import { LOCALES, Locale, LocaleSwitchProvider as LocaleProvider, LocaleSwitcher } from '~/locales';
 import { Nav } from '~/components/Nav';
 import './root.scss';
 
@@ -13,7 +12,7 @@ export default function Root() {
         <Route path={[':locale']} matchFilters={{ locale: LOCALES }} component={App}>
           <FileRoutes />
         </Route>
-        <Route path="*" component={NavigateToLocalizedRoute} />
+        {/* <Route path="*" component={NavigateToLocalizedRoute} /> */}
       </Routes>
     </LocaleProvider>
   );

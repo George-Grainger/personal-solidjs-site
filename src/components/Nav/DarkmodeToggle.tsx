@@ -47,51 +47,34 @@ export const DarkmodeToggle: VoidComponent<{}> = () => {
         aria-pressed={context.isDark}
         //   onKeyDown={handleKeyDown}
         class={styles.svg}
-        viewBox="-10 10 380 170"
+        viewBox="0 0 380 170"
+        fill="var(--white)"
         xmlns="http://www.w3.org/2000/svg"
-        tabIndex="0"
       >
-        <title>{t('global.dark_mode', {}, 'Toggle dark mode')}</title>
-        <circle class={styles.moon} mask="url(#moon-mask)" cx="75" cy="95" r="70" fill="var(--white)" />
-        <circle class={styles.sun} cx="285" cy="95" r="70" fill="var(--yellow-2)" />
-
-        <g class={styles.stars}>
-          <use href="#dmt-star" x="215" y="120" height="33" width="33" />
-          <use href="#dmt-star" x="180" y="40" height="18" width="18" />
-          <use href="#dmt-star" x="270" y="70" height="23" width="23" />
-        </g>
-
-        <g class={styles.dots}>
-          <use href="#dmt-dot" x="70" y="10" />
-          <use href="#dmt-dot" x="85" y="80" />
-          <use href="#dmt-dot" x="35" y="110" />
-          <use href="#dmt-dot" x="-35" y="60" />
-          <use href="#dmt-dot" x="-70" y="120" />
-        </g>
-
+        <circle class={styles.sun} cx="295" cy="85" r="70" fill="var(--yellow-2)" />
+        <circle class={styles.moon} cx="85" cy="85" r="70" mask="url(#moon-mask)"></circle>
+        <path
+          class={styles.stars}
+          d="m242 111 3 13 13 3-13 3-3 13-3-13-13-3 13-3 3-13ZM207 31l3 13 13 3-13 3-3 13-3-13-13-3 13-3 3-13ZM297 61l3 13 13 3-13 3-3 13-3-13-13-3 13-3 3-13Z"
+        />
+        <path
+          class={styles.dots}
+          d="M330 37a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM345 107a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM295 137a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM225 87a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM190 147a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"
+        />
         <g class={styles.clouds}>
           <use href="#sm-cloud-1" x="40" y="100" height="50" />
           <use href="#sm-cloud-2" x="135" y="90" height="40" />
         </g>
-
         <path
           class={styles.plane}
-          d="M391 45H1m409-1.6c-1.5-1.1-7.1 0-7.1 0l-6.3-5.4-1 .6 1.8 4.9h-3.6l-3.4-3.4-.8.4 1.3 3h-.6c1.4 1 3 1.7 4.5 2.3h15c.6 0 2.2 0 2.2-1.3 0-1-.5 0-2-1.1Z"
-          fill="var(--white)"
+          d="M384 55H-4m409-2c-2.5-.5-7 0-7 0l-6-5-1 1 1 5h-3l-4-4v1l1 3h-1l5 2s11 .5 15 0c1.1-.14 5-1.5 2-2s.5-.5-2-1Z"
           stroke="var(--white)"
-          stroke-width="1.5"
+          stroke-width="2"
         />
-
         <defs>
-          <symbol id="dmt-star" viewBox="0 0 33 33" fill="var(--white)">
-            <path d="m17 1 3 13 13 3-13 3-3 13-3-13-13-3 13-3 3-13Z" />
-          </symbol>
-          <symbol id="dmt-dot" fill="var(--white)">
-            <circle cx="250" cy="35" r="2" />
-          </symbol>
           <mask id="moon-mask">
-            <rect fill="var(--white)" width="300" height="170" />
-            <circle class={styles.moon_mask} fill="hsl(230, 23%, 46%)" cx="115" cy="75" r="70" />
+            <rect width="300" height="170" />
+            <circle cx="120" cy="70" r="70" class={styles.moon_mask} fill="hsl(230, 23%, 46%)" />
           </mask>
         </defs>
       </svg>

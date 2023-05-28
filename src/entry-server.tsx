@@ -1,5 +1,5 @@
 import { redirect } from 'solid-start';
-import { createHandler, renderAsync, StartServer } from 'solid-start/entry-server';
+import { createHandler, renderAsync, renderStream, StartServer } from 'solid-start/entry-server';
 import { LOCALES } from '~/locales';
 
 export default createHandler(
@@ -21,5 +21,5 @@ export default createHandler(
       return redirect(`${basePath}/${locale}${pathname}`);
     };
   },
-  renderAsync((event) => <StartServer event={event} />),
+  renderStream((event) => <StartServer event={event} />),
 );

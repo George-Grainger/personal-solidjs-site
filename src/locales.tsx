@@ -2,9 +2,24 @@ import { I18nContext, createI18nContext, useI18n } from '@solid-primitives/i18n'
 import { A, useLocation, useMatch, useNavigate } from 'solid-start';
 import { createContext, useContext, splitProps, ParentProps, JSX, ParentComponent } from 'solid-js';
 
-const DICT = {
-  en: async () => (await import('~/../lang/en/en')).default(),
-  fr: async () => (await import('~/../lang/fr/fr')).default(),
+// const DICT = {
+//   en: async () => (await import('../lang/en/en')).default(),
+//   fr: async () => (await import('../lang/fr/fr')).default(),
+// };
+
+export const DICT = {
+  en: {
+    home: {
+      title: 'Hello there',
+      subtitle: 'Thanks for stopping by',
+    },
+  },
+  fr: {
+    home: {
+      title: 'Bonjour',
+      subtitle: "Merci d'être passé",
+    },
+  },
 };
 
 export const LOCALES = Object.keys(DICT);
@@ -42,10 +57,10 @@ export const LocaleSwitchProvider = (props: ParentProps) => {
   );
 };
 
-export function NavigateToLocalizedRoute() {
-  useI18nRoute().navigate();
-  return null;
-}
+// export function NavigateToLocalizedRoute() {
+//   useI18nRoute().navigate();
+//   return null;
+// }
 
 export function LocaleSwitcher() {
   const [, { locale }] = useI18n();

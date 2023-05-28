@@ -10,10 +10,10 @@ export function Nav() {
             <A href="/">Home</A>
           </li>
           <li>
-            <A href="/#projects">Projects</A>
+            <A href="#projects">Projects</A>
           </li>
           <li>
-            <A href="/#home">About</A>
+            <A href="#home">About</A>
           </li>
           <li>
             <DarkmodeToggle />
