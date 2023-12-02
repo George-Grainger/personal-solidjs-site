@@ -1,34 +1,26 @@
-## Usage
+# georgegrainger.com (old SolidJS version)
+This is the old SolidJS implementation for my portfolio site georgegrainger.com. It has been replaced by a SvelteKit implementation found at [https://github.com/George-Grainger/georgegrainger.com](https://github.com/George-Grainger/georgegrainger.com).
 
-Those templates dependencies are maintained via [pnpm](https://pnpm.io) via `pnpm up -Lri`.
+While this version is no longer maintained, a live version of the site can still be found at [https://personal-solidjs-site.vercel.app/](https://personal-solidjs-site.vercel.app/).
 
-This is the reason you see a `pnpm-lock.yaml`. That being said, any package manager will work. This file can be safely be removed once you clone a template.
+## Features
+Both this version and the new SvelteKit implementation have a similar set of core features:
+* Language support
+* Accessibility through reduced animation
+* Dark mode, including transitions between the dark and light modes.
+* Page transitions
+* Integration with the Spotify API
 
-```bash
-$ npm install # or pnpm install or yarn install
-```
+## Repository Structure:
+[/lang](/lang) contains the translations used through the site. These currently support English and French, though could be easily extended to include more.
 
-### Learn more on the [Solid Website](https://solidjs.com) and come chat with us on our [Discord](https://discord.com/invite/solidjs)
+[/public](/public) contains all the static assets for the website. This is mainly used for SEO images and excludes many of the site's SVGs, which are stored as javascript files to simplify their animation. Furthermore, it's notable that the CV is out of date - for a recent copy see the [SvelteKit implementation](https://github.com/George-Grainger/georgegrainger.com).
 
-## Available Scripts
+[/scripts](/scripts) contains a single script that is used to generate a sitemap when building the website in production.
 
-In the project directory, you can run:
+[src](/src) the majority of the codebase, split into multiple subsections:
+1. [/components](/src/components) contains all of the reusable SolidJS components for the site, including their style information. It also includes the animatable SVGs for the site.
+2. [/hooks](/src/hooks) contains all of the reusable hooks for simplifying actions in the codebase.
+3. [/page-styles](/src/page-styles) contains the page-level style information (not the components).
+4. [/pages](/src/pages) contains the navigable pages on the site.
 
-### `npm dev` or `npm start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-
-### `npm run build`
-
-Builds the app for production to the `dist` folder.<br>
-It correctly bundles Solid in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-## Deployment
-
-You can deploy the `dist` folder to any static host provider (netlify, surge, now, etc.)
