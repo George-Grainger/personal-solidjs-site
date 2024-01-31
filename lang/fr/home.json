@@ -104,6 +104,7 @@
   ],
   "cv": "Voir mon CV",
   "spotify-tagline": "Informations sur mes chansons récentes et préférées",
+  "spotify-warning": "Remarque : cette version de l'API n'est plus maintenue, veuillez visiter <a href=\"https://www.georgegrainger.com/\" target=\"_blank\">georgegrainger.com</a> pour la voir en action.",
   "latest-song": "Dernière chanson jouée",
   "album-img-alt": "Image de l'album pour {{title}}",
   "played-on": "Joué le {{date}} à {{time}}",

@@ -111,6 +111,14 @@ const Home: Component<{}> = () => {
           <div class={styles.spotify}>
             <h3>Spotify</h3>
             <p>{t('home.spotify-tagline', {}, 'Information on my favourite songs and recent listening')}</p>
+            <p
+              class={styles.error}
+              innerHTML={t(
+                'home.spotify-warning',
+                {},
+                'Note: this version of the API is no longer maintained, please visit georgegrainger.com to see it in action.',
+              )}
+            />
             <ol class={styles.spotifyList} role="list">
               {/* <Suspense fallback={<p>Loading...</p>}> */}
               <Index each={topSongs()}>

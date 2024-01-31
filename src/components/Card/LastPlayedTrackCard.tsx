@@ -1,5 +1,5 @@
 import { useI18n } from '@solid-primitives/i18n';
-import { Accessor, createEffect, createSignal, Show, VoidComponent } from 'solid-js';
+import { Show, VoidComponent } from 'solid-js';
 import { LastPlayedMedia, useSpotify } from '../../hooks/useSpotify';
 import { Audio } from './Audio';
 import styles from './Card.module.css';
